@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<title>PIAS Export</title>
+<link rel="icon" id="ico" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23c96442'/%3E%3Cpath d='M18 20h28M18 32h20M18 44h28' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#262624; --elev:#2F2D29; --card:#34322D; --hover:#3D3B36;
+    --line:#46443F; --line2:#4D4A45;
+    --fg:#F5F4ED; --muted:#A19D93; --dim:#777267;
+    --ember:#c96442; --ember-lit:#d97757;
+    --good:#34d399; --warn:#f59e0b; --bad:#f87171;
+    --console:#1F1E1C; --console-fg:#C9C5B9; --field:#262624;
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --elev:#F7F6F2; --card:#FFFFFF; --hover:#F1EFE9;
+    --line:#E6E3DB; --line2:#D6D2C8;
+    --fg:#1F1E1C; --muted:#6B675E; --dim:#9A958A;
+    --ember:#c96442; --ember-lit:#b8583a;
+    --good:#0f8a5f; --warn:#b26a00; --bad:#c2410c;
+    --console:#F7F6F2; --console-fg:#3D3B36; --field:#FFFFFF;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{background:var(--bg); color:var(--fg); display:flex;
+       font:14px/1.45 "Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased; letter-spacing:-.006em}
+  ::selection{background:rgba(217,119,87,.30)}
+  ::-webkit-scrollbar{width:10px;height:10px}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+  ::-webkit-scrollbar-track{background:transparent}
+
+  aside{width:240px; flex:0 0 240px; background:var(--elev); border-right:1px solid var(--line);
+        display:flex; flex-direction:column; padding:16px 12px; gap:16px; user-select:none}
+  .brand{padding:2px 6px 0; display:flex; align-items:center; gap:10px}
+  .brand img{width:34px; height:34px; border-radius:9px}
+  .brand b{display:block; font-size:13px; font-weight:700; letter-spacing:.02em; white-space:nowrap}
+  .brand span{display:block; color:var(--dim); font-size:11px; letter-spacing:.06em; margin-top:1px}
+  nav{display:flex; flex-direction:column; gap:2px; overflow:auto}
+  .grp-h{font-size:10.5px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; padding:12px 10px 4px}
+  .grp-h:first-child{padding-top:2px}
+  nav button{display:flex; align-items:center; justify-content:space-between; gap:8px; background:none; border:0;
+             color:var(--muted); text-align:left; cursor:pointer; padding:8px 10px; border-radius:9px;
+             font:inherit; font-size:13.5px}
+  nav button:hover{background:var(--hover); color:var(--fg)}
+  nav button.on{background:var(--card); color:var(--fg); box-shadow:0 0 0 1px var(--line) inset}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--good);display:none;flex:0 0 7px}
+  .dot.run{display:block;background:var(--ember);animation:pulse 1.2s ease-in-out infinite}
+  .dot.ok{display:block;background:var(--good)}
+  .dot.bad{display:block;background:var(--bad)}
+  .dot.new{display:block;background:var(--good)}
+  @keyframes pulse{50%{opacity:.35}}
+  .side-end{margin-top:auto; display:flex; flex-direction:column; gap:6px; padding:0 2px}
+  .side-end .row{display:flex; gap:6px}
+  .ver{color:var(--dim); font-size:11.5px; padding:2px 8px 0}
+
+  main{flex:1; min-width:0; display:flex; flex-direction:column}
+  header{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 22px 12px;
+         border-bottom:1px solid var(--line); min-height:58px}
+  header h1{font-size:17px; margin:0; font-weight:650; white-space:nowrap}
+  header .sp{flex:1}
+  .wrap{flex:1; overflow:auto; padding:18px 22px 26px}
+  .cols{display:grid; grid-template-columns:minmax(300px,380px) minmax(0,1fr); gap:14px; align-items:start}
+  @media (max-width:980px){.cols{grid-template-columns:1fr}}
+  .stack{display:flex; flex-direction:column; gap:14px; min-width:0}
+
+  button{font:inherit; cursor:pointer; white-space:nowrap; transition:background .18s,border-color .18s,color .18s,opacity .18s}
+  button:active:not(:disabled){transform:scale(.985)}
+  .btn{background:var(--card); color:var(--fg); border:1px solid var(--line); padding:8px 13px; border-radius:9px}
+  .btn:hover:not(:disabled){background:var(--hover); border-color:var(--line2)}
+  .btn.pri{background:var(--ember); border-color:var(--ember); color:#fff}
+  .btn.pri:hover:not(:disabled){background:var(--ember-lit); border-color:var(--ember-lit)}
+  .btn.sm{padding:5px 10px; border-radius:8px; font-size:12.5px}
+  .btn.gho{background:transparent}
+  .btn.wide{width:100%}
+  .btn:disabled{opacity:.42; cursor:default}
+  .link{background:none; border:0; color:var(--ember-lit); padding:0; font-size:12.5px; cursor:pointer}
+  .link:hover{text-decoration:underline}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:13px; padding:15px 16px; min-width:0}
+  .card h2{margin:0 0 10px; font-size:13.5px; font-weight:650}
+  .no{font-size:10.5px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; margin:14px 0 6px}
+  .no:first-child{margin-top:0}
+  .muted{color:var(--muted); font-size:12.5px}
+  .hint{color:var(--dim); font-size:12px; margin-top:6px}
+  .hide{display:none !important}
+
+  .drop{border:1.5px dashed var(--line2); border-radius:11px; padding:14px; text-align:center; color:var(--muted);
+        font-size:13px; cursor:pointer}
+  .drop:hover,.drop.on{border-color:var(--ember); color:var(--fg); background:rgba(201,100,66,.06)}
+  .chips{display:flex; flex-direction:column; gap:6px; margin-top:8px}
+  .chip{display:flex; align-items:center; gap:8px; background:var(--elev); border:1px solid var(--line); border-radius:9px;
+        padding:7px 10px; font-size:12.5px; min-width:0}
+  .chip span{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .chip i{font-style:normal; color:var(--dim)}
+  .chip button{background:none; border:0; color:var(--dim); font-size:15px; line-height:1; padding:0 2px}
+  .chip button:hover{color:var(--bad)}
+
+  .inp,select,textarea{background:var(--field); border:1px solid var(--line); color:var(--fg); border-radius:9px;
+        padding:8px 11px; font:inherit; font-size:13px; width:100%}
+  textarea{resize:vertical; font-family:ui-monospace,"Cascadia Mono",Consolas,monospace; font-size:12.5px}
+  .inp:focus,select:focus,textarea:focus{outline:none; border-color:var(--line2)}
+  .seg{display:flex; background:var(--elev); border:1px solid var(--line); border-radius:10px; padding:3px; gap:3px}
+  .seg button{flex:1; background:none; border:0; color:var(--muted); padding:6px 8px; border-radius:7px; font-size:12.5px}
+  .seg button.on{background:var(--card); color:var(--fg); box-shadow:0 0 0 1px var(--line) inset}
+  label.ck{display:flex; align-items:center; gap:7px; color:var(--muted); font-size:12.5px; cursor:pointer; margin:4px 0}
+  input[type=checkbox],input[type=radio]{accent-color:var(--ember); width:14px; height:14px; cursor:pointer; margin:0}
+  .act{margin-top:16px; display:flex; gap:8px}
+  .act .btn.pri{flex:1}
+
+  .status{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); flex-wrap:wrap}
+  .status .dot{display:block}
+  .note{border-radius:10px; padding:9px 12px; font-size:12.5px; margin-top:10px}
+  .note.ok{background:rgba(52,211,153,.10); color:var(--good)}
+  .note.warn{background:rgba(245,158,11,.11); color:var(--warn)}
+  .note.bad{background:rgba(248,113,113,.11); color:var(--bad)}
+  .note ul{margin:4px 0 0; padding-left:18px}
+  .code{display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:rgba(201,100,66,.12);
+        border:1px solid rgba(201,100,66,.4); border-radius:11px; padding:11px 13px; margin-top:8px}
+  .code b{font:600 18px/1 ui-monospace,Consolas,monospace; letter-spacing:.12em; color:var(--fg)}
+
+  .empty{color:var(--muted); font-size:13px; padding:28px 6px; text-align:center}
+  .runhead{display:flex; align-items:center; gap:10px}
+  .runhead b{font-size:13.5px}
+  .runhead .sp{flex:1}
+  .bar{height:6px; background:var(--elev); border-radius:6px; overflow:hidden; margin-top:12px}
+  .bar div{height:100%; background:var(--ember); width:0; transition:width .4s}
+  .barlbl{display:flex; justify-content:space-between; color:var(--muted); font-size:12px; margin-top:6px; gap:10px}
+  .barlbl span:first-child{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .spin{width:13px;height:13px;border-radius:50%;border:2px solid var(--line2);border-top-color:var(--ember);animation:sp .7s linear infinite;flex:0 0 13px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  pre{margin:8px 0 0; background:var(--console); color:var(--console-fg); border:1px solid var(--line); border-radius:11px;
+      padding:11px 13px; max-height:34vh; overflow:auto; font:12.2px/1.55 ui-monospace,"Cascadia Mono",Consolas,monospace;
+      white-space:pre-wrap; word-break:break-word}
+  details{margin-top:12px}
+  summary{cursor:pointer; color:var(--muted); font-size:12.5px; user-select:none}
+  summary:hover{color:var(--fg)}
+
+  .stats{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .stat{flex:1 1 120px; background:var(--elev); border:1px solid var(--line); border-radius:11px; padding:10px 13px; min-width:0}
+  .stat div{font-size:11px; color:var(--dim); letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .stat b{display:block; font-size:21px; font-weight:650; margin-top:2px; font-variant-numeric:tabular-nums; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .stat b.good{color:var(--good)} .stat b.warn{color:var(--warn)} .stat b.bad{color:var(--bad)}
+  .files{display:flex; flex-direction:column; gap:8px; margin-top:12px}
+  .file{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .file .btn.pri{flex:1 1 220px; overflow:hidden; text-overflow:ellipsis; text-align:left}
+  .caption{color:var(--muted); font-size:12px; margin-top:10px}
+
+  .tbl{margin-top:16px}
+  .tblh{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+  .tblh h3{margin:0; font-size:12.5px; font-weight:650; margin-right:6px}
+  .views{display:flex; gap:4px; flex-wrap:wrap}
+  .views button{background:none; border:1px solid var(--line); color:var(--muted); border-radius:999px; padding:3px 10px; font-size:12px}
+  .views button.on{background:var(--ember); border-color:var(--ember); color:#fff}
+  .tw{overflow:auto; max-height:56vh; border:1px solid var(--line); border-radius:10px}
+  table{border-collapse:collapse; width:100%; font-size:12.5px}
+  th{position:sticky; top:0; background:var(--elev); text-align:left; font-size:10.5px; font-weight:600; color:var(--dim);
+     text-transform:uppercase; letter-spacing:.06em; padding:8px 10px; border-bottom:1px solid var(--line); white-space:nowrap; z-index:1}
+  td{padding:6px 10px; border-bottom:1px solid var(--line); white-space:nowrap; max-width:420px; overflow:hidden; text-overflow:ellipsis}
+  td.wrap{white-space:normal; min-width:380px; max-width:620px}
+  td.n{text-align:right; font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:var(--hover)}
+  tr:last-child td{border-bottom:0}
+  .more{color:var(--dim); font-size:12px; margin-top:6px}
+
+  .colchk td{white-space:normal}
+  .big{font-size:22px; font-weight:650}
+  .notes{background:var(--console); border:1px solid var(--line); border-radius:11px; padding:11px 13px; color:var(--console-fg);
+         font:12.5px/1.6 ui-monospace,Consolas,monospace; white-space:pre-wrap; max-height:34vh; overflow:auto}
+  #fabbox{margin-bottom:14px} #fabbox:empty{display:none} #fabbox:has(.veil){margin:0}
+  .veil{position:fixed; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; z-index:30; padding:16px}
+  .modal{background:var(--card); border:1px solid var(--line); border-radius:14px; width:min(560px,100%); padding:18px 20px;
+         box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .modal h2{margin:0 0 10px; font-size:15px}
+  .toast{position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--fg); color:var(--bg);
+         padding:9px 16px; border-radius:10px; font-size:13px; z-index:50; box-shadow:0 8px 30px rgba(0,0,0,.25)}
+</style>
+</head>
+<body>
+<style>
+  .rep{display:grid; grid-template-columns:1fr; gap:1px; max-height:52vh; overflow:auto; margin-top:4px}
+  .rep label.ck{margin:0; padding:5px 6px; border-radius:7px; color:var(--fg); font-size:13px}
+  .rep label.ck:hover{background:var(--hover)}
+  .rep label.ck i{font-style:normal; color:var(--dim); width:22px; text-align:right; flex:0 0 22px}
+  .row2{display:flex; gap:8px; align-items:center}
+  .pill{display:inline-block; padding:1px 9px; border-radius:999px; font-size:11.5px; border:1px solid var(--line)}
+  .pill.waiting{color:var(--muted)} .pill.running{color:var(--ember-lit); border-color:var(--ember)}
+  .pill.done{color:var(--good); border-color:rgba(52,211,153,.5)} .pill.error,.pill.stopped{color:var(--bad); border-color:rgba(248,113,113,.5)}
+  td.err{white-space:normal; color:var(--bad); max-width:340px}
+</style>
+<aside>
+  <div class="brand"><img id="logo" alt=""><div><b>PIAS Export</b><span>PVI Digital</span></div></div>
+  <nav id="nav"></nav>
+  <div class="side-end">
+    <div class="row">
+      <button class="btn sm gho" style="flex:1" id="themeBtn" onclick="toggleTheme()">Light mode</button>
+    </div>
+    <div class="seg" id="langSeg"><button data-l="en" onclick="setLang('en')">English</button><button data-l="vi" onclick="setLang('vi')">Tiếng Việt</button></div>
+    <button class="btn sm gho" onclick="quit()">Quit</button>
+    <div class="ver keep" id="ver">Nam Doo</div>
+  </div>
+</aside>
+
+<main>
+  <header><h1 id="title"></h1><div class="sp"></div><div id="hstatus" class="status"></div></header>
+  <div class="wrap" id="view"></div>
+</main>
+
+<script>
+const T = new URLSearchParams(location.search).get("t") || "";
+const $ = (id) => document.getElementById(id);
+$("logo").src = $("ico").href;
+
+const NAV = [["", [["exp","Export reports"]]], ["", [["upd","Update"]]]];
+const TITLES = {exp:"Export reports", upd:"Update"};
+let CUR = "", VER = "", UPDINFO = null, ST = null, QV = {items:[], lines:[], total:0, running:false};
+let dead = 0;
+const now = new Date(), prevM = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+const F = {year: prevM.getFullYear(), month: prevM.getMonth() + 1, revenue_only: true};
+
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function toast(msg){ const d = document.createElement("div"); d.className = "toast"; d.textContent = tr(msg);
+  document.body.appendChild(d); setTimeout(() => d.remove(), 2600); }
+async function api(path, body){
+  const o = {headers:{"X-Token":T, "Content-Type":"application/json"}};
+  if(body !== undefined){ o.method = "POST"; o.body = JSON.stringify(body); }
+  let r;
+  try { r = await fetch(path, o); dead = 0; }
+  catch(e){ if(++dead >= 3) gone(); return {error:"offline"}; }
+  if(r.status === 403){ gone("This window is from an older start. Close it and open the tool again."); return {error:"token"}; }
+  try { return await r.json(); } catch(e){ return {error:"bad reply"}; }
+}
+function gone(msg){ document.body.innerHTML = '<div class="empty" style="margin:auto">' + esc(tr(msg || "The tool has closed. Open it again from the shortcut.")) + '</div>'; }
+function secs(s){ if(s === null || s === undefined) return ""; s = +s; return s < 60 ? s + " s" : Math.floor(s/60) + " min " + (s % 60) + " s"; }
+function money(v){ return v === null || v === undefined ? "" : Math.round(v).toLocaleString("vi-VN"); }
+
+// ------------------------------------------------------------ language (Tiếng Việt by default)
+let LANG = "vi"; try { LANG = localStorage.getItem("pe_lang") === "en" ? "en" : "vi"; } catch(e){}
+const VI = {
+  "Export reports": "Xuất báo cáo", "Update": "Cập nhật", "Light mode": "Nền sáng", "Dark mode": "Nền tối", "Quit": "Thoát",
+  "Period": "Kỳ", "Month": "Tháng", "Year": "Năm", "Save folder": "Thư mục lưu", "Browse": "Chọn", "Open": "Mở", "Save": "Lưu",
+  "Files of this month go to": "File của tháng này lưu vào",
+  "{year} and {MM} in the path are replaced by the year and month of each report.": "{year} và {MM} trong đường dẫn được thay bằng năm và tháng của từng báo cáo.",
+  "Revenue only (skip Thực thu, Bồi thường: faster)": "Chỉ Doanh thu (bỏ Thực thu, Bồi thường: nhanh hơn)",
+  "Reports": "Báo cáo", "Tick to add to the queue, untick to take it out.": "Tick để thêm vào hàng chờ, bỏ tick để rút ra.",
+  "Tick usual": "Tick các báo cáo thường xuất", "Untick all": "Bỏ tick hết",
+  "Queue": "Hàng chờ", "Start": "Bắt đầu", "Stop after current": "Dừng sau báo cáo đang chạy", "Clear finished": "Xóa các dòng đã xong",
+  "Report": "Báo cáo", "Status": "Trạng thái", "Time": "Thời gian", "File": "File", "Revenue (VND)": "Doanh thu (VNĐ)",
+  "waiting": "chờ", "running": "đang chạy", "done": "xong", "error": "lỗi", "stopped": "đã dừng", "Retry": "Chạy lại",
+  "Folder": "Thư mục", "Log": "Nhật ký",
+  "Tick the reports to export, then Start. They run one after another; each file is saved under the standard name, e.g. T10.2026 - BH Kỹ thuật.xlsx.":
+    "Tick các báo cáo cần xuất rồi bấm Bắt đầu. Tool chạy lần lượt từng báo cáo, mỗi file lưu theo tên chuẩn, ví dụ T10.2026 - BH Kỹ thuật.xlsx.",
+  "PIAS opens by itself with the saved account. Leave the PIAS window alone while the queue runs.": "Tool tự mở PIAS bằng tài khoản đã lưu. Khi hàng chờ đang chạy thì đừng bấm vào cửa sổ PIAS.",
+  "Queue running": "Hàng chờ đang chạy", "Stopping after the current report": "Sẽ dừng sau báo cáo đang chạy", "Idle": "Đang nghỉ",
+  "PIAS not found on this PC": "Máy này chưa có PIAS",
+  "This window is from an older start. Close it and open the tool again.": "Cửa sổ này thuộc lần mở trước. Đóng nó rồi mở lại tool.",
+  "The tool has closed. Open it again from the shortcut.": "Tool đã đóng. Mở lại từ shortcut.",
+  "Nothing in the queue yet.": "Hàng chờ đang trống.", "Saved": "Đã lưu", "Folder saved": "Đã lưu thư mục",
+  "Checking...": "Đang kiểm tra...", "Updates are not set up in this copy (app\\update.json has no repo).": "Bản này chưa cài nguồn cập nhật (app\\update.json chưa có repo).",
+  "This is the latest version.": "Đây là bản mới nhất.", "Version in use": "Bản đang dùng", "Check for updates": "Kiểm tra bản mới",
+  "Download and install": "Tải và cài bản mới", "Restart the tool": "Khởi động lại tool", "What is new": "Có gì mới",
+  "Install from a zip file": "Cài từ file zip", "When this PC cannot reach GitHub.": "Khi máy không vào được GitHub.", "Install": "Cài",
+  "Restarting...": "Đang khởi động lại...", "The tool is closed.": "Tool đã đóng.",
+  "The queue is still running. Quit and stop it?": "Hàng chờ vẫn đang chạy. Thoát và dừng?",
+  "Wait for the export queue to finish.": "Chờ hàng chờ xuất xong đã.", "An update is already running.": "Đang cập nhật rồi."
+};
+const VI_RE = [
+  [/^Version (.+) is available\.$/, "Đã có bản $1."], [/^Cannot check: (.*)$/, "Không kiểm tra được: $1"],
+  [/^(\d+) min (\d+) s$/, "$1 phút $2 giây"], [/^(\d+) s$/, "$1 giây"],
+  [/^(\d+) waiting · (\d+) done · (\d+) error$/, "$1 chờ · $2 xong · $3 lỗi"]
+];
+const ORIG = new WeakMap();
+function tr(s){
+  if(LANG !== "vi" || !s) return s;
+  const k = String(s).trim(); if(!k) return s;
+  let v = VI[k];
+  if(v === undefined) for(const [re, to] of VI_RE){ if(re.test(k)){ v = k.replace(re, to); break; } }
+  return v === undefined ? s : String(s).replace(k, v);
+}
+const KEEP = "td:not(.t),pre,code,textarea,input,.keep";
+function trNode(n){ const p = n.parentElement; if(!p || p.closest(KEEP)) return; const v = tr(n.nodeValue);
+  if(v !== n.nodeValue){ if(!ORIG.has(n)) ORIG.set(n, n.nodeValue); n.nodeValue = v; } }
+function trAttrs(el){ if(el.closest && el.closest(KEEP)) return;
+  for(const a of ["placeholder", "title"]){ const v0 = el.getAttribute(a); if(!v0) continue; const v = tr(v0);
+    if(v !== v0){ if(!el.hasAttribute("data-en-" + a)) el.setAttribute("data-en-" + a, v0); el.setAttribute(a, v); } } }
+function localize(root){
+  if(LANG !== "vi" || !root) return;
+  if(root.nodeType === 3) return trNode(root);
+  if(root.nodeType !== 1) return;
+  trAttrs(root); root.querySelectorAll("[placeholder],[title]").forEach(trAttrs);
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let n; while((n = w.nextNode())) trNode(n);
+}
+function unlocalize(){
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n;
+  while((n = w.nextNode())) if(ORIG.has(n)){ n.nodeValue = ORIG.get(n); ORIG.delete(n); }
+  document.querySelectorAll("[data-en-placeholder],[data-en-title]").forEach(el => {
+    for(const a of ["placeholder", "title"]){ const v = el.getAttribute("data-en-" + a); if(v !== null){ el.setAttribute(a, v); el.removeAttribute("data-en-" + a); } } });
+}
+new MutationObserver(ms => { if(LANG !== "vi") return; for(const m of ms){ m.addedNodes.forEach(localize); if(m.type === "characterData") trNode(m.target); } })
+  .observe(document.body, {childList:true, subtree:true});
+function setLang(l){
+  LANG = l === "vi" ? "vi" : "en";
+  try { localStorage.setItem("pe_lang", LANG); } catch(e){}
+  document.documentElement.lang = LANG;
+  document.querySelectorAll("#langSeg button").forEach(b => b.classList.toggle("on", b.dataset.l === LANG));
+  unlocalize(); if(LANG === "vi") localize(document.body);
+}
+
+// ------------------------------------------------------------ nav + theme
+function drawNav(){
+  let h = "";
+  NAV.forEach(([g, items]) => {
+    h += '<div class="grp-h">&nbsp;</div>';
+    items.forEach(([k, t]) => {
+      let dot = "";
+      if(k === "exp" && QV.running) dot = "run";
+      else if(k === "upd" && UPDINFO && UPDINFO.available) dot = "new";
+      h += '<button class="' + (k === CUR ? "on" : "") + '" onclick="go(\'' + k + '\')">' + esc(t) + '<span class="dot ' + dot + '"></span></button>';
+    });
+  });
+  $("nav").innerHTML = h;
+}
+function setTheme(t){ document.documentElement.dataset.theme = t; $("themeBtn").textContent = t === "dark" ? "Light mode" : "Dark mode";
+  try { localStorage.setItem("pe_theme", t); } catch(e){} if(LANG === "vi") localize($("themeBtn")); }
+function toggleTheme(){ setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"); }
+try { setTheme(localStorage.getItem("pe_theme") || "dark"); } catch(e){ setTheme("dark"); }
+function go(k){ CUR = k; $("title").textContent = TITLES[k] || ""; drawNav(); draw(); if(k === "upd" && !UPDINFO) checkUpd(false); }
+function draw(){ $("view").innerHTML = CUR === "upd" ? viewUpd() : viewExp(); if(CUR === "exp") drawQueue(); }
+
+// ------------------------------------------------------------ export view
+function folderNow(){
+  const tpl = (ST && ST.settings.folder) || "";
+  return tpl.replaceAll("{year}", F.year).replaceAll("{MM}", String(F.month).padStart(2, "0")).replaceAll("{M}", F.month);
+}
+function inQueue(n){ return QV.items.some(i => i.status === "waiting" && i.year === F.year && i.month === F.month && i.num === n); }
+function viewExp(){
+  if(!ST) return '<div class="empty">Checking...</div>';
+  const reps = Object.entries(ST.reports);
+  let h = '<div class="cols"><div class="stack"><div class="card">' +
+    '<div class="no">Period</div><div class="row2">' +
+    '<select onchange="F.month=+this.value;draw()">' + [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
+    '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:110px"></div>' +
+    '<div class="no">Save folder</div><div class="row2"><input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
+    '<button class="btn sm" onclick="saveFolder()">Save</button><button class="btn sm" onclick="browse()">Browse</button></div>' +
+    '<div class="hint">{year} and {MM} in the path are replaced by the year and month of each report.</div>' +
+    '<div class="hint"><span>Files of this month go to</span> <button class="link keep" onclick="openPath(folderNow())">' + esc(folderNow()) + '</button></div>' +
+    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") + ' onchange="F.revenue_only=this.checked">Revenue only (skip Thực thu, Bồi thường: faster)</label>' +
+    '</div><div class="card"><div class="no">Reports</div><div class="hint" style="margin-top:0">Tick to add to the queue, untick to take it out.</div>' +
+    '<div class="rep">' + reps.map(([n, name]) => '<label class="ck"><input type="checkbox" ' + (inQueue(+n) ? "checked" : "") +
+      ' onchange="tick(' + n + ',this.checked)"><i>' + n + '.</i><span class="keep">' + esc(name) + '</span></label>').join("") + '</div>' +
+    '<div class="act"><button class="btn sm" onclick="tickUsual()">Tick usual</button><button class="btn sm gho" onclick="untickAll()">Untick all</button></div>' +
+    '</div></div><div class="stack"><div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
+    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button><button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
+    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div><div id="qtab"></div>' +
+    '<div class="hint">Tick the reports to export, then Start. They run one after another; each file is saved under the standard name, e.g. T10.2026 - BH Kỹ thuật.xlsx.</div>' +
+    '<div class="hint">PIAS opens by itself with the saved account. Leave the PIAS window alone while the queue runs.</div>' +
+    '</div><div class="card"><div class="no">Log</div><pre id="qlog"></pre></div></div></div>';
+  return h;
+}
+function drawQueue(){
+  const it = QV.items;
+  if($("qtab")){
+    if(!it.length) $("qtab").innerHTML = '<div class="empty">Nothing in the queue yet.</div>';
+    else $("qtab").innerHTML = '<div class="tw" style="margin-top:10px"><table><thead><tr><th>Period</th><th>Report</th><th>Status</th><th>Time</th><th>Revenue (VND)</th><th>File</th><th></th></tr></thead><tbody>' +
+      it.map(i => '<tr><td>T' + i.month + '.' + i.year + '</td><td>' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span></td>' +
+        '<td class="t">' + esc(secs(i.seconds)) + '</td><td class="n">' + money(i.revenue) + '</td>' +
+        (i.status === "error" || i.status === "stopped" ? '<td class="err" title="' + esc(i.error) + '">' + esc(i.error) + '</td><td class="t"><button class="btn sm" onclick="retry(' + i.id + ')">Retry</button></td>'
+         : '<td title="' + esc(i.file) + '">' + esc(i.file ? i.file.split("\\").pop() : "") + '</td><td class="t">' +
+           (i.file ? '<button class="btn sm" onclick="openPath(' + esc(JSON.stringify(i.file)) + ')">Open</button> <button class="btn sm gho" onclick="openPath(' + esc(JSON.stringify(i.file)) + ',1)">Folder</button>' : "") + '</td>') +
+        '</tr>').join("") + '</tbody></table></div>';
+  }
+  if($("qlog")){ const el = $("qlog"), atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 8; el.textContent = QV.lines.join("\n"); if(atEnd) el.scrollTop = el.scrollHeight; }
+  const w = it.filter(i => i.status === "waiting").length, d = it.filter(i => i.status === "done").length, e = it.filter(i => i.status === "error").length;
+  if($("qsum")) $("qsum").textContent = it.length ? tr(w + " waiting · " + d + " done · " + e + " error") : "";
+  if($("b-start")) $("b-start").disabled = QV.running || !w;
+  if($("b-stop")) $("b-stop").disabled = !QV.running || QV.stopping;
+  head();
+}
+function head(){
+  let h;
+  if(ST && !ST.pias_found) h = '<span class="dot bad"></span><span>PIAS not found on this PC</span>';
+  else if(QV.running) h = '<span class="spin"></span><span>' + (QV.stopping ? "Stopping after the current report" : "Queue running") + '</span>';
+  else h = '<span class="dot ok"></span><span>Idle</span>';
+  $("hstatus").innerHTML = h;
+}
+async function tick(n, on){
+  const r = await api(on ? "/api/queue/add" : "/api/queue/remove", {year:F.year, month:F.month, nums:[n], revenue_only:F.revenue_only});
+  if(r.error) toast(r.error); await refresh(); draw();
+}
+async function tickUsual(){ await api("/api/queue/add", {year:F.year, month:F.month, nums:ST.usual, revenue_only:F.revenue_only}); await refresh(); draw(); }
+async function untickAll(){ await api("/api/queue/remove", {year:F.year, month:F.month, nums:Object.keys(ST.reports)}); await refresh(); draw(); }
+async function startQ(){ await api("/api/queue/start", {}); await refresh(); drawQueue(); drawNav(); }
+async function stopQ(){ await api("/api/queue/stop", {}); await refresh(); drawQueue(); }
+async function clearQ(){ await api("/api/queue/clear", {which:"finished"}); await refresh(); draw(); }
+async function retry(id){ await api("/api/queue/retry", {id}); await refresh(); drawQueue(); }
+async function saveFolder(){ const v = $("fold").value.trim(); if(!v) return; ST.settings = await api("/api/settings", {folder:v}); toast("Folder saved"); draw(); }
+async function browse(){
+  const r = await api("/api/browse", {start: folderNow()});
+  if(r.error){ toast(r.error); return; }
+  if(r.path){ ST.settings = await api("/api/settings", {folder:r.path}); draw(); }
+}
+async function openPath(path, select){ const r = await api("/api/open", {path, select:!!select}); if(r.error) toast(r.error); }
+async function refresh(){
+  const r = await api("/api/queue?since=0");
+  if(!r.error){ const was = QV.running; QV = r; if(was !== QV.running) drawNav(); }
+}
+
+// ------------------------------------------------------------ update
+let UJ = null;
+function viewUpd(){
+  const u = UPDINFO;
+  let msg = "Checking...", btn = false;
+  if(u){
+    if(!u.configured) msg = "Updates are not set up in this copy (app\\update.json has no repo).";
+    else if(u.error) msg = "Cannot check: " + u.error + ".";
+    else if(u.available){ msg = "Version " + u.latest + " is available."; btn = true; }
+    else msg = "This is the latest version.";
+  }
+  const done = UJ && UJ.state === "done";
+  return '<div class="stack" style="max-width:760px"><div class="card"><div style="display:flex;align-items:center;gap:14px"><div><div class="no">Version in use</div><div class="big">' +
+    esc(VER) + '</div></div><div style="flex:1"></div><button class="btn sm" onclick="checkUpd(true)">Check for updates</button></div>' +
+    '<p class="muted" style="margin:12px 0 0">' + esc(msg) + '</p><div class="act">' +
+    (btn && !done ? '<button class="btn pri" onclick="runUpd({})" style="flex:0 0 auto">Download and install</button>' : "") +
+    (done ? '<button class="btn pri" style="flex:0 0 auto" onclick="restart()">Restart the tool</button>' : "") + '</div></div>' +
+    (u && u.notes ? '<div class="card"><h2>What is new</h2><div class="notes">' + esc(u.notes) + '</div></div>' : "") +
+    '<div class="card"><h2>Install from a zip file</h2><p class="muted" style="margin:0">When this PC cannot reach GitHub.</p><div style="display:flex;gap:8px;margin-top:10px">' +
+    '<input class="inp" id="zipPath" placeholder="C:\\Users\\...\\Downloads\\pias-export-main.zip"><button class="btn" onclick="runUpd({mode:\'local\',zip:$(\'zipPath\').value.trim()})">Install</button></div></div>' +
+    (UJ ? '<div class="card">' + (UJ.state === "running" ? '<div class="runhead"><span class="spin"></span><b>Update</b></div>' : "") +
+      (UJ.error ? '<div class="note bad">' + esc(UJ.error) + '</div>' : "") + '<pre>' + esc((UJ.lines || []).join("\n")) + '</pre></div>' : "") + '</div>';
+}
+async function checkUpd(force){ if(force){ UPDINFO = null; if(CUR === "upd") draw(); } UPDINFO = await api("/api/update/check"); drawNav(); if(CUR === "upd") draw(); }
+async function runUpd(b){
+  const r = await api("/api/update", b); if(r.error){ toast(r.error); return; }
+  const t = setInterval(async () => { const j = (await api("/api/update/job")).job; UJ = j; if(CUR === "upd") draw(); if(!j || j.state !== "running") clearInterval(t); }, 800);
+}
+async function restart(){ await api("/api/restart", {}); gone("Restarting..."); }
+async function quit(){
+  if(QV.running && !confirm(tr("The queue is still running. Quit and stop it?"))) return;
+  await api("/api/quit", {}); gone("The tool is closed.");
+}
+
+// ------------------------------------------------------------ start
+async function init(){
+  setLang(LANG);
+  ST = await api("/api/state");
+  if(ST.error){ ST = null; return; }
+  VER = ST.version; $("ver").textContent = "Nam Doo · v" + VER; UPDINFO = ST.update;
+  await refresh();
+  go("exp");
+  setInterval(async () => { await refresh(); if(CUR === "exp") drawQueue(); }, 1500);
+  setInterval(() => api("/api/ping", {}), 30000); api("/api/ping", {});
+  if(!UPDINFO) setTimeout(() => checkUpd(false), 2500);
+}
+init();
+</script>
+</body>
+</html>

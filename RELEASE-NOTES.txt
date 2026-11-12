@@ -1,0 +1,6 @@
+1.0.0
+- First version: tick the PIAS business performance reports (Báo cáo hiệu quả kinh doanh), they export one after another.
+- Opens and logs in to PIAS by itself with the saved account, no mouse or keyboard needed.
+- Each file is saved under the standard name, e.g. T10.2026 - BH Kỹ thuật.xlsx; a re-run adds the run date.
+- Checks the period printed in each file before saving.
+- Revenue only (Doanh thu) by default.
