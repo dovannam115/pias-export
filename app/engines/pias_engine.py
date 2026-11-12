@@ -82,6 +82,15 @@ def pias_main():
     return found[0] if found else (None, "")
 
 
+def unminimize():
+    """A minimised PIAS hides its title from Windows and its controls have no size: restore it without
+    activating it (SW_SHOWNOACTIVATE), so the user's current window keeps the keyboard."""
+    h, _ = pias_main()
+    if h and user32.IsIconic(h):
+        user32.ShowWindow(h, 4)
+        time.sleep(1.5)
+
+
 def open_report_list():
     """Menu Báo cáo > Báo cáo hiệu quả kinh doanh, invoked through MSAA (DevExpress menus ignore posted clicks)."""
     import comtypes.client
@@ -198,6 +207,19 @@ def file_period(path):
     raise UserError("Cannot read the period in " + os.path.basename(path))
 
 
+# words the report title must contain, so a list numbered differently (other PIAS year) is caught
+TITLE_KEY = {1: "CHÁY - TÀI SẢN", 2: "KỸ THUẬT", 3: "P&I", 4: "VIỄN DƯƠNG", 5: "NỘI THỦY", 6: "HÀNG HÓA",
+             7: "TRÁCH NHIỆM", 8: "NĂNG LƯỢNG", 9: "HÀNG KHÔNG", 10: "CON NGƯỜI", 11: "XE CƠ GIỚI",
+             12: "NÔNG NGHIỆP", 13: "BẢO HIỂM KHÁC", 22: "THIỆT HẠI KHÁC"}
+
+
+def file_title(path):
+    import unicodedata
+    rows = _rows_openpyxl(path) if zipfile.is_zipfile(path) else _rows_com(path)
+    t = next((str(v) for r in rows[:3] for v in r if v and "BÁO CÁO" in str(v).upper()), "")
+    return unicodedata.normalize("NFC", t.upper())
+
+
 def revenue_total(path):
     """Sum of the 'Doanh thu' VNĐ column (sheet Doanh thu), for the summary line."""
     import openpyxl
@@ -242,6 +264,7 @@ def target(folder, year, month, num):
 def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3):
     if num not in REPORTS: raise UserError("Unknown report %s." % num)
     log("Checking PIAS")
+    unminimize()
     log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
     last = calendar.monthrange(year, month)[1]
     want = (dt.date(year, month, 1), dt.date(year, month, last))
@@ -249,6 +272,7 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
     if revenue_only: args.append("-RevenueOnly")
     for attempt in range(1, tries + 1):
         if stop(): raise UserError("Stopped.")
+        unminimize()
         open_report_list()
         since = time.time() - 1
         log("Running report %d in PIAS" % num + (" (try %d)" % attempt if attempt > 1 else ""))
@@ -257,7 +281,14 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
         src = wait_file(since, stop)
         log("PIAS wrote " + os.path.basename(src))
         start, end = file_period(src)
-        if (start, end) == want: break
+        if (start, end) == want:
+            key = TITLE_KEY.get(num)
+            title = file_title(src)
+            if key and key not in title or (num == 1 and "CAT" in title):
+                close_in_excel(src)
+                raise UserError("PIAS ran another report (%s), file not saved. The report list may be numbered "
+                                "differently in this PIAS year." % title.title())
+            break
         close_in_excel(src)
         log("PIAS ran %s-%s instead of the chosen month, running again" % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
     else:

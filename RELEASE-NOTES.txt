@@ -1,3 +1,7 @@
+1.0.1
+- Works when PIAS is minimised: the window is restored in the background without taking the keyboard.
+- Checks the report title in each file too, so a wrong report is never saved under another name.
+
 1.0.0
 - First version: tick the PIAS business performance reports (Báo cáo hiệu quả kinh doanh), they export one after another.
 - Opens and logs in to PIAS by itself with the saved account, no mouse or keyboard needed.
