@@ -4,7 +4,12 @@ Add-Type -AssemblyName UIAutomationClient, UIAutomationTypes
 Add-Type @"
 using System; using System.Runtime.InteropServices;
 public class UL { [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr h, uint m, IntPtr w, IntPtr l);
-[DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, string l); }
+[DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, string l);
+[DllImport("user32.dll")] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, IntPtr l);
+[DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr h, IntPtr p);
+[DllImport("kernel32.dll")] public static extern uint GetCurrentThreadId();
+[DllImport("user32.dll")] public static extern bool AttachThreadInput(uint a, uint b, bool f);
+[DllImport("user32.dll")] public static extern IntPtr SetFocus(IntPtr h); }
 "@
 $AE = [System.Windows.Automation.AutomationElement]
 $TS = [System.Windows.Automation.TreeScope]
@@ -27,7 +32,21 @@ $win = $AE::FromHandle($p.MainWindowHandle)
 $els = @($win.FindAll($TS::Descendants, $ALL))
 if ($Year) {
   $y = $els | Where-Object { $_.Current.ClassName -like '*EDIT*' -and $_.Current.Name -match '^\d{4}$' } | Select-Object -First 1
-  if ($y -and $y.Current.Name -ne "$Year") { [UL]::SendMessage([IntPtr]$y.Current.NativeWindowHandle, 0x000C, [IntPtr]0, "$Year") | Out-Null; "year set to $Year" }
+  if ($y -and $y.Current.Name -ne "$Year") {
+    # typed, not set: a set text only changes what is shown (same as the date boxes)
+    $h = [IntPtr]$y.Current.NativeWindowHandle
+    $tid = [UL]::GetWindowThreadProcessId($h, [IntPtr]::Zero); $me = [UL]::GetCurrentThreadId()
+    [UL]::AttachThreadInput($me, $tid, $true) | Out-Null
+    try {
+      [UL]::SetFocus($h) | Out-Null; Start-Sleep -Milliseconds 200
+      [UL]::SendMessage($h, 0x00B1, [IntPtr]0, [IntPtr](-1)) | Out-Null            # select all
+      foreach ($c in "$Year".ToCharArray()) { [UL]::PostMessage($h, 0x0102, [IntPtr][int]$c, [IntPtr]0) | Out-Null; Start-Sleep -Milliseconds 80 }
+      Start-Sleep -Milliseconds 500
+    } finally { [UL]::AttachThreadInput($me, $tid, $false) | Out-Null }
+    $now = $AE::FromHandle($h).Current.Name
+    if ($now -ne "$Year") { throw "could not set the login year (shows $now)" }
+    "year set to $Year"
+  }
 }
 $ok = $els | Where-Object { $_.Current.Name -eq 'Chấp nhận' } | Select-Object -First 1
 $lp = [IntPtr]((12 -shl 16) -bor 43)

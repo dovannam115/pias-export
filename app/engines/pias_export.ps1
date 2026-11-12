@@ -3,7 +3,8 @@
   [string]$From, [string]$To,   # dd/MM/yyyy
   [switch]$RevenueOnly,         # untick Thực thu and Bồi thường in 'Chọn kiểu in'
   [int]$WaitDialog = 60,
-  [string]$Snap = ""            # save a picture of 'Chọn kiểu in' before OK (diagnostics)
+  [string]$Snap = "",
+  [switch]$Units                # 'Báo cáo tình hình kinh doanh theo đơn vị': move the unit (PVI Digital) to the chosen side, no 'Chọn kiểu in'            # save a picture of 'Chọn kiểu in' before OK (diagnostics)
 )
 # Drive PIAS (Pias2022.exe, already logged in, 'Báo cáo hiệu quả kinh doanh' list open) to run one report.
 # Clicks are posted to the window handles, so the user's mouse and keyboard are not touched.
@@ -78,21 +79,32 @@ $dlg = Child "$Report. " $WaitDialog
 Start-Sleep -Seconds 3
 $want = "$From - $To"
 for ($try = 1; $try -le 3; $try++) {
-  $edits = Find $dlg { $_.Current.ClassName -like '*EDIT*' } | Sort-Object { $_.Current.BoundingRectangle.X }
+  $edits = Find $dlg { $_.Current.ClassName -like '*EDIT*' -and $_.Current.Name -match '^\d{2}/\d{2}/\d{4}$' } | Sort-Object { $_.Current.BoundingRectangle.X }
   foreach ($pair in @(@($edits[0], $From), @($edits[1], $To))) {
     $e = $pair[0]; $h = [IntPtr]$e.Current.NativeWindowHandle
     TypeDate $h $pair[1]
     Start-Sleep -Milliseconds 400
   }
   Start-Sleep -Seconds 2
-  $got = (Find $dlg { $_.Current.ClassName -like '*EDIT*' } | Sort-Object { $_.Current.BoundingRectangle.X } |
+  $got = (Find $dlg { $_.Current.ClassName -like '*EDIT*' -and $_.Current.Name -match '^\d{2}/\d{2}/\d{4}$' } | Sort-Object { $_.Current.BoundingRectangle.X } |
           ForEach-Object { $_.Current.Name }) -join ' - '
   if ($got -eq $want) { break }
 }
 "period: $got"
 if ($got -ne $want) { throw "period not set (got $got)" }
+if ($Units) {                    # the four arrow buttons between the two lists; the top one moves everything across
+  $arrows = Find $dlg { $_.Current.ClassName -like '*Window.b.*' -and $_.Current.BoundingRectangle.Width -lt 40 -and
+                        $_.Current.BoundingRectangle.Height -gt 20 -and $_.Current.BoundingRectangle.Height -lt 40 } |
+            Sort-Object { $_.Current.BoundingRectangle.Y }
+  if (-not $arrows) { throw "unit buttons not found" }
+  $a = $arrows[0].Current.BoundingRectangle
+  Click ([IntPtr]$arrows[0].Current.NativeWindowHandle) ([int]($a.Width / 2)) ([int]($a.Height / 2))
+  Start-Sleep -Seconds 1
+  "units: moved"
+}
 $ok = Find $dlg { $_.Current.Name -eq 'Chấp nhận' } | Select-Object -First 1
 Click ([IntPtr]$ok.Current.NativeWindowHandle) 49 11
+if ($Units) { "started at $(Get-Date -Format HH:mm:ss)"; exit 0 }
 
 # 3. 'Chọn kiểu in': row 2 = Doanh thu, Thực thu, Bồi thường
 $kind = Child 'Chọn kiểu in' 600

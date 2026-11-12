@@ -242,9 +242,9 @@ let LANG = "vi"; try { LANG = localStorage.getItem("pe_lang") === "en" ? "en" : 
 const VI = {
   "Export reports": "Xuất báo cáo", "Update": "Cập nhật", "Light mode": "Nền sáng", "Dark mode": "Nền tối", "Quit": "Thoát",
   "Period": "Kỳ", "Month": "Tháng", "Year": "Năm", "Save folder": "Thư mục lưu", "Browse": "Chọn", "Open": "Mở", "Save": "Lưu",
-  "Files of this month go to": "File của tháng này lưu vào",
+  "Save to": "Lưu vào",
   "{year} and {MM} in the path are replaced by the year and month of each report.": "{year} và {MM} trong đường dẫn được thay bằng năm và tháng của từng báo cáo.",
-  "Revenue only (skip Thực thu, Bồi thường: faster)": "Chỉ Doanh thu (bỏ Thực thu, Bồi thường: nhanh hơn)",
+  "Revenue only": "Chỉ Doanh thu",
   "Reports": "Báo cáo", "Tick to add to the queue, untick to take it out.": "Tick để thêm vào hàng chờ, bỏ tick để rút ra.",
   "Tick usual": "Tick các báo cáo thường xuất", "Untick all": "Bỏ tick hết",
   "Queue": "Hàng chờ", "Start": "Bắt đầu", "Stop after current": "Dừng sau báo cáo đang chạy", "Clear finished": "Xóa các dòng đã xong",
@@ -345,18 +345,15 @@ function viewExp(){
     '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:110px"></div>' +
     '<div class="no">Save folder</div><div class="row2"><input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
     '<button class="btn sm" onclick="saveFolder()">Save</button><button class="btn sm" onclick="browse()">Browse</button></div>' +
-    '<div class="hint">{year} and {MM} in the path are replaced by the year and month of each report.</div>' +
-    '<div class="hint"><span>Files of this month go to</span> <button class="link keep" onclick="openPath(folderNow())">' + esc(folderNow()) + '</button></div>' +
-    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") + ' onchange="F.revenue_only=this.checked">Revenue only (skip Thực thu, Bồi thường: faster)</label>' +
-    '</div><div class="card"><div class="no">Reports</div><div class="hint" style="margin-top:0">Tick to add to the queue, untick to take it out.</div>' +
+    '<div class="hint"><span>Save to</span> <button class="link keep" onclick="openPath(folderNow())">' + esc(folderNow()) + '</button></div>' +
+    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") + ' onchange="F.revenue_only=this.checked">Revenue only</label>' +
+    '</div><div class="card"><div class="no">Reports</div>' +
     '<div class="rep">' + reps.map(([n, name]) => '<label class="ck"><input type="checkbox" ' + (inQueue(+n) ? "checked" : "") +
       ' onchange="tick(' + n + ',this.checked)"><i>' + n + '.</i><span class="keep">' + esc(name) + '</span></label>').join("") + '</div>' +
     '<div class="act"><button class="btn sm" onclick="tickUsual()">Tick usual</button><button class="btn sm gho" onclick="untickAll()">Untick all</button></div>' +
     '</div></div><div class="stack"><div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
     '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button><button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
     '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div><div id="qtab"></div>' +
-    '<div class="hint">Tick the reports to export, then Start. They run one after another; each file is saved under the standard name, e.g. T10.2026 - BH Kỹ thuật.xlsx.</div>' +
-    '<div class="hint">PIAS opens by itself with the saved account. Leave the PIAS window alone while the queue runs.</div>' +
     '</div><div class="card"><div class="no">Log</div><pre id="qlog"></pre></div></div></div>';
   return h;
 }
