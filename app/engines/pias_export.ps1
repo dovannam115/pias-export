@@ -14,7 +14,11 @@ public class U { [DllImport("user32.dll")] public static extern bool PostMessage
 [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, string l);
 [DllImport("user32.dll")] public static extern IntPtr SendMessage(IntPtr h, uint m, IntPtr w, IntPtr l);
 [DllImport("user32.dll")] public static extern IntPtr GetParent(IntPtr h);
-[DllImport("user32.dll")] public static extern int GetDlgCtrlID(IntPtr h); }
+[DllImport("user32.dll")] public static extern int GetDlgCtrlID(IntPtr h);
+[DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr h, IntPtr p);
+[DllImport("kernel32.dll")] public static extern uint GetCurrentThreadId();
+[DllImport("user32.dll")] public static extern bool AttachThreadInput(uint a, uint b, bool f);
+[DllImport("user32.dll")] public static extern IntPtr SetFocus(IntPtr h); }
 "@
 $AE = [System.Windows.Automation.AutomationElement]
 $TS = [System.Windows.Automation.TreeScope]
@@ -31,6 +35,24 @@ function SetText([IntPtr]$h, [string]$t) {
   $id = [U]::GetDlgCtrlID($h)
   [U]::SendMessage([U]::GetParent($h), 0x0111, [IntPtr](($id -band 0xFFFF) -bor (0x0300 -shl 16)), $h) | Out-Null
 }
+function TypeDate([IntPtr]$h, [string]$t) {
+  # Setting the text only changes what is shown; PIAS reads the date box's own value, which follows typing.
+  # Focus is given inside PIAS's thread (AttachThreadInput + SetFocus): no foreground change, user's keyboard untouched.
+  $tid = [U]::GetWindowThreadProcessId($h, [IntPtr]::Zero)
+  $me = [U]::GetCurrentThreadId()
+  [U]::AttachThreadInput($me, $tid, $true) | Out-Null
+  try {
+    [U]::SetFocus($h) | Out-Null
+    Start-Sleep -Milliseconds 200
+    [U]::PostMessage($h, 0x0100, [IntPtr]0x24, [IntPtr]0) | Out-Null      # Home
+    [U]::PostMessage($h, 0x0101, [IntPtr]0x24, [IntPtr]0) | Out-Null
+    foreach ($c in ($t -replace '\D', '').ToCharArray()) {                # dd MM yyyy, the mask skips the '/'
+      [U]::PostMessage($h, 0x0102, [IntPtr][int]$c, [IntPtr]0) | Out-Null
+      Start-Sleep -Milliseconds 80
+    }
+    Start-Sleep -Milliseconds 400
+  } finally { [U]::AttachThreadInput($me, $tid, $false) | Out-Null }
+}
 function Main() { $p = Get-Process Pias2022 -ErrorAction Stop | Select-Object -First 1; $AE::FromHandle($p.MainWindowHandle) }
 function Child([string]$prefix, [int]$timeout) {
   $t0 = Get-Date
@@ -43,8 +65,11 @@ function Child([string]$prefix, [int]$timeout) {
 function Find($root, [scriptblock]$pred) { @($root.FindAll($TS::Descendants, $ALL) | Where-Object $pred) }
 
 # 1. open the report from the list (NavBar items are painted, so click by row: 22 px per item, first at y=38)
-$nav = Find (Main) { $_.Current.Name -eq 'NavBarControl1' -and $_.Current.BoundingRectangle.Width -gt 1000 } | Select-Object -First 1
-Click ([IntPtr]$nav.Current.NativeWindowHandle) 192 (38 + 22 * ($Report - 1))
+$open = @((Main).FindAll($TS::Children, $ALL) | Where-Object { $_.Current.Name -like "$Report. *" })
+if (-not $open) {
+  $nav = Find (Main) { $_.Current.Name -eq 'NavBarControl1' -and $_.Current.BoundingRectangle.Width -gt 1000 } | Select-Object -First 1
+  Click ([IntPtr]$nav.Current.NativeWindowHandle) 192 (38 + 22 * ($Report - 1))
+}
 $dlg = Child "$Report. " $WaitDialog
 "opened: $($dlg.Current.Name)"
 
@@ -56,7 +81,7 @@ for ($try = 1; $try -le 3; $try++) {
   $edits = Find $dlg { $_.Current.ClassName -like '*EDIT*' } | Sort-Object { $_.Current.BoundingRectangle.X }
   foreach ($pair in @(@($edits[0], $From), @($edits[1], $To))) {
     $e = $pair[0]; $h = [IntPtr]$e.Current.NativeWindowHandle
-    SetText $h $pair[1]
+    TypeDate $h $pair[1]
     Start-Sleep -Milliseconds 400
   }
   Start-Sleep -Seconds 2
