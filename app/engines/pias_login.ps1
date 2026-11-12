@@ -16,6 +16,25 @@ $TS = [System.Windows.Automation.TreeScope]
 $ALL = [System.Windows.Automation.Condition]::TrueCondition
 $EXE = $Exe
 function Title { $p = Get-Process Pias2022 -ErrorAction SilentlyContinue | Select-Object -First 1; if ($p) { $p.MainWindowTitle } }
+function DismissUpdate([int]$sec = 0) {
+  # PIAS asks "Chương trình có phiên bản mới trên máy chủ..." (title = install folder): always answer No
+  $t0 = Get-Date
+  do {
+    $p = Get-Process Pias2022 -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($p -and $p.MainWindowHandle -ne 0) {
+      $boxes = @($AE::FromHandle($p.MainWindowHandle).FindAll($TS::Children, $ALL) | Where-Object { $_.Current.Name -like 'C:\PVI\*' })
+      foreach ($b in $boxes) {
+        $no = @($b.FindAll($TS::Descendants, $ALL) | Where-Object { $_.Current.Name -eq 'No' })[0]
+        if ($no) {
+          $lp = [IntPtr]((11 -shl 16) -bor 37)
+          foreach ($m in 0x0200, 0x0201, 0x0202) { [UL]::PostMessage([IntPtr]$no.Current.NativeWindowHandle, $m, [IntPtr][int]($m -eq 0x0201), $lp) | Out-Null }
+          "update prompt: answered No"; Start-Sleep -Milliseconds 800; return
+        }
+      }
+    }
+    if ($sec) { Start-Sleep -Milliseconds 700 }
+  } while (((Get-Date) - $t0).TotalSeconds -lt $sec)
+}
 function WaitFor([scriptblock]$cond, [int]$sec) {
   $t0 = Get-Date
   while (((Get-Date) - $t0).TotalSeconds -lt $sec) { if (& $cond) { return $true }; Start-Sleep -Milliseconds 1000 }
@@ -50,6 +69,12 @@ if ($Year) {
 }
 $ok = $els | Where-Object { $_.Current.Name -eq 'Chấp nhận' } | Select-Object -First 1
 $lp = [IntPtr]((12 -shl 16) -bor 43)
-foreach ($m in 0x0200, 0x0201, 0x0202) { [UL]::PostMessage([IntPtr]$ok.Current.NativeWindowHandle, $m, [IntPtr]($m -eq 0x0201), $lp) | Out-Null }
-if (-not (WaitFor { (Title) -like 'Insurances Solution*' } $Wait)) { throw "PIAS did not log in" }
+Start-Sleep -Milliseconds 800
+$in = $false
+for ($try = 1; $try -le 3 -and -not $in; $try++) {     # the first press after typing the year is sometimes ignored
+  foreach ($m in 0x0200, 0x0201, 0x0202) { [UL]::PostMessage([IntPtr]$ok.Current.NativeWindowHandle, $m, [IntPtr][int]($m -eq 0x0201), $lp) | Out-Null }
+  $in = WaitFor { (Title) -like 'Insurances Solution*' } ([int]($Wait / 3))
+}
+if (-not $in) { throw "PIAS did not log in" }
+DismissUpdate 15
 "PIAS ready"

@@ -1,3 +1,9 @@
+1.0.3
+- Answers No by itself when PIAS asks to update.
+- Presses Chấp nhận again when the first press on the login screen is ignored.
+- A month with no data ("Không có dữ liệu để xuất báo cáo!") counts as done, not as an error.
+- A PIAS server error is shown as an error, with a picture of the message in app/dump/msgs.
+
 1.0.2
 - Cleaner Export page: the help lines under each box are gone.
 - The login year is typed into PIAS (a set value did not always stick).

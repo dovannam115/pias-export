@@ -167,6 +167,8 @@ class Queue:
             else:
                 stopped = os.path.exists(os.path.join(d, "STOP"))
                 it.update(status="stopped" if stopped else "error", error=res.get("error") or err or "failed")
+        if it["status"] == "done" and not it["file"]:
+            it["file"] = "(no data)"
         self.say(label + ": " + (("saved " + os.path.basename(it["file"])) if it["status"] == "done" else it["status"] + " - " + it["error"]))
 
     def view(self, since):

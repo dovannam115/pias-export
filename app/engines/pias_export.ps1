@@ -54,6 +54,25 @@ function TypeDate([IntPtr]$h, [string]$t) {
     Start-Sleep -Milliseconds 400
   } finally { [U]::AttachThreadInput($me, $tid, $false) | Out-Null }
 }
+function DismissUpdate([int]$sec = 0) {
+  # PIAS asks "Chương trình có phiên bản mới trên máy chủ..." (title = install folder): always answer No
+  $t0 = Get-Date
+  do {
+    $p = Get-Process Pias2022 -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($p -and $p.MainWindowHandle -ne 0) {
+      $boxes = @($AE::FromHandle($p.MainWindowHandle).FindAll($TS::Children, $ALL) | Where-Object { $_.Current.Name -like 'C:\PVI\*' })
+      foreach ($b in $boxes) {
+        $no = @($b.FindAll($TS::Descendants, $ALL) | Where-Object { $_.Current.Name -eq 'No' })[0]
+        if ($no) {
+          $lp = [IntPtr]((11 -shl 16) -bor 37)
+          foreach ($m in 0x0200, 0x0201, 0x0202) { [U]::PostMessage([IntPtr]$no.Current.NativeWindowHandle, $m, [IntPtr][int]($m -eq 0x0201), $lp) | Out-Null }
+          "update prompt: answered No"; Start-Sleep -Milliseconds 800; return
+        }
+      }
+    }
+    if ($sec) { Start-Sleep -Milliseconds 700 }
+  } while (((Get-Date) - $t0).TotalSeconds -lt $sec)
+}
 function Main() { $p = Get-Process Pias2022 -ErrorAction Stop | Select-Object -First 1; $AE::FromHandle($p.MainWindowHandle) }
 function Child([string]$prefix, [int]$timeout) {
   $t0 = Get-Date
@@ -65,6 +84,7 @@ function Child([string]$prefix, [int]$timeout) {
 }
 function Find($root, [scriptblock]$pred) { @($root.FindAll($TS::Descendants, $ALL) | Where-Object $pred) }
 
+DismissUpdate
 # 1. open the report from the list (NavBar items are painted, so click by row: 22 px per item, first at y=38)
 $open = @((Main).FindAll($TS::Children, $ALL) | Where-Object { $_.Current.Name -like "$Report. *" })
 if (-not $open) {

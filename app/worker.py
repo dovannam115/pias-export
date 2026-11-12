@@ -29,6 +29,9 @@ def main(run_dir):
         except Exception:
             pass
         print("Saved " + dst, flush=True)
+    except E.NoData:
+        res = {"ok": True, "file": "", "revenue": 0, "nodata": True}
+        print("PIAS: no data for this period, nothing to save", flush=True)
     except E.UserError as ex:
         res["error"] = str(ex)
         print("[[ERROR]] " + str(ex), flush=True)

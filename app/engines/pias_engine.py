@@ -150,6 +150,10 @@ def close_in_excel(path):
         pass
 
 
+class NoData(Exception):
+    """PIAS answered 'Không có dữ liệu để xuất báo cáo!': the month has nothing to export (counts as done)."""
+
+
 def wait_file(since, stop=lambda: False):
     """New BCHQKD_* file in PIAS's Excel Files folder, written after `since`, size settled."""
     deadline = time.time() + TIMEOUT_MIN * 60
@@ -164,6 +168,15 @@ def wait_file(since, stop=lambda: False):
                 size = os.path.getsize(f)
                 time.sleep(2)
             return f
+        tick = getattr(wait_file, "tick", 0) + 1
+        wait_file.tick = tick
+        if tick % 2 == 0:                       # every ~6 s: PIAS answers 'no data' with a message box instead of a file
+            msg = ps("pias_msg.ps1", timeout=60)
+            if msg.startswith("MSG:"):
+                width = int((msg[4:].split(":", 1)[0] or "0").strip() or 0)
+                if width and width <= 320:          # the short box is 'Không có dữ liệu để xuất báo cáo!'
+                    raise NoData(msg)
+                raise UserError("PIAS server error for this period (picture in app/dump/msgs).")
         time.sleep(3)
     raise UserError("No file from PIAS after %d min." % TIMEOUT_MIN)
 
