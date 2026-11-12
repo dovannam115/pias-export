@@ -1,3 +1,6 @@
+1.0.4
+- Vietnamese text in the log shows correctly (no more "B o c o hi?u...").
+
 1.0.3
 - Answers No by itself when PIAS asks to update.
 - Presses Chấp nhận again when the first press on the login screen is ignored.

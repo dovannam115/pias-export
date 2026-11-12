@@ -1,4 +1,5 @@
 ﻿param([int]$Year = 0, [int]$Wait = 180, [string]$Exe = "C:\PVI\Pias2022new\Pias2022.exe")
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8   # the app reads this output as UTF-8
 # Make sure PIAS is open and logged in (saved account). Starts it when needed; -Year sets the login year.
 Add-Type -AssemblyName UIAutomationClient, UIAutomationTypes
 Add-Type @"

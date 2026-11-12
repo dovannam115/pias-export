@@ -6,6 +6,7 @@
   [string]$Snap = "",
   [switch]$Units                # 'Báo cáo tình hình kinh doanh theo đơn vị': move the unit (PVI Digital) to the chosen side, no 'Chọn kiểu in'            # save a picture of 'Chọn kiểu in' before OK (diagnostics)
 )
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8   # the app reads this output as UTF-8
 # Drive PIAS (Pias2022.exe, already logged in, 'Báo cáo hiệu quả kinh doanh' list open) to run one report.
 # Clicks are posted to the window handles, so the user's mouse and keyboard are not touched.
 Add-Type -AssemblyName UIAutomationClient, UIAutomationTypes

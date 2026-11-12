@@ -1,4 +1,5 @@
-﻿# If PIAS shows a message box (title 'Insurace Solution 2022'), print its text and press OK. Prints nothing otherwise.
+﻿[Console]::OutputEncoding = [System.Text.Encoding]::UTF8   # the app reads this output as UTF-8
+# If PIAS shows a message box (title 'Insurace Solution 2022'), print its text and press OK. Prints nothing otherwise.
 Add-Type -AssemblyName UIAutomationClient, UIAutomationTypes
 Add-Type @"
 using System; using System.Runtime.InteropServices;
