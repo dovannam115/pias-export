@@ -1,3 +1,10 @@
+1.1.4
+- One page for everything: 'Tìm kiếm đơn bảo hiểm' is now a group in the left column next to the
+  report groups, instead of a separate page. Pick it to list policies, pick a report group to export reports.
+- The groups list sits at the top of the left column so it is the first thing seen.
+- 'Revenue only' shows only for the business-performance group it applies to.
+- The log is collapsed by default; click it to open. Report and line lists are taller, less empty space.
+
 1.1.3
 - The save folder is normalised before it reaches the Save As box, so a path typed with forward
   slashes no longer fails with "the file name is not valid".

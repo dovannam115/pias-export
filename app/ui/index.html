@@ -195,7 +195,8 @@
 </head>
 <body>
 <style>
-  .rep{display:grid; grid-template-columns:1fr; gap:1px; max-height:52vh; overflow:auto; margin-top:4px}
+  .rep{display:grid; grid-template-columns:1fr; gap:1px; max-height:66vh; overflow:auto; margin-top:4px}
+  .logbox summary{font-size:10.5px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; cursor:pointer}
   .rep label.ck{margin:0; padding:5px 6px; border-radius:7px; color:var(--fg); font-size:13px}
   .rep label.ck:hover{background:var(--hover)}
   .rep label.ck i{font-style:normal; color:var(--dim); width:22px; text-align:right; flex:0 0 22px}
@@ -231,7 +232,7 @@ const T = new URLSearchParams(location.search).get("t") || "";
 const $ = (id) => document.getElementById(id);
 $("logo").src = $("ico").href;
 
-const NAV = [["", [["exp","Export reports"], ["pol","Policy lists"]]], ["", [["upd","Update"]]]];
+const NAV = [["", [["exp","Export reports"]]], ["", [["upd","Update"]]]];
 const TITLES = {exp:"Export reports", pol:"Policy lists", upd:"Update"};
 let CUR = "", VER = "", UPDINFO = null, ST = null, QV = {items:[], lines:[], total:0, running:false};
 let dead = 0;
@@ -389,18 +390,77 @@ function drawMid(){
   if(LANG === "vi") localize($("replist"));
 }
 function pickEntry(e){ P.entry = e; P.q = ""; draw(); }
+const POL_KEY = "__pol__";   // the policy-search screen, shown as one more group in the left column
+
+function reportRight(){
+  return '<div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
+    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button>' +
+    '<button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
+    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div>' +
+    '<div id="qbar"></div><div id="qtab"></div></div>' +
+    '<details class="card logbox"><summary>Log</summary><pre id="qlog" style="margin-top:8px"></pre></details>';
+}
+
 function viewExp(){
   if(!ST) return '<div class="empty">Checking...</div>';
   const ents = catEntries();
   if(!ents.length){
     return '<div class="empty">No report catalogue yet (app\\data\\pias_catalog.json).</div>';
   }
-  if(!P.entry || !ents.some(e => e.entry === P.entry))
+  const isPol = P.entry === POL_KEY;
+  if(!isPol && (!P.entry || !ents.some(e => e.entry === P.entry)))
     P.entry = ents.some(e => e.entry === ST.ready_entry) ? ST.ready_entry : ents[0].entry;
+
+  const groups = '<div class="card"><div class="no">Groups</div><div class="pick">' +
+    '<button class="' + (isPol ? "on" : "") + '" onclick="pickEntry(' + esc(JSON.stringify(POL_KEY)) + ')">' +
+      '<span class="keep">Tìm kiếm đơn bảo hiểm</span></button>' +
+    ents.map(e => {
+      const n = QV.items.filter(i => i.status === "waiting" && i.entry === e.entry).length;
+      return '<button class="' + (e.entry === P.entry ? "on" : "") + '" onclick="pickEntry(' + esc(JSON.stringify(e.entry)) + ')">' +
+             '<span class="keep">' + esc(e.entry) + '</span><small>' + (n ? "<b>" + n + "</b>/" : "") + e.reports.length + '</small></button>';
+    }).join("") + '</div></div>';
+
+  if(isPol){
+    const lines = ST.lines || {};
+    if(!PL.y1){ const n = new Date(); PL.y1 = n.getFullYear(); PL.y2 = n.getFullYear(); PL.m1 = 1; PL.m2 = n.getMonth() + 1; }
+    if(!PL.folder) PL.folder = ST.policy_folder || "";
+    const months = polMonths(), picked = polLines().length;
+    const mo = (sel, on) => '<select onchange="' + on + '=+this.value;draw()">' +
+      [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (sel === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>';
+    const yr = (v, on) => '<input class="inp" type="number" min="2015" max="2035" value="' + v + '" onchange="' + on + '=+this.value;draw()" style="width:92px">';
+    const left = groups +
+      '<div class="card"><div class="no">From</div><div class="row2">' + mo(PL.m1, "PL.m1") + yr(PL.y1, "PL.y1") + '</div>' +
+      '<div class="no" style="margin-top:12px">To</div><div class="row2">' + mo(PL.m2, "PL.m2") + yr(PL.y2, "PL.y2") + '</div>' +
+      '<div class="no" style="margin-top:12px">One file per</div>' +
+      '<select onchange="PL.chunk=this.value;draw()">' +
+        [["month","Month"],["quarter","Quarter"],["year","Year"]].map(([v,l]) =>
+          '<option value="' + v + '" ' + (PL.chunk === v ? "selected" : "") + '>' + l + '</option>').join("") + '</select>' +
+      '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
+      '<input class="inp keep" id="polfold" value="' + esc(PL.folder) + '" oninput="PL.folder=this.value">' +
+      '<button class="btn sm" onclick="polBrowse()">Browse</button></div></div>';
+    const mid = '<div class="card"><div class="ttl keep">Tìm kiếm đơn bảo hiểm</div>' +
+      '<div class="muted">' + months + ' months x ' + picked + ' lines = ' + (months * picked) + ' files' +
+        (polTotal() ? ' · about ' + nice(polTotal()) + ' policies in all' : "") + '</div>' +
+      '<div class="rep">' +
+      Object.keys(lines).map(k => {
+        const per = (ST.volume || {})[k] || 0;
+        return '<label class="ck"><input type="checkbox" ' + (PL.lines[k] ? "checked" : "") +
+          ' onchange="PL.lines[' + esc(JSON.stringify(k)) + ']=this.checked;draw()"><i>' + esc(k) + '</i>' +
+          '<span class="keep">' + esc(lines[k]) + '</span>' +
+          (per ? '<span class="muted keep" style="margin-left:auto;font-size:11px">~' + nice(per) + '/thg</span>' : "") +
+          '</label>';
+      }).join("") + '</div>' + polWarn() +
+      '<div class="act"><button class="btn pri" onclick="addPolicies()" ' + (picked && months ? "" : "disabled") +
+      '>Add to the queue</button></div></div>';
+    return '<div class="cols3"><div class="stack">' + left + '</div><div class="stack">' + mid +
+           '</div><div class="stack">' + reportRight() + '</div></div>';
+  }
+
   const cur = ents.find(e => e.entry === P.entry);
   const shown = shownReports(cur);
-
-  const left = '<div class="card"><div class="no">Period</div><div class="row2">' +
+  const isHQKD = cur.entry === ST.ready_entry;
+  const left = groups +
+    '<div class="card"><div class="no">Period</div><div class="row2">' +
     '<select onchange="F.month=+this.value;draw()">' +
       [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
     '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:92px"></div>' +
@@ -408,14 +468,8 @@ function viewExp(){
     '<input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
     '<button class="btn sm" onclick="saveFolder()">Save</button>' +
     '<button class="btn sm" onclick="browse()">Browse</button></div>' +
-    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") +
-      ' onchange="F.revenue_only=this.checked">Revenue only</label></div>' +
-    '<div class="card"><div class="no">Report groups</div><div class="pick">' +
-    ents.map(e => {
-      const n = QV.items.filter(i => i.status === "waiting" && i.entry === e.entry).length;
-      return '<button class="' + (e.entry === P.entry ? "on" : "") + '" onclick="pickEntry(' + esc(JSON.stringify(e.entry)) + ')">' +
-             '<span class="keep">' + esc(e.entry) + '</span><small>' + (n ? "<b>" + n + "</b>/" : "") + e.reports.length + '</small></button>';
-    }).join("") + '</div></div>';
+    (isHQKD ? '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") +
+      ' onchange="F.revenue_only=this.checked">Revenue only</label>' : "") + '</div>';
 
   const mid = '<div class="card"><div class="ttl keep">' + esc(cur.entry) + '</div>' +
     '<div class="muted">' + shown.length + ' of ' + cur.reports.length + ' reports</div>' +
@@ -424,16 +478,10 @@ function viewExp(){
       '<button class="btn sm gho" onclick="untickAll(' + esc(JSON.stringify(cur.entry)) + ')">Untick</button></div>' +
     '<div class="rep" id="replist">' + repRows(shown, cur.entry) + '</div></div>';
 
-  const right = '<div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
-    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button>' +
-    '<button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
-    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div>' +
-    '<div id="qbar"></div><div id="qtab"></div></div>' +
-    '<div class="card"><div class="no">Log</div><pre id="qlog"></pre></div>';
-
   return '<div class="cols3"><div class="stack">' + left + '</div><div class="stack">' + mid +
-         '</div><div class="stack">' + right + '</div></div>';
+         '</div><div class="stack">' + reportRight() + '</div></div>';
 }
+
 const PL = {y1:0, m1:1, y2:0, m2:12, lines:{}, folder:"", chunk:"quarter"};
 function polMonths(){
   let n = 0;
