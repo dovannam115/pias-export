@@ -1,3 +1,6 @@
+1.1.9
+- Icon shortcut ngoài Desktop và Start menu tự đổi theo icon app sau khi cập nhật, không cần khởi động lại máy.
+
 1.1.8
 - Icon mới: chú mèo vẫy tay.
 
