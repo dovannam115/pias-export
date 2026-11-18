@@ -1,3 +1,7 @@
+1.1.11
+- Mỗi dòng trong hàng chờ có nút × để xoá nếu chọn nhầm (trừ dòng đang chạy).
+- Nút Chọn thư mục lưu giờ bật hộp chọn folder lên trước cửa sổ, không còn ẩn sau lưng.
+
 1.1.10
 - Icon bỏ viền trắng quanh ngoài (để trong suốt), nhìn gọn trên taskbar.
 

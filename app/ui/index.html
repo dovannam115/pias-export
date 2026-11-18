@@ -613,6 +613,8 @@ function drawBar(){
     (run ? '<span class="keep">' + esc(run.name) + '</span>' : "") +
     (step ? '<span class="keep">' + esc(step) + '</span>' : "") + '</div>';
 }
+function rmBtn(i){ return i.status === "running" ? "" : '<button class="btn sm gho" title="Remove from the queue" onclick="removeOne(' + i.id + ')">×</button>'; }
+async function removeOne(id){ await api("/api/queue/remove_one", {id}); await refresh(); drawQueue(); }
 function drawQueue(){
   const it = QV.items;
   if($("qtab")){
@@ -621,9 +623,9 @@ function drawQueue(){
       it.map(i => '<tr><td>T' + i.month + '.' + i.year + '</td><td title="' + esc(i.entry || "") + '">' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span>' +
         (i.progress ? '<div class="muted keep" style="font-size:11px">' + esc(i.progress.label) + '</div>' : "") + '</td>' +
         '<td class="t">' + esc(secs(i.seconds)) + '</td><td class="n">' + money(i.revenue) + '</td>' +
-        (i.status === "error" || i.status === "stopped" ? '<td class="err" title="' + esc(i.error) + '">' + esc(i.error) + '</td><td class="t"><button class="btn sm" onclick="retry(' + i.id + ')">Retry</button></td>'
+        (i.status === "error" || i.status === "stopped" ? '<td class="err" title="' + esc(i.error) + '">' + esc(i.error) + '</td><td class="t"><button class="btn sm" onclick="retry(' + i.id + ')">Retry</button>' + rmBtn(i) + '</td>'
          : '<td title="' + esc(i.file) + '">' + esc(i.file ? i.file.split("\\").pop() : "") + '</td><td class="t">' +
-           (i.file ? '<button class="btn sm" onclick="openPath(' + esc(JSON.stringify(i.file)) + ')">Open</button> <button class="btn sm gho" onclick="openPath(' + esc(JSON.stringify(i.file)) + ',1)">Folder</button>' : "") + '</td>') +
+           (i.file ? '<button class="btn sm" onclick="openPath(' + esc(JSON.stringify(i.file)) + ')">Open</button> <button class="btn sm gho" onclick="openPath(' + esc(JSON.stringify(i.file)) + ',1)">Folder</button> ' : "") + rmBtn(i) + '</td>') +
         '</tr>').join("") + '</tbody></table></div>';
   }
   if($("qlog")){ const el = $("qlog"), atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 8; el.textContent = QV.lines.join("\n"); if(atEnd) el.scrollTop = el.scrollHeight; }

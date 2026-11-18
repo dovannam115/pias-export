@@ -159,6 +159,11 @@ class Queue:
             keep = ("running",) if which == "all" else ("running", "waiting")
             self.items = [i for i in self.items if i["status"] in keep]
 
+    def remove_one(self, iid):
+        """Drop one row from the queue by id, as long as it is not the one running."""
+        with self.lock:
+            self.items = [i for i in self.items if not (i["id"] == iid and i["status"] != "running")]
+
     def retry(self, iid):
         with self.lock:
             for i in self.items:
@@ -278,10 +283,15 @@ def cleanup():
 
 def browse_folder(start):
     """Windows folder picker in its own STA PowerShell; returns '' when cancelled."""
-    ps = ("Add-Type -AssemblyName System.Windows.Forms; $d = New-Object System.Windows.Forms.FolderBrowserDialog;"
+    ps = ("Add-Type -AssemblyName System.Windows.Forms;"
+          "$w = New-Object System.Windows.Forms.Form;"
+          "$w.TopMost = $true; $w.ShowInTaskbar = $false; $w.Opacity = 0;"
+          "$w.StartPosition = 'CenterScreen'; $w.Size = New-Object System.Drawing.Size(1,1);"
+          "$w.Show(); $w.Activate(); [System.Windows.Forms.Application]::DoEvents();"
+          "$d = New-Object System.Windows.Forms.FolderBrowserDialog;"
           "$d.SelectedPath = $env:PE_START; $d.ShowNewFolderButton = $true;"
-          "$w = New-Object System.Windows.Forms.Form; $w.TopMost = $true;"
-          "if ($d.ShowDialog($w) -eq 'OK') { [Console]::OutputEncoding = [Text.Encoding]::UTF8; $d.SelectedPath }")
+          "$res = $d.ShowDialog($w); $w.Close();"
+          "if ($res -eq 'OK') { [Console]::OutputEncoding = [Text.Encoding]::UTF8; $d.SelectedPath }")
     e = dict(os.environ); e["PE_START"] = start or ""
     r = subprocess.run(["powershell", "-NoProfile", "-STA", "-Command", ps], capture_output=True, env=e,
                        creationflags=NO_WINDOW, timeout=600)
@@ -509,6 +519,8 @@ class Handler(BaseHTTPRequestHandler):
             return self.json({"ok": True})
         if p == "/api/queue/clear":
             Q.clear(d.get("which") or "finished"); return self.json({"ok": True})
+        if p == "/api/queue/remove_one":
+            Q.remove_one(int(d.get("id") or 0)); return self.json({"ok": True})
         if p == "/api/queue/retry":
             Q.retry(int(d.get("id") or 0)); return self.json({"ok": True})
         if p == "/api/queue/start":
