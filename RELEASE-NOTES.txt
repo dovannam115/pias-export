@@ -1,3 +1,6 @@
+1.1.12
+- Bỏ nút Lưu thừa ở thư mục lưu; nút Chọn vừa mở hộp chọn folder vừa lưu, gõ tay cũng tự lưu.
+
 1.1.11
 - Mỗi dòng trong hàng chờ có nút × để xoá nếu chọn nhầm (trừ dòng đang chạy).
 - Nút Chọn thư mục lưu giờ bật hộp chọn folder lên trước cửa sổ, không còn ẩn sau lưng.

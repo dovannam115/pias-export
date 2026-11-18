@@ -471,7 +471,7 @@ function viewExp(){
           '<option value="' + v + '" ' + (PL.chunk === v ? "selected" : "") + '>' + l + '</option>').join("") + '</select>' +
       '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
       '<input class="inp keep" id="polfold" value="' + esc(PL.folder) + '" oninput="PL.folder=this.value">' +
-      '<button class="btn sm" onclick="polBrowse()">Browse</button></div></div>';
+      '<button class="btn sm" onclick="polBrowse()">Chọn</button></div></div>';
     const mid = '<div class="card"><div class="ttl keep">Tìm kiếm đơn bảo hiểm</div>' +
       '<div class="muted">' + months + ' months x ' + picked + ' lines = ' + (months * picked) + ' files' +
         (polTotal() ? ' · about ' + nice(polTotal()) + ' policies in all' : "") + '</div>' +
@@ -499,9 +499,8 @@ function viewExp(){
       [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
     '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:92px"></div>' +
     '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
-    '<input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
-    '<button class="btn sm" onclick="saveFolder()">Save</button>' +
-    '<button class="btn sm" onclick="browse()">Browse</button></div>' +
+    '<input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '" onchange="saveFolder()">' +
+    '<button class="btn sm" onclick="browse()">Chọn</button></div>' +
     (isHQKD ? '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") +
       ' onchange="F.revenue_only=this.checked">Revenue only</label>' : "") + '</div>';
 
@@ -557,7 +556,7 @@ function viewPol(){
         '<option value="' + v + '" ' + (PL.chunk === v ? "selected" : "") + '>' + l + '</option>').join("") + '</select>' +
     '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
     '<input class="inp keep" id="polfold" value="' + esc(PL.folder) + '" oninput="PL.folder=this.value">' +
-    '<button class="btn sm" onclick="polBrowse()">Browse</button></div>' +
+    '<button class="btn sm" onclick="polBrowse()">Chọn</button></div>' +
     '<div class="hint">One file per month and line: &lt;folder&gt;\\&lt;line&gt;\\&lt;year&gt;-&lt;month&gt;.xlsx</div>' +
     '</div>';
 
@@ -660,7 +659,7 @@ async function startQ(){ await api("/api/queue/start", {}); await refresh(); dra
 async function stopQ(){ await api("/api/queue/stop", {}); await refresh(); drawQueue(); }
 async function clearQ(){ await api("/api/queue/clear", {which:"finished"}); await refresh(); draw(); }
 async function retry(id){ await api("/api/queue/retry", {id}); await refresh(); drawQueue(); }
-async function saveFolder(){ const v = $("fold").value.trim(); if(!v) return; ST.settings = await api("/api/settings", {folder:v}); toast("Folder saved"); draw(); }
+async function saveFolder(){ const v = $("fold").value.trim(); if(!v) return; ST.settings = await api("/api/settings", {folder:v}); }
 async function browse(){
   const r = await api("/api/browse", {start: folderNow()});
   if(r.error){ toast(r.error); return; }
