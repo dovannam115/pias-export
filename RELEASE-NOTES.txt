@@ -1,3 +1,7 @@
+1.1.3
+- The save folder is normalised before it reaches the Save As box, so a path typed with forward
+  slashes no longer fails with "the file name is not valid".
+
 1.1.2
 - Faster queues: the report list stays open between reports of the same group, and the login step
   is skipped when PIAS is already up on the year being exported. About twenty seconds a report.

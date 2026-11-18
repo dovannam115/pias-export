@@ -501,6 +501,7 @@ def safe_name(s, limit=70):
 
 
 def target(folder, year, month, num, entry=None):
+    folder = os.path.normpath(folder)    # the Save As box rejects '/'; a normalised path is all backslashes
     base = "T%d.%d - %s" % (month, year, safe_name(report_name(entry or HQKD, num)))
     today = dt.date.today()
     path = os.path.join(folder, base + ".xlsx")
@@ -687,6 +688,7 @@ def dismiss_boxes(rounds=6):
 
 def policy_file(folder, line, year, m1, m2):
     """01-01_03-2025.xlsx for a range, 02-2025.xlsx for a whole year, 05-07-2025.xlsx for one month."""
+    folder = os.path.normpath(folder)    # the Save As box rejects '/'; a normalised path is all backslashes
     os.makedirs(folder, exist_ok=True)
     if (m1, m2) == (1, 12): base = "%s-%d" % (line, year)
     elif m1 == m2: base = "%s-%02d-%d" % (line, m1, year)
