@@ -1,3 +1,7 @@
+1.1.2
+- Faster queues: the report list stays open between reports of the same group, and the login step
+  is skipped when PIAS is already up on the year being exported. About twenty seconds a report.
+
 1.1.1
 - Before a report runs, 'Noi dung duoc chon' in its settings box is emptied. PIAS keeps what was
   chosen the last time, and anything left there filters the report without saying so.

@@ -35,6 +35,7 @@ DEFAULT = [1, 2, 4, 5, 6, 7, 10, 11, 13, 22]       # the lines PVI Digital sells
 
 HQKD = "Báo cáo hiệu quả kinh doanh"              # the entry REPORTS above belongs to
 CATALOG = os.path.join(os.path.dirname(HERE), "data", "pias_catalog.json")
+YEAR_FILE = os.path.join(os.path.dirname(HERE), "dump", "pias_year.txt")
 
 EXE_CANDIDATES = [r"C:\PVI\Pias2022new\Pias2022.exe", r"C:\PVI\Pias2022\Pias2022.exe"]
 
@@ -125,6 +126,25 @@ def pias_main():
         return True
     user32.EnumWindows(EnumProc(cb), 0)
     return found[0] if found else (None, "")
+
+
+def logged_in(year):
+    """Is PIAS already up on this year? The login script takes ten seconds even when there is nothing
+    to do, which is ten seconds on every job of a long queue."""
+    try:
+        if not _pias_pid(): return False
+        return int(open(YEAR_FILE, encoding="utf-8").read().strip()) == int(year)
+    except Exception:
+        return False
+
+
+def login(year, log=print):
+    """Make sure PIAS is up on this year, cheaply when it already is."""
+    unminimize()
+    if logged_in(year):
+        log("PIAS already on %s" % year)
+        return
+    log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
 
 
 def unminimize():
@@ -499,8 +519,7 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
     if entry == HQKD and num not in REPORTS: raise UserError("Unknown report %s." % num)
     log("[[P]] 1|%d|Opening PIAS" % len(REPORT_STEPS))
     log("Checking PIAS")
-    unminimize()
-    log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
+    login(year, log=log)
     last = calendar.monthrange(year, month)[1]
     want = (dt.date(year, month, 1), dt.date(year, month, last))
     base_args = ["-Report", num, "-From", "01/%02d/%d" % (month, year), "-To", "%02d/%02d/%d" % (last, month, year)]
@@ -511,7 +530,8 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
         unminimize()
         close_report_dialogs()
         log("[[P]] 2|%d|Opening the report list" % len(REPORT_STEPS))
-        open_report_list(entry)
+        if not report_list_open(entry):          # reopening the screen costs ten seconds a report
+            open_report_list(entry)
         hwnd, x, y = row_position(num)
         args = base_args + ["-X", x, "-Y", y]
         since = time.time() - 1
@@ -696,8 +716,7 @@ def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
     line = str(line).strip()
     _step(log, 1, "Opening PIAS")
     log("Checking PIAS")
-    unminimize()
-    log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
+    login(year, log=log)
     if stop(): raise UserError("Stopped.")
     unminimize()
     pid = _pias_pid()
