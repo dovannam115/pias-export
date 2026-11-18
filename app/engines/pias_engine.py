@@ -136,6 +136,15 @@ def unminimize():
         time.sleep(1.5)
 
 
+def report_list_open(entry):
+    """Is the report screen already showing this entry? Reopening it costs ten seconds, so it pays to ask."""
+    try:
+        header, rows = list_on_screen()
+    except Exception:
+        return False
+    return header == entry and bool(rows)
+
+
 def open_report_list(entry=None):
     """Menu Báo cáo > <entry>, invoked through MSAA (DevExpress menus ignore posted clicks).
     The screen remembers the entry it last showed, so it is closed first and opened again on the one we want."""

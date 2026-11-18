@@ -162,11 +162,17 @@ def pick_unit(dlg, log=print, dim=DIM_UNIT):
     if acc_name(combo) != dim:
         raise StepError("could not switch the filter to %s (it shows %s)" % (dim, acc_name(combo) or "nothing"))
     log("filter: %s" % dim)
-    arrow = names.get("SimpleButton1")
+    # one shared table holds what was chosen, whatever the category it came from, so emptying it once
+    # is enough; without this the leftovers of the last run silently filter the report
+    if not clear_filter(dlg, log=log):
+        raise StepError("could not empty 'Nội dung được chọn' (it still holds %d rows)" % rows_chosen(dlg))
+    arrow = arrows(dlg).get("all_right") or names.get("SimpleButton1")
     if not arrow: raise StepError("the arrow that moves the unit across was not found")
     P.click(arrow, 14, 16)                               # the top arrow moves everything across
     time.sleep(1.0)
-    log("unit moved across")
+    n = rows_chosen(dlg)
+    if not n: raise StepError("the unit did not move across ('Nội dung được chọn' is empty)")
+    log("filter set: %d row(s) in 'Nội dung được chọn'" % n)
     return True
 
 
@@ -217,10 +223,9 @@ def run(pid, num, date_from, date_to, revenue_only=False, unit_filter=True, log=
     time.sleep(1.0)
     set_period(dlg, date_from, date_to, log=log)
     if unit_filter:
-        try:
-            pick_unit(dlg, log=log)
-        except StepError as ex:
-            log("unit filter: %s" % ex)
+        # not caught on purpose: a filter left half set means the report is run over the wrong data,
+        # and a file that looks fine is worse than a job that stops with a reason
+        pick_unit(dlg, log=log)
     accept(dlg, log=log)
     time.sleep(1.5)
     why = P.crash_box(pid)
@@ -228,3 +233,155 @@ def run(pid, num, date_from, date_to, revenue_only=False, unit_filter=True, log=
         raise StepError("PIAS stopped on this report: %s" % why)
     print_kind(pid, revenue_only=revenue_only, log=log)
     return True
+
+
+# ---------------------------------------------------------------- what a report asks for
+def describe(dlg):
+    """Everything the settings box of one report asks for, read off the open dialog: no report is run.
+    Opening the box and reading it takes seconds, where running the report takes minutes."""
+    out = {"title": P.text_of(dlg), "dates": [], "fields": [], "lists": [], "buttons": [], "ticks": []}
+    l, t, w, h = P.rect(dlg)
+    out["size"] = [w, h]
+    labels = []
+    for c in P.children(dlg):
+        cls = P.class_of(c)
+        name = acc_name(c, tries=1)
+        text = (P.text_of(c) or "").replace("&", "").strip()
+        cl, ct, cw, ch = P.rect(c)
+        box = [cl - l, ct - t, cw, ch]
+        if "STATIC" in cls.upper() and name:
+            labels.append((ct, cl, name)); continue
+        if "BUTTON" in cls.upper() or (text and "Window.b" in cls and cw > 60 and ch < 30):
+            if text: out["buttons"].append(text)
+            continue
+        if "EDIT" in cls.upper():
+            val = date_value(c)
+            import re as _re
+            if _re.match(r"^\d\d/\d\d/\d{4}$", val or ""):
+                out["dates"].append({"value": val, "at": box})
+            else:
+                out["fields"].append({"name": name, "value": P.text_of(c), "at": box})
+            continue
+        if name.startswith("DM_"):
+            out["lists"].append({"shows": name, "at": box})
+    out["labels"] = [n for _, _, n in sorted(labels)]
+    out["dates"].sort(key=lambda d: d["at"][0])
+    # the label of a box is the nearest one to its left on the same line
+    for f in out["fields"] + out["dates"]:
+        x, y = f["at"][0], f["at"][1]
+        near = [(cl - l, n) for ct, cl, n in labels if abs((ct - t) - y) <= 10 and cl - l <= x]
+        f["label"] = max(near)[1] if near else ""
+    return out
+
+
+def cancel(dlg):
+    """Close the settings box without running anything."""
+    for c in P.children(dlg):
+        txt = (P.text_of(c) or "").replace("&", "").strip()
+        if txt in ("Hủy bỏ", "Huy bo", "Thoát", "Cancel"):
+            P.click(c, 40, 11); return True
+    user32.PostMessageW(dlg, 0x0010, 0, 0)          # WM_CLOSE
+    return False
+
+
+# ---------------------------------------------------------------- the filter lists of the settings box
+def _acc_of(h):
+    import comtypes.client
+    comtypes.client.GetModule("oleacc.dll")
+    from comtypes.gen.Accessibility import IAccessible
+    p = ctypes.POINTER(IAccessible)()
+    ctypes.oledll.oleacc.AccessibleObjectFromWindow(h, -4, ctypes.byref(IAccessible._iid_), ctypes.byref(p))
+    return p
+
+
+def _acc_kids(a):
+    from comtypes import automation
+    try:
+        n = a.accChildCount
+    except Exception:
+        return []
+    if not n: return []
+    arr = (automation.VARIANT * n)(); got = ctypes.c_long()
+    try:
+        ctypes.oledll.oleacc.AccessibleChildren(a, 0, n, arr, ctypes.byref(got))
+    except Exception:
+        return []
+    return [v.value for v in arr[:got.value]]
+
+
+def _rows_under(a, parent, depth=0):
+    """Every row of a DevExpress grid read through MSAA: the rows live under 'Data Panel'."""
+    out = []
+    for o in _acc_kids(a):
+        if isinstance(o, int):
+            try: name = (parent.accName(o) or "").strip()
+            except Exception: name = ""
+            if name and name not in ("Header Panel", "Data Panel", "Horizontal", "Vertical", "Filter Row"):
+                out.append(name)
+            continue
+        try: name = (o.accName(0) or "").strip()
+        except Exception: name = ""
+        if name in ("Header Panel", "Horizontal", "Vertical", "Filter Row"): continue
+        if depth < 3:
+            out += _rows_under(o, o, depth + 1)
+        if name and name not in ("Data Panel",):
+            out.append(name)
+    return out
+
+
+def _panel(dlg, title):
+    """The grid that sits under a heading of the box ('Nội dung được chọn' / 'Nội dung cần chọn')."""
+    head = next((c for c in P.children(dlg) if acc_name(c, tries=1) == title), 0)
+    if not head: return 0
+    hl, ht, hw, hh = P.rect(head)
+    best = 0
+    for c in P.children(dlg):
+        cl, ct, cw, ch = P.rect(c)
+        if ch < 80 or cw < 80: continue
+        if abs(cl - hl) > 12 or ct < ht: continue
+        if not best or ct < P.rect(best)[1]: best = c
+    return best
+
+
+def chosen(dlg):
+    """What is in 'Nội dung được chọn' right now: anything left there filters the report."""
+    g = _panel(dlg, "Nội dung được chọn")
+    if not g: return []
+    try:
+        a = _acc_of(g)
+        return [r for r in _rows_under(a, a) if r != "Nội dung được chọn"]
+    except Exception:
+        return []
+
+
+def rows_chosen(dlg):
+    """How many rows sit in 'Nội dung được chọn'. The grid answers with cell placeholders, one 'Row n'
+    per row, so the rows are what gets counted."""
+    import re as _re
+    return len([r for r in chosen(dlg) if _re.match(r"^Row \d+$", r)])
+
+
+def arrows(dlg):
+    """The four arrows between the two lists, top to bottom: all across, one across, one back, all back."""
+    btns = []
+    for c in P.children(dlg):
+        cl, ct, cw, ch = P.rect(c)
+        if 20 < cw < 40 and 20 < ch < 45 and "Window.b" in P.class_of(c):
+            btns.append((ct, c))
+    btns.sort()
+    keys = ["all_right", "one_right", "one_left", "all_left"]
+    return {k: c for k, (_, c) in zip(keys, btns)}
+
+
+def clear_filter(dlg, log=print):
+    """Empty 'Nội dung được chọn'. PIAS keeps what was chosen last time, and anything still sitting
+    there is applied to the report without asking, so the box is emptied before a new filter goes in."""
+    left = arrows(dlg).get("all_left")
+    for _ in range(3):
+        have = chosen(dlg)
+        if not have: return True
+        log("clearing the filter: %s" % ", ".join(have[:6]))
+        if not left: return False
+        P.click(left, 14, 16)
+        time.sleep(0.8)
+    return not chosen(dlg)

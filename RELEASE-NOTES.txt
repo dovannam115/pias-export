@@ -1,3 +1,11 @@
+1.1.1
+- Before a report runs, 'Noi dung duoc chon' in its settings box is emptied. PIAS keeps what was
+  chosen the last time, and anything left there filters the report without saying so.
+- The unit filter is now checked both ways: the tool refuses to run a report when the box cannot be
+  emptied, or when PVI Digital did not move across.
+- app\data\pias_recipes.json: what each of the 190 reports asks for, read off its settings box
+  without running anything. 187 of them want the same thing: two dates and one list filter.
+
 1.1.0
 - The tool is now called Pias Export - Nam Doo and has its own icon.
 - Every report group the PIAS account may use is listed, not only Bao cao hieu qua kinh doanh:

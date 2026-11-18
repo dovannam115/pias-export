@@ -1,0 +1,9697 @@
+{
+ "Báo cáo nghiệp vụ bồi thường|1": {
+  "title": "1. Bảng báo cáo số liệu bồi thường nghiệp vụ XCG",
+  "dates": [
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   },
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ XCG"
+ },
+ "Báo cáo nghiệp vụ bồi thường|2": {
+  "title": "2. Bảng báo cáo số liệu bồi thường nghiệp vụ khác XCG",
+  "dates": [
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   },
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ khác XCG"
+ },
+ "Báo cáo nghiệp vụ bồi thường|3": {
+  "title": "3. Báo cáo chi tiết bồi thường con người mức TNC theo khách hàng",
+  "dates": [
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   },
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết bồi thường con người mức TNC theo khách hàng"
+ },
+ "Báo cáo nghiệp vụ bồi thường|4": {
+  "title": "4. Báo cáo chi tiết bồi thường hộ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết bồi thường hộ"
+ },
+ "Báo cáo nghiệp vụ bồi thường|5": {
+  "title": "5. Báo cáo chi tiết nhờ bồi thường hộ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết nhờ bồi thường hộ"
+ },
+ "Báo cáo nghiệp vụ bồi thường|6": {
+  "title": "6. Thống kê tổng hợp bồi thường theo đơn vị",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê tổng hợp bồi thường theo đơn vị"
+ },
+ "Báo cáo nghiệp vụ bồi thường|7": {
+  "title": "7. Thống kê tổng hợp bồi thường theo nghiệp vụ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê tổng hợp bồi thường theo nghiệp vụ"
+ },
+ "Báo cáo nghiệp vụ bồi thường|8": {
+  "title": "8. Báo cáo phí giám định xếp hàng",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí giám định xếp hàng"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|1": {
+  "title": "1. Báo cáo đơn bảo hiểm phát sinh",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo đơn bảo hiểm phát sinh"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|2": {
+  "title": "2. Báo cáo doanh thu bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo doanh thu bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|3": {
+  "title": "3. Danh sách các đơn bảo hiểm phải thu chưa bóc tách công nợ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Danh sách các đơn bảo hiểm phải thu chưa bóc tách công nợ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|4": {
+  "title": "4. Báo cáo đơn bảo hiểm phát sinh theo sản phẩm",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo đơn bảo hiểm phát sinh theo sản phẩm"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|5": {
+  "title": "5. Báo cáo phí bảo hiểm thực thu",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí bảo hiểm thực thu"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|6": {
+  "title": "6. Báo cáo phí bảo hiểm thực thu theo cán bộ",
+  "dates": [
+   {
+    "value": "01/01/2024",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí bảo hiểm thực thu theo cán bộ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|7": {
+  "title": "7. Báo cáo phí bảo hiểm thực trả",
+  "dates": [
+   {
+    "value": "01/01/2024",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí bảo hiểm thực trả"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|8": {
+  "title": "8. Báo cáo phải thu phí bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phải thu phí bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|9": {
+  "title": "9. Báo cáo nợ phải thu bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo nợ phải thu bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|10": {
+  "title": "10. Báo cáo nợ phải trả bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo nợ phải trả bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|11": {
+  "title": "11. Báo cáo bảo hiểm chưa áp thực thu",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo bảo hiểm chưa áp thực thu"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|12": {
+  "title": "12. Báo cáo so sánh chi tiết cập nhật đơn và hoá đơn thu phí",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo so sánh chi tiết cập nhật đơn và hoá đơn thu phí"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|13": {
+  "title": "13. Danh sách các đơn bảo hiểm phải trả chưa bóc tách công nợ",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Danh sách các đơn bảo hiểm phải trả chưa bóc tách công nợ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|14": {
+  "title": "14. Danh sách các hồ sơ phải trả chưa bóc tách công nợ",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Danh sách các hồ sơ phải trả chưa bóc tách công nợ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|15": {
+  "title": "15. Báo cáo tổng quát phí bảo hiểm thực thu",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng quát phí bảo hiểm thực thu"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|16": {
+  "title": "16. Báo cáo tổng quát phí bảo hiểm thực thu theo sản phẩm",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo sản phẩm"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|17": {
+  "title": "17. Báo cáo tổng quát phí hóa đơn theo sản phẩm",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng quát phí hóa đơn theo sản phẩm"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|18": {
+  "title": "18. Báo cáo tổng quát phí bảo hiểm thực thu theo phòng ban",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo phòng ban"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|19": {
+  "title": "19. Báo cáo tổng quát phí bảo hiểm thực thu theo cán bộ",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo cán bộ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|20": {
+  "title": "20. Báo cáo doanh thu bảo hiểm gốc theo cán bộ",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo doanh thu bảo hiểm gốc theo cán bộ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|21": {
+  "title": "21. Liệt kê đơn chưa chuyển qua tài khoản 0051",
+  "dates": [
+   {
+    "value": "01/01/2023",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TTHAI_NVU",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Liệt kê đơn chưa chuyển qua tài khoản 0051"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|22": {
+  "title": "22. Liệt kê đơn đã có nhưng chưa có giấy báo nợ",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TTHAI_NVU",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Liệt kê đơn đã có nhưng chưa có giấy báo nợ"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|23": {
+  "title": "23. Liệt kê giấy báo nợ chưa viết hóa đơn thu phí",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Liệt kê giấy báo nợ chưa viết hóa đơn thu phí"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|24": {
+  "title": "24. Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(1311)",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(1311)"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|25": {
+  "title": "25. Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(00511)",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(00511)"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|26": {
+  "title": "26. Báo cáo tổng hợp công nợ theo doanh thu",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp công nợ theo doanh thu"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|27": {
+  "title": "27. Báo cáo tổng hợp công nợ chưa PSTN",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp công nợ chưa PSTN"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|28": {
+  "title": "28. Báo cáo quản lý đơn vị thành viên",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo quản lý đơn vị thành viên"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|29": {
+  "title": "29. Báo cáo công nợ doanh thu nhận trước bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo công nợ doanh thu nhận trước bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|30": {
+  "title": "30. Báo cáo trả trước bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo trả trước bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|31": {
+  "title": "31. Báo cáo phải thu nợ khó đòi đã xử lý-phí bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/01/1900",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phải thu nợ khó đòi đã xử lý-phí bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|32": {
+  "title": "32. Báo cáo phải thu nợ khó đòi đã xử lý-khác phí bảo hiểm gốc",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phải thu nợ khó đòi đã xử lý-khác phí bảo hiểm gốc"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|33": {
+  "title": "33. Báo cáo trích lập dự phòng phải thu khó đòi",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo trích lập dự phòng phải thu khó đòi"
+ },
+ "Báo cáo kế toán bảo hiểm gốc|34": {
+  "title": "34. Báo cáo phí bảo hiểm thực thu qua kênh VNPost đơn offline",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_TK",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí bảo hiểm thực thu qua kênh VNPost đơn offline"
+ },
+ "Báo cáo nghiệp vụ bồi thường|9": {
+  "title": "9. Báo cáo phí giám định (bao gồm các vụ không phát sinh trách nhiệm của bảo hiểm)",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí giám định (bao gồm các vụ không phát sinh trách nhiệm của bảo hiểm)"
+ },
+ "Báo cáo nghiệp vụ bồi thường|10": {
+  "title": "10. Báo cáo số liệu bồi thường có TBH",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONBH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo số liệu bồi thường có TBH"
+ },
+ "Báo cáo nghiệp vụ bồi thường|11": {
+  "title": "11. Bảng báo cáo số liệu thu hồi tài sản thanh lý, thu đòi người thứ 3",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng báo cáo số liệu thu hồi tài sản thanh lý, thu đòi người thứ 3"
+ },
+ "Báo cáo nghiệp vụ bồi thường|12": {
+  "title": "12. Báo cáo tổng hợp các khách hàng có tổn thất lớn nhất",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp các khách hàng có tổn thất lớn nhất"
+ },
+ "Báo cáo nghiệp vụ bồi thường|13": {
+  "title": "13. Báo cáo tổng hợp các HSBT có tổn thất lớn nhất",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp các HSBT có tổn thất lớn nhất"
+ },
+ "Báo cáo nghiệp vụ bồi thường|14": {
+  "title": "14. Báo cáo chi tiết tình hình bồi thường bảo lãnh viện phí",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết tình hình bồi thường bảo lãnh viện phí"
+ },
+ "Báo cáo nghiệp vụ bồi thường|15": {
+  "title": "15. Báo cáo tổng hợp tình hình bồi thường bảo lãnh viện phí",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp tình hình bồi thường bảo lãnh viện phí"
+ },
+ "Báo cáo nghiệp vụ bồi thường|16": {
+  "title": "16. Danh sách hồ sơ bảo lãnh viện phí chưa thu phí bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Danh sách hồ sơ bảo lãnh viện phí chưa thu phí bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ bồi thường|17": {
+  "title": "17. Báo cáo tổng hợp tình hình bồi thường theo đơn vị - TTCSKH CN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp tình hình bồi thường theo đơn vị - TTCSKH CN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|18": {
+  "title": "18. Báo cáo tổng hợp hồ sơ ước bồi thường bảo lãnh viện phí - TTCSKH CN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp hồ sơ ước bồi thường bảo lãnh viện phí - TTCSKH CN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|19": {
+  "title": "19. Báo cáo tổng hợp tình hình thu đòi bồi thường theo đơn vị - TTCSKH CN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp tình hình thu đòi bồi thường theo đơn vị - TTCSKH CN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|20": {
+  "title": "20. Báo cáo tình trạng xử lý tài liệu/email hồ sơ bồi thường - TTCSKH CN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình trạng xử lý tài liệu/email hồ sơ bồi thường - TTCSKH CN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|21": {
+  "title": "21. Thống kê khai thác bồi thường qua gara-showroom",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê khai thác bồi thường qua gara-showroom"
+ },
+ "Báo cáo nghiệp vụ bồi thường|22": {
+  "title": "22. Thống kê khai thác bồi thường qua gara-showroom theo đơn vị\t",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê khai thác bồi thường qua gara-showroom theo đơn vị"
+ },
+ "Báo cáo nghiệp vụ bồi thường|23": {
+  "title": "23. Thống kê khai thác bồi thường qua gara-showroom theo kênh",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê khai thác bồi thường qua gara-showroom theo kênh"
+ },
+ "Báo cáo nghiệp vụ bồi thường|24": {
+  "title": "24. Báo cáo doanh thu bồi thường qua kênh",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_NHKENHKT",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo doanh thu bồi thường qua kênh"
+ },
+ "Báo cáo nghiệp vụ bồi thường|25": {
+  "title": "25. Báo cáo công việc giải quyết khiếu nại",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo công việc giải quyết khiếu nại"
+ },
+ "Báo cáo nghiệp vụ bồi thường|26": {
+  "title": "26. Thống kê hồ sơ bồi thường nghiệp vụ XCG phân bổ các đơn vị",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê hồ sơ bồi thường nghiệp vụ XCG phân bổ các đơn vị"
+ },
+ "Báo cáo nghiệp vụ bồi thường|27": {
+  "title": "27. Thống kê hồ sơ bồi thường nghiệp vụ CSSK phân bổ các đơn vị",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê hồ sơ bồi thường nghiệp vụ CSSK phân bổ các đơn vị"
+ },
+ "Báo cáo nghiệp vụ bồi thường|28": {
+  "title": "28. Thống kê các vụ bồi thường tổn thất lớn",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê các vụ bồi thường tổn thất lớn"
+ },
+ "Báo cáo nghiệp vụ bồi thường|29": {
+  "title": "29. Báo cáo thống kê tổng hợp nghiệp vụ XCG",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê tổng hợp nghiệp vụ XCG"
+ },
+ "Báo cáo nghiệp vụ bồi thường|30": {
+  "title": "30. Thống kê tình hình gửi tin nhắn bồi thường nghiệp vụ CSSK",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê tình hình gửi tin nhắn bồi thường nghiệp vụ CSSK"
+ },
+ "Báo cáo nghiệp vụ bồi thường|31": {
+  "title": "31. Báo cáo danh sách số điện thoại chủ xe phục vụ nhắn tin cảnh báo",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo danh sách số điện thoại chủ xe phục vụ nhắn tin cảnh báo"
+ },
+ "Báo cáo nghiệp vụ bồi thường|32": {
+  "title": "32. Bảng báo cáo số liệu bồi thường nghiệp vụ con người",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ con người"
+ },
+ "Báo cáo nghiệp vụ bồi thường|33": {
+  "title": "33. Báo cáo Tổng hợp số liệu theo Văn Phòng CSKH và Ban GQKN\t",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo Tổng hợp số liệu theo Văn Phòng CSKH và Ban GQKN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|34": {
+  "title": "34. Báo cáo tổng hợp số liệu theo từng cán bộ giải quyết tại VP và Ban GQKN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp số liệu theo từng cán bộ giải quyết tại VP và Ban GQKN"
+ },
+ "Báo cáo nghiệp vụ bồi thường|35": {
+  "title": "35. Báo cáo thống kê bồi thường nghiệp vụ ngoài XCG, CN phân bổ các đơn vị \t",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê bồi thường nghiệp vụ ngoài XCG, CN phân bổ các đơn vị"
+ },
+ "Báo cáo nghiệp vụ bồi thường|36": {
+  "title": "36. Báo cáo số liệu thu chiết khấu bệnh viện",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo số liệu thu chiết khấu bệnh viện"
+ },
+ "Báo cáo nghiệp vụ bồi thường|37": {
+  "title": "37. Báo cáo phí tự giám định",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo phí tự giám định"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|1": {
+  "title": "1. Bảng kê chứng từ khai thác nhượng TBH",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chứng từ khai thác nhượng TBH"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|2": {
+  "title": "2. Bảng kê chi tiết bồi thường nghiệp vụ bảo hiểm thân tàu",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết bồi thường nghiệp vụ bảo hiểm thân tàu"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|3": {
+  "title": "3. Bảng kê nghiệp vụ bảo hiểm P&I",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê nghiệp vụ bảo hiểm P&I"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|4": {
+  "title": "4. Bảng kê nghiệp vụ bảo hiểm trách nhiệm",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê nghiệp vụ bảo hiểm trách nhiệm"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|5": {
+  "title": "5. Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XDLD",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XDLD"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|6": {
+  "title": "6. Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ tài sản",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PTTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ tài sản"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|7": {
+  "title": "7. Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ XDLD",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PTTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ XDLD"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|8": {
+  "title": "8. Bảng kê nghiệp vụ bảo hiểm XDLĐ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê nghiệp vụ bảo hiểm XDLĐ"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|9": {
+  "title": "9. Risk profile nghiệp vụ BH hàng hóa",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Risk profile nghiệp vụ BH hàng hóa"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|10": {
+  "title": "10. Risk profile nghiệp vụ BH thân tàu",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Risk profile nghiệp vụ BH thân tàu"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|11": {
+  "title": "11. Risk profile",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Risk profile"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|12": {
+  "title": "12. Risk profile new",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Risk profile new"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|13": {
+  "title": "13. Bảng kê phương thức tái reporter nghiệp vụ thân tầu",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê phương thức tái reporter nghiệp vụ thân tầu"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|14": {
+  "title": "14. Bảng kê phương thức tái reporter nghiệp vụ hàng hóa",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê phương thức tái reporter nghiệp vụ hàng hóa"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|15": {
+  "title": "15. Thống kê tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONBH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê tái bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|16": {
+  "title": "16. Accumulation figures for PVI retention by zone",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Accumulation figures for PVI retention by zone"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|17": {
+  "title": "17. Báo cáo tình hình thanh toán tái tạm thời",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình thanh toán tái tạm thời"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|18": {
+  "title": "18. Bảng kê chi tiết nhượng tái nghiệp vụ XCG",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_CTYTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết nhượng tái nghiệp vụ XCG"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|19": {
+  "title": "19. Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XCG",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XCG"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|20": {
+  "title": "20. Bảng kê chi tiết nhượng tái nghiệp vụ con người",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_CTYTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết nhượng tái nghiệp vụ con người"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|21": {
+  "title": "21. Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ con người",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ con người"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|22": {
+  "title": "22. Báo cáo thống kê bồi thường nhượng tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê bồi thường nhượng tái bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|23": {
+  "title": "23. Danh sách đơn sửa đổi bổ sung có tái tạm thời",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Danh sách đơn sửa đổi bổ sung có tái tạm thời"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|24": {
+  "title": "24. Marine & Energy XOL - Energy Section",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Marine & Energy XOL - Energy Section"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|25": {
+  "title": "25. Báo cáo chi tiết nhượng tái theo nhà nhận tái",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_CTYTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết nhượng tái theo nhà nhận tái"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|26": {
+  "title": "26. Báo cáo thống kê bồi thường dự phòng Treaty nghiệp vụ phi hàng hải",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PTTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê bồi thường dự phòng Treaty nghiệp vụ phi hàng hải"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|27": {
+  "title": "27. Báo cáo tình hình thu đòi bồi thường tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình thu đòi bồi thường tái bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|28": {
+  "title": "28. TripCARE claims payment bordereaux",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "TripCARE claims payment bordereaux"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|29": {
+  "title": "29. Báo cáo chi tiết  bồi thường nhượng vật chất xe",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết  bồi thường nhượng vật chất xe"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|30": {
+  "title": "30. Báo cáo chi tiết rủi ro",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết rủi ro"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|31": {
+  "title": "31. BÁO CÁO OFFSET TÁI BẢO HIỂM",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_KHACH",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "BÁO CÁO OFFSET TÁI BẢO HIỂM"
+ },
+ "Báo cáo nghiệp vụ nhượng tái bảo hiểm|32": {
+  "title": "32. Báo cáo dữ liệu bồi thường theo sự kiện tổn thất",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo dữ liệu bồi thường theo sự kiện tổn thất"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|1": {
+  "title": "1. Rish Profile Inward",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_CTYTAI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Rish Profile Inward"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|2": {
+  "title": "2. Báo cáo thống kê dịch vụ phát sinh nhận tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê dịch vụ phát sinh nhận tái bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|3": {
+  "title": "3. Báo cáo dự phòng tổn thất",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo dự phòng tổn thất"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|4": {
+  "title": "4. Báo cáo thống kê bồi thường và dự phòng tổn thất nhận TBH",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê bồi thường và dự phòng tổn thất nhận TBH"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|5": {
+  "title": "5. Báo cáo chứng từ thanh toán nhận nhượng tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2025",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chứng từ thanh toán nhận nhượng tái bảo hiểm"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|6": {
+  "error": "no settings box"
+ },
+ "Báo cáo nghiệp vụ nhận tái bảo hiểm|7": {
+  "error": "no settings box"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|1": {
+  "title": "1. Thống kê chi tiết khai thác bảo hiểm xe máy",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "18/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_NHLOAIXE",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết khai thác bảo hiểm xe máy"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|2": {
+  "title": "2. Thống kê chi tiết khai thác bảo hiểm ôtô",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_NHLOAIXE",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết khai thác bảo hiểm ôtô"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|3": {
+  "title": "3. Báo cáo BH bắt buộc TNDS của chủ xe cơ giới",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo BH bắt buộc TNDS của chủ xe cơ giới"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|4": {
+  "title": "4. Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ Con người",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ Con người"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|5": {
+  "title": "5. Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ BH ô tô",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ BH ô tô"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|6": {
+  "title": "6. Báo cáo tình hình cấp thẻ BLVP",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình cấp thẻ BLVP"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|7": {
+  "title": "7. Báo cáo đơn bảo hiểm phát sinh nhà qua ngân hàng",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo đơn bảo hiểm phát sinh nhà qua ngân hàng"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|8": {
+  "title": "8. Thống kê tỷ lệ % các dịch vụ bảo hiểm tái tục",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê tỷ lệ % các dịch vụ bảo hiểm tái tục"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|9": {
+  "title": "9. Báo cáo thống kê tái tục theo tháng nghiệp vụ ô tô và con người",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê tái tục theo tháng nghiệp vụ ô tô và con người"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|10": {
+  "title": "10. Báo cáo danh sách khách hàng tham gia dịch vụ SOS",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo danh sách khách hàng tham gia dịch vụ SOS"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|11": {
+  "title": "11. Bảng kê đơn sắp hết thời hạn bảo hiểm (Phi CN&XCG)",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Bảng kê đơn sắp hết thời hạn bảo hiểm (Phi CN&XCG)"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|12": {
+  "title": "12. Thống kê khai thác-bồi thường cho Talanx",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê khai thác-bồi thường cho Talanx"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|13": {
+  "title": "13. Báo cáo kết quả kinh doanh qua các kênh bán hàng",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo kết quả kinh doanh qua các kênh bán hàng"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|14": {
+  "title": "14. Báo cáo thống kê khai thác TNDS bắt buộc chi tiết cho HHBH",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê khai thác TNDS bắt buộc chi tiết cho HHBH"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|15": {
+  "title": "15. Báo cáo thống kê bồi thường TNDS bắt buộc chi tiết cho HHBH",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê bồi thường TNDS bắt buộc chi tiết cho HHBH"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|16": {
+  "title": "16. Báo cáo tái tục các đơn bảo hiểm VCX đã phát sinh tổn thất",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tái tục các đơn bảo hiểm VCX đã phát sinh tổn thất"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|17": {
+  "title": "17. Thống kê chi tiết khai thác bảo hiểm con người hệ thống QLCĐ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết khai thác bảo hiểm con người hệ thống QLCĐ"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|18": {
+  "title": "18. Thống kê chi tiết khai thác bảo hiểm xe cơ giới hệ thống QLCĐ",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết khai thác bảo hiểm xe cơ giới hệ thống QLCĐ"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|19": {
+  "title": "19. Thống kê chi tiết khai thác bán chéo bảo hiểm xe cơ giới",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết khai thác bán chéo bảo hiểm xe cơ giới"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|20": {
+  "title": "20. Thống kê hạn mức ấn chỉ điện tử",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê hạn mức ấn chỉ điện tử"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|21": {
+  "title": "21. Báo cáo chi tiết SĐBS đã lập",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết SĐBS đã lập"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|22": {
+  "title": "22. Báo cáo Cat 3.3, cat 4 & cat 6",
+  "dates": [
+   {
+    "value": "01/11/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "30/11/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo Cat 3.3, cat 4 & cat 6"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|23": {
+  "title": "23. Báo cáo thông kê sản phẩm mobicare",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thông kê sản phẩm mobicare"
+ },
+ "Báo cáo nghiệp vụ khai thác bảo hiểm|24": {
+  "title": "24. Báo cáo thống kê khai thác B2B2C",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê khai thác B2B2C"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|1": {
+  "title": "1. Báo cáo thống kê chi tiết tình hình thực hiện kinh doanh",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_THTHKHKD",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê chi tiết tình hình thực hiện kinh doanh"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|2": {
+  "title": "2. Báo cáo tình hình thực hiện kinh doanh",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình thực hiện kinh doanh"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|3": {
+  "title": "3. Tình hình kinh doanh các văn phòng khu vực",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Tình hình kinh doanh các văn phòng khu vực"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|4": {
+  "title": "4. Tình hình kinh doanh các phòng ban kinh doanh",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Tình hình kinh doanh các phòng ban kinh doanh"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|5": {
+  "title": "5. Tình hình kinh doanh các đại lý bảo hiểm",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Tình hình kinh doanh các đại lý bảo hiểm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|6": {
+  "title": "6. Tình hình kinh doanh các kênh bán hàng",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Tình hình kinh doanh các kênh bán hàng"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|7": {
+  "title": "7. Báo cáo tình hình kinh doanh theo đơn vị",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tình hình kinh doanh theo đơn vị"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|8": {
+  "title": "8. Báo cáo thống kê tình hình kinh doanh bảo hiểm cháy, nổ bắt buộc",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê tình hình kinh doanh bảo hiểm cháy, nổ bắt buộc"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|9": {
+  "title": "9. Báo cáo thống kê doanh thu bồi thường theo sản phẩm",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê doanh thu bồi thường theo sản phẩm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|10": {
+  "title": "10. Báo cáo thống kê khai thác - bồi thườngtheo phương thức/kênh bán hàng",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê khai thác - bồi thườngtheo phương thức/kênh bán hàng"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|11": {
+  "title": "11. Tình hình thực hiện kế hoạch doanh thu",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Chạy realtime",
+   "Chạy nhanh (dữ liệu đến 12:30 18/11/2026)",
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Tình hình thực hiện kế hoạch doanh thu"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|12": {
+  "title": "12. Báo cáo định mức chi phí kinh doanh",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí kinh doanh"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|13": {
+  "title": "13. Báo cáo định mức chi phí tiền lương",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí tiền lương"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|14": {
+  "title": "14. Báo cáo tổng hợp doanh thu - bồi thường BH giáo viên học sinh",
+  "dates": [
+   {
+    "value": "01/07/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp doanh thu - bồi thường BH giáo viên học sinh"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|15": {
+  "title": "15. Báo cáo tổng hợp doanh thu bồi thường BH Vật chất xe ô tô và CSSK",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp doanh thu bồi thường BH Vật chất xe ô tô và CSSK"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|16": {
+  "title": "16. Báo cáo tổng hợp doanh thu bồi thường VCX xe cơ giới qua kênh khai thác",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp doanh thu bồi thường VCX xe cơ giới qua kênh khai thác"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|17": {
+  "title": "17. Báo cáo tổng hợp doanh thu bồi thường TNDS xe cơ giới",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp doanh thu bồi thường TNDS xe cơ giới"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|18": {
+  "title": "18. Báo cáo tổng hợp doanh thu con người xe cơ giới",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp doanh thu con người xe cơ giới"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|19": {
+  "title": "19. Báo cáo thống kê nghiệp vụ bán lẻ",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê nghiệp vụ bán lẻ"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|20": {
+  "title": "20. Báo cáo doanh thu bồi thường vật chất xe theo mức trách nhiệm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo doanh thu bồi thường vật chất xe theo mức trách nhiệm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|21": {
+  "title": "21. Báo cáo tổng hợp tình hình kinh doanh theo sản phẩm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo tổng hợp tình hình kinh doanh theo sản phẩm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|22": {
+  "title": "22. Báo cáo theo dõi ước thực hiện kế hoạch doanh thu",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo theo dõi ước thực hiện kế hoạch doanh thu"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|23": {
+  "title": "23. Báo cáo theo dõi ước thực hiện kế hoạch doanh thu nhận tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo theo dõi ước thực hiện kế hoạch doanh thu nhận tái bảo hiểm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|24": {
+  "title": "24. Báo cáo định mức chi phí kinh doanh các ban KD và PVI South",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí kinh doanh các ban KD và PVI South"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|25": {
+  "title": "25. Thống kê chi tiết sản phẩm bồi thường cho HDI",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê chi tiết sản phẩm bồi thường cho HDI"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|26": {
+  "title": "26. Báo cáo doanh thu, thực thu, bồi thường VCX theo mức trách nhiệm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo doanh thu, thực thu, bồi thường VCX theo mức trách nhiệm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|27": {
+  "title": "27. Thống kê GBN chưa hạch toán",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Thống kê GBN chưa hạch toán"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|28": {
+  "title": "28. Báo cáo định mức chi phí kinh doanh nhận tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí kinh doanh nhận tái bảo hiểm"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|29": {
+  "title": "29. Báo cáo thống kê khai thác - bồi thường theo phương thức/ kênh bán hàng theo đơn vị\t",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê khai thác - bồi thường theo phương thức/ kênh bán hàng theo đơn vị"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|30": {
+  "title": "30. Báo cáo định mức chi phí kinh doanh theo doanh thu",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí kinh doanh theo doanh thu"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|31": {
+  "title": "31. Báo cáo định mức chi phí kinh doanh các ban KD, PVI South và PVI Digital theo doanh thu",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo định mức chi phí kinh doanh các ban KD, PVI South và PVI Digital theo doanh thu"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|32": {
+  "title": "32. Báo cáo kế hoạch thực hiện doanh thu NVBH Phi XCG&CN",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo kế hoạch thực hiện doanh thu NVBH Phi XCG&CN"
+ },
+ "Báo cáo tổng hợp tình hình kinh doanh|33": {
+  "error": "no settings box"
+ },
+ "Báo cáo hiệu quả kinh doanh|1": {
+  "title": "1. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản",
+  "dates": [
+   {
+    "value": "01/10/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản"
+ },
+ "Báo cáo hiệu quả kinh doanh|2": {
+  "title": "2. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm kỹ thuật",
+  "dates": [
+   {
+    "value": "01/10/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/10/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm kỹ thuật"
+ },
+ "Báo cáo hiệu quả kinh doanh|3": {
+  "title": "3. Báo cáo hiệu quả kinh doanh nghiệp vụ P&I",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ P&I"
+ },
+ "Báo cáo hiệu quả kinh doanh|4": {
+  "title": "4. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu viễn dương",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu viễn dương"
+ },
+ "Báo cáo hiệu quả kinh doanh|5": {
+  "title": "5. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu nội thủy",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu nội thủy"
+ },
+ "Báo cáo hiệu quả kinh doanh|6": {
+  "title": "6. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng hóa",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng hóa"
+ },
+ "Báo cáo hiệu quả kinh doanh|7": {
+  "title": "7. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm trách nhiệm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm trách nhiệm"
+ },
+ "Báo cáo hiệu quả kinh doanh|8": {
+  "title": "8. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm năng lượng",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm năng lượng"
+ },
+ "Báo cáo hiệu quả kinh doanh|9": {
+  "title": "9. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng không",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng không"
+ },
+ "Báo cáo hiệu quả kinh doanh|10": {
+  "title": "10. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm con người",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm con người"
+ },
+ "Báo cáo hiệu quả kinh doanh|11": {
+  "title": "11. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm xe cơ giới",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm xe cơ giới"
+ },
+ "Báo cáo hiệu quả kinh doanh|12": {
+  "title": "12. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm Nông nghiệp",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_SP",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm Nông nghiệp"
+ },
+ "Báo cáo hiệu quả kinh doanh|13": {
+  "title": "13. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm khác",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm khác"
+ },
+ "Báo cáo hiệu quả kinh doanh|14": {
+  "title": "14. Báo cáo hiệu quả kinh doanh nhận tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nhận tái bảo hiểm"
+ },
+ "Báo cáo hiệu quả kinh doanh|15": {
+  "title": "15. Báo cáo kết quả kinh doanh theo khách hàng",
+  "dates": [
+   {
+    "value": "01/01/2026",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2026",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo kết quả kinh doanh theo khách hàng"
+ },
+ "Báo cáo hiệu quả kinh doanh|16": {
+  "title": "16. Báo cáo chi phí theo đơn vị",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi phí theo đơn vị"
+ },
+ "Báo cáo hiệu quả kinh doanh|17": {
+  "title": "17. Báo cáo chi tiết hiệu quả kinh doanh theo đơn vị",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo chi tiết hiệu quả kinh doanh theo đơn vị"
+ },
+ "Báo cáo hiệu quả kinh doanh|18": {
+  "title": "18. Báo cáo hiệu quả nhận tái bảo hiểm",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_PBAN",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả nhận tái bảo hiểm"
+ },
+ "Báo cáo hiệu quả kinh doanh|19": {
+  "title": "19. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản CAT4, CAT6",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản CAT4, CAT6"
+ },
+ "Báo cáo hiệu quả kinh doanh|20": {
+  "title": "20. Kế hoạch sử dụng nguồn vốn PVI Insurance",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Kế hoạch sử dụng nguồn vốn PVI Insurance"
+ },
+ "Báo cáo hiệu quả kinh doanh|21": {
+  "title": "21. Báo cáo hiệu quả kinh doanh nghiệp vụ phi hàng hải – theo loại rủi ro",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ phi hàng hải – theo loại rủi ro"
+ },
+ "Báo cáo hiệu quả kinh doanh|22": {
+  "title": "22. Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thiệt hại khác",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thiệt hại khác"
+ },
+ "Báo cáo hiệu quả kinh doanh|23": {
+  "title": "23. Báo cáo thống kê số lượng đơn BH được cấp",
+  "dates": [
+   {
+    "value": "01/01/2020",
+    "at": [
+     308,
+     59,
+     67,
+     14
+    ],
+    "label": "Từ ngày"
+   },
+   {
+    "value": "31/12/2025",
+    "at": [
+     492,
+     59,
+     67,
+     14
+    ],
+    "label": "Đến ngày"
+   }
+  ],
+  "fields": [],
+  "lists": [
+   {
+    "shows": "DM_DONVI",
+    "at": [
+     12,
+     370,
+     144,
+     20
+    ]
+   }
+  ],
+  "buttons": [
+   "Hủy bỏ",
+   "Chấp nhận"
+  ],
+  "ticks": [],
+  "size": [
+   594,
+   445
+  ],
+  "labels": [
+   "Kỳ báo cáo",
+   "Từ ngày",
+   "Đến ngày"
+  ],
+  "name": "Báo cáo thống kê số lượng đơn BH được cấp"
+ }
+}
