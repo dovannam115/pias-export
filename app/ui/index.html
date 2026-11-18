@@ -715,6 +715,7 @@ async function init(){
   setInterval(async () => { await refresh(); if(CUR === "exp") drawQueue(); }, 1500);
   setInterval(() => api("/api/ping", {}), 30000); api("/api/ping", {});
   if(!UPDINFO) setTimeout(() => checkUpd(false), 2500);
+  setInterval(() => checkUpd(false), 15 * 60 * 1000);   // notice a new release while the app stays open
 }
 init();
 </script>
