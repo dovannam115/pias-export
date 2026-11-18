@@ -17,6 +17,20 @@ $TS = [System.Windows.Automation.TreeScope]
 $ALL = [System.Windows.Automation.Condition]::TrueCondition
 $EXE = $Exe
 function Title { $p = Get-Process Pias2022 -ErrorAction SilentlyContinue | Select-Object -First 1; if ($p) { $p.MainWindowTitle } }
+function DismissUpdateTop() {
+  # the same question can come up as PIAS's own main window (its title is the install folder)
+  $p = Get-Process Pias2022 -ErrorAction SilentlyContinue | Select-Object -First 1
+  if (-not $p -or $p.MainWindowHandle -eq 0) { return $false }
+  if ($p.MainWindowTitle -notlike 'C:\*') { return $false }
+  $w = $AE::FromHandle($p.MainWindowHandle)
+  $no = @($w.FindAll($TS::Descendants, $ALL) | Where-Object { $_.Current.Name -in 'No', 'Không' })[0]
+  if (-not $no) { return $false }
+  $lp = [IntPtr]((11 -shl 16) -bor 37)
+  foreach ($m in 0x0200, 0x0201, 0x0202) { [UL]::PostMessage([IntPtr]$no.Current.NativeWindowHandle, $m, [IntPtr][int]($m -eq 0x0201), $lp) | Out-Null }
+  "update prompt (main window): answered No"
+  Start-Sleep -Milliseconds 900
+  return $true
+}
 function DismissUpdate([int]$sec = 0) {
   # PIAS asks "Chương trình có phiên bản mới trên máy chủ..." (title = install folder): always answer No
   $t0 = Get-Date
@@ -41,11 +55,33 @@ function WaitFor([scriptblock]$cond, [int]$sec) {
   while (((Get-Date) - $t0).TotalSeconds -lt $sec) { if (& $cond) { return $true }; Start-Sleep -Milliseconds 1000 }
   return $false
 }
-if ((Title) -like 'Insurances Solution*') { "PIAS ready"; exit 0 }
+# the year this tool logged PIAS in with (the toolbar year box is painted, so it cannot be read back)
+$YearFile = Join-Path (Split-Path $PSScriptRoot) 'dump\pias_year.txt'
+function SessionYear() {
+  try { if (Test-Path $YearFile) { return (Get-Content $YearFile -Raw).Trim() } } catch {}
+  return ""
+}
+if ((Title) -like 'Insurances Solution*') {
+  $cur = SessionYear
+  if (-not $Year -or $cur -eq "$Year") { "PIAS ready (year $cur)"; exit 0 }
+  "session year '$cur' is not $Year, restarting PIAS"
+  Stop-Process -Name Pias2022 -Force
+  Start-Sleep -Seconds 4
+}
 if (-not (Get-Process Pias2022 -ErrorAction SilentlyContinue)) {
   Start-Process $EXE -WorkingDirectory (Split-Path $EXE)
 }
-if (-not (WaitFor { (Title) -eq 'Đăng nhập' -or (Title) -like 'Insurances Solution*' } $Wait)) { throw "PIAS login window did not appear" }
+# the "a new version is on the server" box (its title is the install folder) can come up first and block
+$t0 = Get-Date
+$ready = $false
+while (((Get-Date) - $t0).TotalSeconds -lt $Wait -and -not $ready) {
+  DismissUpdate | Out-Null
+  DismissUpdateTop | Out-Null
+  $ti = Title
+  if ($ti -eq 'Đăng nhập' -or $ti -like 'Insurances Solution*') { $ready = $true; break }
+  Start-Sleep -Milliseconds 800
+}
+if (-not $ready) { throw "PIAS login window did not appear (it shows: " + (Title) + ")" }
 if ((Title) -like 'Insurances Solution*') { "PIAS ready"; exit 0 }
 $p = Get-Process Pias2022 | Select-Object -First 1
 $win = $AE::FromHandle($p.MainWindowHandle)
@@ -78,4 +114,10 @@ for ($try = 1; $try -le 3 -and -not $in; $try++) {     # the first press after t
 }
 if (-not $in) { throw "PIAS did not log in" }
 DismissUpdate 15
+if ($Year) {
+  try {
+    New-Item -ItemType Directory -Force (Split-Path $YearFile) | Out-Null
+    Set-Content -Path $YearFile -Value "$Year" -Encoding ascii
+  } catch {}
+}
 "PIAS ready"

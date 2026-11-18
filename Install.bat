@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
-title PIAS Export - Install
+title Pias Export - Nam Doo - Install
 cd /d "%~dp0"
 if not exist "%~dp0app\pyembed\python.exe" goto missing
 "%~dp0app\pyembed\python.exe" "%~dp0app\install.py"

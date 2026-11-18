@@ -14,7 +14,7 @@ import pias_engine as E
 
 PORT    = 8716
 HOST    = "127.0.0.1"
-NAME    = "PIAS Export"
+NAME    = "Pias Export - Nam Doo"
 UI      = os.path.join(APP, "ui")
 VERFILE = os.path.join(ROOT, "VERSION")
 TOKFILE = os.path.join(DUMP, "ui_token.txt")
@@ -51,6 +51,47 @@ def version():
     except Exception: return "0.0.0"
 
 
+def policy_volume():
+    """How many policies a line writes in a month, measured from the exports already made."""
+    try:
+        return json.load(open(C.POLICY_VOLUME, encoding="utf-8")).get("rows_per_month", {})
+    except Exception:
+        return {}
+
+
+def pias_catalog():
+    """The report list of each entry of the PIAS 'Báo cáo' menu, as read off the screen."""
+    try:
+        c = json.load(open(C.PIAS_CATALOG, encoding="utf-8"))
+    except Exception:
+        return {"entries": []}
+    for e in c.get("entries", []):
+        e["ready"] = bool(e.get("access")) and bool(e.get("reports"))
+    return c
+
+
+def chunk_months(y1, m1, y2, m2, how="quarter"):
+    """Cut a period into the pieces PIAS is asked for: one month, one quarter or one year at a time."""
+    out, y, m = [], y1, m1
+    while (y, m) <= (y2, m2) and len(out) < 120:
+        if how == "month": end = m
+        elif how == "year": end = 12
+        else: end = ((m - 1) // 3 + 1) * 3
+        if y == y2: end = min(end, m2)
+        out.append((y, m, end))
+        m = end + 1
+        if m > 12: y, m = y + 1, 1
+    return out
+
+
+def session_year():
+    """The year PIAS is logged in with, as the login script last wrote it."""
+    try:
+        return int(open(os.path.join(DUMP, "pias_year.txt"), encoding="utf-8").read().strip())
+    except Exception:
+        return 0
+
+
 # ------------------------------------------------------------------ export queue
 class Queue:
     """Reports wait in order; one worker thread runs them one at a time."""
@@ -65,26 +106,53 @@ class Queue:
             self.lines.append(time.strftime("%H:%M:%S  ") + text)
             del self.lines[:-500]
 
-    def add(self, year, month, nums, folder_tpl, revenue_only):
+    def add(self, year, month, nums, folder_tpl, revenue_only, entry=None):
+        entry = entry or E.HQKD
+        allowed = {r["num"] for r in E.catalog().get(entry, [])} or set(E.REPORTS)
         added = 0
         with self.lock:
             for n in nums:
                 n = int(n)
-                if n not in E.REPORTS: continue
-                if any(i["status"] == "waiting" and (i["year"], i["month"], i["num"]) == (year, month, n) for i in self.items):
+                if n not in allowed: continue
+                if any(i["status"] == "waiting" and (i["entry"], i["year"], i["month"], i["num"])
+                       == (entry, year, month, n) for i in self.items):
                     continue
                 self.seq += 1
-                self.items.append({"id": self.seq, "year": year, "month": month, "num": n, "name": E.REPORTS[n],
+                self.items.append({"id": self.seq, "entry": entry, "year": year, "month": month, "num": n,
+                                   "name": E.report_name(entry, n),
                                    "folder": C.folder_for(folder_tpl, year, month), "revenue_only": bool(revenue_only),
-                                   "status": "waiting", "seconds": None, "file": "", "error": "", "revenue": None})
+                                   "status": "waiting", "seconds": None, "file": "", "error": "", "revenue": None, "progress": None})
                 added += 1
         return added
 
-    def remove(self, year, month, nums):
+    def add_policies(self, chunks, lines, folder):
+        """chunks: [(year, m1, m2)], lines: ['01', '05', ...]; one job per chunk and line."""
+        added = 0
+        with self.lock:
+            for (y, m1, m2) in chunks:
+                for ln in lines:
+                    ln = str(ln).strip()
+                    if ln not in E.LINES: continue
+                    if any(i["status"] == "waiting" and i.get("kind") == "policy" and
+                           (i["year"], i.get("m1"), i.get("m2"), i.get("line")) == (y, m1, m2, ln)
+                           for i in self.items):
+                        continue
+                    self.seq += 1
+                    span = "T%d" % m1 if m1 == m2 else ("cả năm" if (m1, m2) == (1, 12) else "T%d-T%d" % (m1, m2))
+                    self.items.append({"id": self.seq, "kind": "policy", "entry": "Tìm kiếm đơn Bảo hiểm",
+                                       "year": y, "month": m1, "m1": m1, "m2": m2, "num": 0, "line": ln,
+                                       "name": "%s %s - %s" % (ln, span, E.LINES[ln]), "folder": folder,
+                                       "revenue_only": False, "status": "waiting", "seconds": None,
+                                       "file": "", "error": "", "revenue": None, "progress": None})
+                    added += 1
+        return added
+
+    def remove(self, year, month, nums, entry=None):
         nums = {int(n) for n in nums}
         with self.lock:
-            self.items = [i for i in self.items if not (i["status"] == "waiting" and (i["year"], i["month"]) == (year, month)
-                                                          and i["num"] in nums)]
+            self.items = [i for i in self.items
+                          if not (i["status"] == "waiting" and (i["year"], i["month"]) == (year, month)
+                                  and i["num"] in nums and (entry is None or i.get("entry") == entry))]
 
     def clear(self, which):
         with self.lock:
@@ -116,10 +184,14 @@ class Queue:
 
     def loop(self):
         self.say("Queue started")
+        year = session_year()                 # PIAS has to be restarted to change the year, so group by it
         while not self.stop_after:
             with self.lock:
-                it = next((i for i in self.items if i["status"] == "waiting"), None)
-                if it: it["status"] = "running"
+                waiting = [i for i in self.items if i["status"] == "waiting"]
+                it = next((i for i in waiting if i["year"] == year), None) or (waiting[0] if waiting else None)
+                if it:
+                    it["status"] = "running"
+                    year = it["year"]
             if not it: break
             self.run_one(it)
         with self.lock:
@@ -132,7 +204,8 @@ class Queue:
         label = "T%d.%d %s" % (it["month"], it["year"], it["name"])
         d = os.path.join(RUNS, time.strftime("%Y%m%d_%H%M%S") + "_%d" % it["id"])
         os.makedirs(d, exist_ok=True)
-        json.dump({k: it[k] for k in ("year", "month", "num", "folder", "revenue_only")},
+        json.dump({k: it.get(k) for k in ("year", "month", "num", "folder", "revenue_only", "entry",
+                                          "kind", "line", "m1", "m2")},
                   open(os.path.join(d, "args.json"), "w", encoding="utf-8"), ensure_ascii=False)
         self.cur = d
         self.say(label + ": start")
@@ -152,6 +225,12 @@ class Queue:
                     if ch in "\r\n":
                         t = ANSI.sub("", buf).rstrip(); buf = ""
                         if t.startswith("[[ERROR]]"): err = t[9:].strip()
+                        elif t.startswith("[[P]]"):
+                            try:
+                                dn, tot, label = t[5:].strip().split("|", 2)
+                                with self.lock:
+                                    it["progress"] = {"done": int(dn), "total": int(tot), "label": label}
+                            except Exception: pass
                         elif t: self.say("  " + t)
                     else:
                         buf += ch
@@ -162,11 +241,19 @@ class Queue:
         self.proc = None
         with self.lock:
             it["seconds"] = round(time.time() - t0)
+            it["progress"] = None
             if res.get("ok"):
                 it.update(status="done", file=res.get("file", ""), revenue=res.get("revenue"))
             else:
                 stopped = os.path.exists(os.path.join(d, "STOP"))
                 it.update(status="stopped" if stopped else "error", error=res.get("error") or err or "failed")
+        if it["status"] == "error" and it.get("kind") == "policy" and "fewer months" in (it.get("error") or ""):
+            m1, m2 = int(it.get("m1") or it["month"]), int(it.get("m2") or it["month"])
+            if m2 > m1:
+                added = self.add_policies([(it["year"], m, m) for m in range(m1, m2 + 1)],
+                                          [it["line"]], it["folder"])
+                it["error"] += " -> split into %d months" % added
+                self.say("%s: too big for PIAS, split into %d monthly jobs" % (label, added))
         if it["status"] == "done" and not it["file"]:
             it["file"] = "(no data)"
         self.say(label + ": " + (("saved " + os.path.basename(it["file"])) if it["status"] == "done" else it["status"] + " - " + it["error"]))
@@ -337,6 +424,8 @@ def update_job(mode, zip_path=""):
 # ------------------------------------------------------------------ http
 TOKEN = ""
 LAST_PING = [time.time()]
+IDLE_CLOSE = 8 * 3600      # a hidden window stops pinging (the browser freezes its timers), so give
+                           # the tool a whole working day before it closes itself
 SHUTDOWN = []
 
 
@@ -381,7 +470,10 @@ class Handler(BaseHTTPRequestHandler):
         if not self.ok_token(q): return self.json({"error": "token"}, 403)
         if p == "/api/state":
             return self.json({"version": version(), "update": UPD.get("cache"), "reports": E.REPORTS, "usual": E.DEFAULT,
-                              "settings": C.load_settings(), "pias": E.pias_exe(), "pias_found": os.path.exists(E.pias_exe())})
+                              "settings": C.load_settings(), "pias": E.pias_exe(), "pias_found": os.path.exists(E.pias_exe()),
+                              "catalog": pias_catalog(), "ready_entry": E.HQKD, "lines": E.LINES,
+                              "volume": policy_volume(),
+                              "policy_folder": C.load_settings().get("policy_folder", "")})
         if p == "/api/queue": return self.json(Q.view(int(g("since") or 0)))
         if p == "/api/update/check": return self.json(update_check())
         if p == "/api/update/job":
@@ -396,11 +488,25 @@ class Handler(BaseHTTPRequestHandler):
             LAST_PING[0] = time.time(); return self.json({"ok": True})
         if p == "/api/queue/add":
             s = C.load_settings()
-            try: n = Q.add(int(d["year"]), int(d["month"]), d.get("nums") or [], s["folder"], d.get("revenue_only"))
+            try: n = Q.add(int(d["year"]), int(d["month"]), d.get("nums") or [], s["folder"],
+                           d.get("revenue_only"), d.get("entry"))
             except Exception as ex: return self.json({"error": str(ex)}, 400)
             return self.json({"ok": True, "added": n})
+        if p == "/api/queue/policies":
+            s = C.load_settings()
+            folder = (d.get("folder") or s.get("policy_folder") or "").strip().strip('"')
+            if not folder: return self.json({"error": "Choose the folder to save the lists in."}, 400)
+            s["policy_folder"] = folder; C.save_settings(s)
+            try:
+                y1, m1, y2, m2 = int(d["year_from"]), int(d["month_from"]), int(d["year_to"]), int(d["month_to"])
+            except Exception:
+                return self.json({"error": "bad period"}, 400)
+            n = Q.add_policies(chunk_months(y1, m1, y2, m2, d.get("chunk") or "quarter"),
+                               d.get("lines") or [], folder)
+            return self.json({"ok": True, "added": n})
         if p == "/api/queue/remove":
-            Q.remove(int(d["year"]), int(d["month"]), d.get("nums") or []); return self.json({"ok": True})
+            Q.remove(int(d["year"]), int(d["month"]), d.get("nums") or [], d.get("entry"))
+            return self.json({"ok": True})
         if p == "/api/queue/clear":
             Q.clear(d.get("which") or "finished"); return self.json({"ok": True})
         if p == "/api/queue/retry":
@@ -538,8 +644,8 @@ def watchdog():
         time.sleep(10)
         if Q.running() or (UPD["job"] and UPD["job"].state == "running"):
             LAST_PING[0] = time.time(); continue
-        if time.time() - LAST_PING[0] > 120:
-            log("no page for 2 minutes, closing"); SHUTDOWN and SHUTDOWN[0](); return
+        if time.time() - LAST_PING[0] > IDLE_CLOSE:
+            log("no page for %d hours, closing" % (IDLE_CLOSE // 3600)); SHUTDOWN and SHUTDOWN[0](); return
 
 
 def main():

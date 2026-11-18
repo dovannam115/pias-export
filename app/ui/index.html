@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google" content="notranslate">
-<title>PIAS Export</title>
-<link rel="icon" id="ico" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23c96442'/%3E%3Cpath d='M18 20h28M18 32h20M18 44h28' stroke='white' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Pias Export - Nam Doo</title>
+<link rel="icon" id="ico" href="data:image/svg+xml,<svg xmlns='http%3A//www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'> <defs> <linearGradient id='bg2' x1='0' y1='0' x2='1' y2='1'> <stop offset='0' stop-color='%233A7FC9'/> <stop offset='1' stop-color='%23143059'/> </linearGradient> <linearGradient id='belly2' x1='0' y1='0' x2='0' y2='1'> <stop offset='0' stop-color='%23FFFFFF'/> <stop offset='1' stop-color='%23EADFC9'/> </linearGradient> <linearGradient id='feather' x1='0' y1='0' x2='0' y2='1'> <stop offset='0' stop-color='%23D2975C'/> <stop offset='1' stop-color='%239C6534'/> </linearGradient> <filter id='soft' x='-30%' y='-30%' width='160%' height='160%'> <feDropShadow dx='0' dy='10' stdDeviation='14' flood-color='%230B1E3A' flood-opacity='0.35'/> </filter> </defs> <rect width='512' height='512' rx='112' fill='url%28%23bg2%29'/> <g filter='url%28%23soft%29'> <%21-- ear tufts --> <path d='M176 148 C160 112 150 92 138 78 C168 84 196 100 214 120 Z' fill='%239C6534'/> <path d='M336 148 C352 112 362 92 374 78 C344 84 316 100 298 120 Z' fill='%239C6534'/> <%21-- body --> <path d='M256 100 C350 100 414 178 414 282 C414 382 344 436 256 436 C168 436 98 382 98 282 C98 178 162 100 256 100 Z' fill='url%28%23feather%29'/> <%21-- wings --> <path d='M112 268 C96 316 106 372 142 400 C152 366 152 308 142 270 Z' fill='%2384512A'/> <path d='M400 268 C416 316 406 372 370 400 C360 366 360 308 370 270 Z' fill='%2384512A'/> <%21-- belly --> <path d='M256 210 C314 210 352 256 352 312 C352 376 312 416 256 416 C200 416 160 376 160 312 C160 256 198 210 256 210 Z' fill='url%28%23belly2%29'/> <%21-- eye discs --> <circle cx='204' cy='226' r='64' fill='%23FFFFFF'/> <circle cx='308' cy='226' r='64' fill='%23FFFFFF'/> <circle cx='210' cy='232' r='29' fill='%2316222F'/> <circle cx='302' cy='232' r='29' fill='%2316222F'/> <circle cx='220' cy='222' r='10' fill='%23FFFFFF'/> <circle cx='312' cy='222' r='10' fill='%23FFFFFF'/> <%21-- brows --> <path d='M150 178 C176 158 212 156 240 170' stroke='%2384512A' stroke-width='16' stroke-linecap='round' fill='none'/> <path d='M362 178 C336 158 300 156 272 170' stroke='%2384512A' stroke-width='16' stroke-linecap='round' fill='none'/> <%21-- beak --> <path d='M256 252 C268 252 278 262 278 272 C278 288 266 300 256 300 C246 300 234 288 234 272 C234 262 244 252 256 252 Z' fill='%23F0932B'/> <%21-- feet --> <path d='M206 428 C206 422 212 418 220 418 L244 418 C252 418 256 422 256 428 C256 436 248 440 238 440 L222 440 C212 440 206 436 206 428 Z' fill='%23F0932B'/> <path d='M256 428 C256 422 260 418 268 418 L292 418 C300 418 306 422 306 428 C306 436 300 440 290 440 L274 440 C264 440 256 436 256 428 Z' fill='%23F0932B'/> </g> <%21-- shield badge, the way the penguin has its speech bubble --> <g filter='url%28%23soft%29'> <path d='M70 92 h92 v56 c0 34 -26 50 -46 60 -20 -10 -46 -26 -46 -60 z' fill='%23FFFFFF'/> <path d='M94 130 l16 17 30 -33' stroke='%23E31F26' stroke-width='15' stroke-linecap='round' stroke-linejoin='round' fill='none'/> </g> </svg>">
 <style>
   :root{
     --bg:#262624; --elev:#2F2D29; --card:#34322D; --hover:#3D3B36;
@@ -37,7 +37,7 @@
         display:flex; flex-direction:column; padding:16px 12px; gap:16px; user-select:none}
   .brand{padding:2px 6px 0; display:flex; align-items:center; gap:10px}
   .brand img{width:34px; height:34px; border-radius:9px}
-  .brand b{display:block; font-size:13px; font-weight:700; letter-spacing:.02em; white-space:nowrap}
+  .brand b{display:block; font-size:13px; font-weight:700; letter-spacing:.02em; line-height:1.25}
   .brand span{display:block; color:var(--dim); font-size:11px; letter-spacing:.06em; margin-top:1px}
   nav{display:flex; flex-direction:column; gap:2px; overflow:auto}
   .grp-h{font-size:10.5px; color:var(--dim); letter-spacing:.12em; text-transform:uppercase; padding:12px 10px 4px}
@@ -66,6 +66,20 @@
   .cols{display:grid; grid-template-columns:minmax(300px,380px) minmax(0,1fr); gap:14px; align-items:start}
   @media (max-width:980px){.cols{grid-template-columns:1fr}}
   .stack{display:flex; flex-direction:column; gap:14px; min-width:0}
+  .cols3{display:grid; grid-template-columns:minmax(230px,280px) minmax(360px,1fr) minmax(380px,1.1fr);
+         gap:14px; align-items:start}
+  @media (max-width:1500px){.cols3{grid-template-columns:minmax(220px,260px) minmax(0,1fr)}}
+  @media (max-width:1000px){.cols3{grid-template-columns:1fr}}
+  .pick{display:flex; flex-direction:column; gap:2px}
+  .pick button{display:flex; align-items:baseline; gap:8px; width:100%; text-align:left; background:none; border:0;
+       color:var(--muted); font-size:12.5px; padding:8px 10px; border-radius:9px; white-space:normal; line-height:1.35}
+  .pick button:hover{background:var(--hover); color:var(--fg)}
+  .pick button.on{background:var(--elev); color:var(--fg); box-shadow:0 0 0 1px var(--line) inset}
+  .pick button small{color:var(--dim); font-size:11px; margin-left:auto; white-space:nowrap}
+  .pick button b{font-weight:600; color:var(--ember-lit)}
+  .ttl{font-size:13.5px; font-weight:650; margin:0 0 2px}
+  .srch{display:flex; gap:8px; align-items:center; margin:10px 0 4px}
+  .srch input{flex:1}
 
   button{font:inherit; cursor:pointer; white-space:nowrap; transition:background .18s,border-color .18s,color .18s,opacity .18s}
   button:active:not(:disabled){transform:scale(.985)}
@@ -186,13 +200,16 @@
   .rep label.ck:hover{background:var(--hover)}
   .rep label.ck i{font-style:normal; color:var(--dim); width:22px; text-align:right; flex:0 0 22px}
   .row2{display:flex; gap:8px; align-items:center}
+  .bar{height:7px; background:var(--line); border-radius:5px; overflow:hidden; margin:8px 0 2px}
+  .bar i{display:block; height:100%; background:var(--ember); transition:width .4s}
+  .sofar{display:flex; align-items:center; gap:10px; font-size:12px; color:var(--muted); flex-wrap:wrap}
   .pill{display:inline-block; padding:1px 9px; border-radius:999px; font-size:11.5px; border:1px solid var(--line)}
   .pill.waiting{color:var(--muted)} .pill.running{color:var(--ember-lit); border-color:var(--ember)}
   .pill.done{color:var(--good); border-color:rgba(52,211,153,.5)} .pill.error,.pill.stopped{color:var(--bad); border-color:rgba(248,113,113,.5)}
   td.err{white-space:normal; color:var(--bad); max-width:340px}
 </style>
 <aside>
-  <div class="brand"><img id="logo" alt=""><div><b>PIAS Export</b><span>PVI Digital</span></div></div>
+  <div class="brand"><img id="logo" alt=""><div><b>Pias Export</b><span>Nam Doo</span></div></div>
   <nav id="nav"></nav>
   <div class="side-end">
     <div class="row">
@@ -214,8 +231,8 @@ const T = new URLSearchParams(location.search).get("t") || "";
 const $ = (id) => document.getElementById(id);
 $("logo").src = $("ico").href;
 
-const NAV = [["", [["exp","Export reports"]]], ["", [["upd","Update"]]]];
-const TITLES = {exp:"Export reports", upd:"Update"};
+const NAV = [["", [["exp","Export reports"], ["pol","Policy lists"]]], ["", [["upd","Update"]]]];
+const TITLES = {exp:"Export reports", pol:"Policy lists", upd:"Update"};
 let CUR = "", VER = "", UPDINFO = null, ST = null, QV = {items:[], lines:[], total:0, running:false};
 let dead = 0;
 const now = new Date(), prevM = new Date(now.getFullYear(), now.getMonth() - 1, 1);
@@ -245,7 +262,13 @@ const VI = {
   "Save to": "Lưu vào",
   "{year} and {MM} in the path are replaced by the year and month of each report.": "{year} và {MM} trong đường dẫn được thay bằng năm và tháng của từng báo cáo.",
   "Revenue only": "Chỉ Doanh thu",
-  "Reports": "Báo cáo", "Tick to add to the queue, untick to take it out.": "Tick để thêm vào hàng chờ, bỏ tick để rút ra.",
+  "Reports": "Báo cáo", "Report groups": "Nhóm báo cáo", "Search a report": "Tìm báo cáo",
+  "Policy lists": "Danh sách đơn", "Lines": "Nghiệp vụ", "From": "Từ tháng", "To": "Đến tháng",
+  "One file per": "Mỗi file một", "Month": "Tháng", "Quarter": "Quý", "Year": "Năm",
+  "Add to the queue": "Thêm vào hàng chờ",
+  "PIAS is asked for one month at a time, the file lands straight in the folder above.":
+    "Tool hỏi PIAS từng tháng một, file rơi thẳng vào thư mục ở trên.",
+  "Tick all": "Tick hết", "Untick": "Bỏ tick", "No report matches.": "Không có báo cáo nào khớp.",
   "Tick usual": "Tick các báo cáo thường xuất", "Untick all": "Bỏ tick hết",
   "Queue": "Hàng chờ", "Start": "Bắt đầu", "Stop after current": "Dừng sau báo cáo đang chạy", "Clear finished": "Xóa các dòng đã xong",
   "Report": "Báo cáo", "Status": "Trạng thái", "Time": "Thời gian", "File": "File", "Revenue (VND)": "Doanh thu (VNĐ)",
@@ -316,7 +339,7 @@ function drawNav(){
     h += '<div class="grp-h">&nbsp;</div>';
     items.forEach(([k, t]) => {
       let dot = "";
-      if(k === "exp" && QV.running) dot = "run";
+      if((k === "exp" || k === "pol") && QV.running) dot = "run";
       else if(k === "upd" && UPDINFO && UPDINFO.available) dot = "new";
       h += '<button class="' + (k === CUR ? "on" : "") + '" onclick="go(\'' + k + '\')">' + esc(t) + '<span class="dot ' + dot + '"></span></button>';
     });
@@ -328,41 +351,193 @@ function setTheme(t){ document.documentElement.dataset.theme = t; $("themeBtn").
 function toggleTheme(){ setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"); }
 try { setTheme(localStorage.getItem("pe_theme") || "dark"); } catch(e){ setTheme("dark"); }
 function go(k){ CUR = k; $("title").textContent = TITLES[k] || ""; drawNav(); draw(); if(k === "upd" && !UPDINFO) checkUpd(false); }
-function draw(){ $("view").innerHTML = CUR === "upd" ? viewUpd() : viewExp(); if(CUR === "exp") drawQueue(); }
+function draw(){
+  $("view").innerHTML = CUR === "upd" ? viewUpd() : (CUR === "pol" ? viewPol() : viewExp());
+  if(CUR === "exp" || CUR === "pol") drawQueue();
+}
 
 // ------------------------------------------------------------ export view
 function folderNow(){
   const tpl = (ST && ST.settings.folder) || "";
   return tpl.replaceAll("{year}", F.year).replaceAll("{MM}", String(F.month).padStart(2, "0")).replaceAll("{M}", F.month);
 }
-function inQueue(n){ return QV.items.some(i => i.status === "waiting" && i.year === F.year && i.month === F.month && i.num === n); }
+function inQueue(n, entry){ return QV.items.some(i => i.status === "waiting" && i.year === F.year &&
+  i.month === F.month && i.num === n && (!entry || i.entry === entry)); }
+const P = {entry: "", q: ""};
+function catEntries(){ return ((ST && ST.catalog && ST.catalog.entries) || []).filter(e => e.access && e.reports.length); }
+function entryReports(entry){
+  const e = catEntries().find(x => x.entry === entry);
+  return e ? e.reports.map(r => r.num) : [];
+}
+function repRow(n, name, entry){
+  return '<label class="ck"><input type="checkbox" ' + (inQueue(+n, entry) ? "checked" : "") +
+    ' onchange="tick(' + n + ',this.checked,' + esc(JSON.stringify(entry)) + ')"><i>' + n + '.</i>' +
+    '<span class="keep">' + esc(name) + '</span></label>';
+}
+function repRows(list, entry){
+  if(!list.length) return '<div class="empty">No report matches.</div>';
+  return list.map(r => repRow(r.num, r.name, entry)).join("");
+}
+function shownReports(cur){
+  const q = (P.q || "").trim().toLowerCase();
+  return q ? cur.reports.filter(r => (r.num + ". " + r.name).toLowerCase().includes(q)) : cur.reports;
+}
+function drawMid(){
+  const cur = catEntries().find(e => e.entry === P.entry);
+  if(!cur || !$("replist")) return;
+  $("replist").innerHTML = repRows(shownReports(cur), cur.entry);
+  if(LANG === "vi") localize($("replist"));
+}
+function pickEntry(e){ P.entry = e; P.q = ""; draw(); }
 function viewExp(){
   if(!ST) return '<div class="empty">Checking...</div>';
-  const reps = Object.entries(ST.reports);
-  let h = '<div class="cols"><div class="stack"><div class="card">' +
-    '<div class="no">Period</div><div class="row2">' +
-    '<select onchange="F.month=+this.value;draw()">' + [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
-    '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:110px"></div>' +
-    '<div class="no">Save folder</div><div class="row2"><input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
-    '<button class="btn sm" onclick="saveFolder()">Save</button><button class="btn sm" onclick="browse()">Browse</button></div>' +
-    '<div class="hint"><span>Save to</span> <button class="link keep" onclick="openPath(folderNow())">' + esc(folderNow()) + '</button></div>' +
-    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") + ' onchange="F.revenue_only=this.checked">Revenue only</label>' +
-    '</div><div class="card"><div class="no">Reports</div>' +
-    '<div class="rep">' + reps.map(([n, name]) => '<label class="ck"><input type="checkbox" ' + (inQueue(+n) ? "checked" : "") +
-      ' onchange="tick(' + n + ',this.checked)"><i>' + n + '.</i><span class="keep">' + esc(name) + '</span></label>').join("") + '</div>' +
-    '<div class="act"><button class="btn sm" onclick="tickUsual()">Tick usual</button><button class="btn sm gho" onclick="untickAll()">Untick all</button></div>' +
-    '</div></div><div class="stack"><div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
-    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button><button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
-    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div><div id="qtab"></div>' +
-    '</div><div class="card"><div class="no">Log</div><pre id="qlog"></pre></div></div></div>';
-  return h;
+  const ents = catEntries();
+  if(!ents.length){
+    return '<div class="empty">No report catalogue yet (app\\data\\pias_catalog.json).</div>';
+  }
+  if(!P.entry || !ents.some(e => e.entry === P.entry))
+    P.entry = ents.some(e => e.entry === ST.ready_entry) ? ST.ready_entry : ents[0].entry;
+  const cur = ents.find(e => e.entry === P.entry);
+  const shown = shownReports(cur);
+
+  const left = '<div class="card"><div class="no">Period</div><div class="row2">' +
+    '<select onchange="F.month=+this.value;draw()">' +
+      [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
+    '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:92px"></div>' +
+    '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
+    '<input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '">' +
+    '<button class="btn sm" onclick="saveFolder()">Save</button>' +
+    '<button class="btn sm" onclick="browse()">Browse</button></div>' +
+    '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") +
+      ' onchange="F.revenue_only=this.checked">Revenue only</label></div>' +
+    '<div class="card"><div class="no">Report groups</div><div class="pick">' +
+    ents.map(e => {
+      const n = QV.items.filter(i => i.status === "waiting" && i.entry === e.entry).length;
+      return '<button class="' + (e.entry === P.entry ? "on" : "") + '" onclick="pickEntry(' + esc(JSON.stringify(e.entry)) + ')">' +
+             '<span class="keep">' + esc(e.entry) + '</span><small>' + (n ? "<b>" + n + "</b>/" : "") + e.reports.length + '</small></button>';
+    }).join("") + '</div></div>';
+
+  const mid = '<div class="card"><div class="ttl keep">' + esc(cur.entry) + '</div>' +
+    '<div class="muted">' + shown.length + ' of ' + cur.reports.length + ' reports</div>' +
+    '<div class="srch"><input class="inp keep" placeholder="Search a report" value="' + esc(P.q || "") +
+      '" oninput="P.q=this.value;drawMid()"><button class="btn sm" onclick="tickAll(' + esc(JSON.stringify(cur.entry)) + ')">Tick all</button>' +
+      '<button class="btn sm gho" onclick="untickAll(' + esc(JSON.stringify(cur.entry)) + ')">Untick</button></div>' +
+    '<div class="rep" id="replist">' + repRows(shown, cur.entry) + '</div></div>';
+
+  const right = '<div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
+    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button>' +
+    '<button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
+    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div>' +
+    '<div id="qbar"></div><div id="qtab"></div></div>' +
+    '<div class="card"><div class="no">Log</div><pre id="qlog"></pre></div>';
+
+  return '<div class="cols3"><div class="stack">' + left + '</div><div class="stack">' + mid +
+         '</div><div class="stack">' + right + '</div></div>';
+}
+const PL = {y1:0, m1:1, y2:0, m2:12, lines:{}, folder:"", chunk:"quarter"};
+function polMonths(){
+  let n = 0;
+  for(let y = PL.y1, m = PL.m1; y < PL.y2 || (y === PL.y2 && m <= PL.m2); ){ n++; m++; if(m > 12){ y++; m = 1; } }
+  return n;
+}
+function polLines(){ return Object.keys(PL.lines).filter(k => PL.lines[k]); }
+function nice(n){ return Math.round(n).toLocaleString("vi-VN"); }
+function chunkMonths(){ return PL.chunk === "month" ? 1 : (PL.chunk === "year" ? 12 : 3); }
+function polTotal(){
+  const vol = (ST && ST.volume) || {};
+  return polLines().reduce((s, k) => s + (vol[k] || 0) * polMonths(), 0);
+}
+function polWarn(){
+  const vol = (ST && ST.volume) || {}, per = chunkMonths();
+  const heavy = polLines().filter(k => (vol[k] || 0) * per > 150000);
+  if(!heavy.length) return "";
+  const worst = heavy.map(k => esc(k) + " ~" + nice((vol[k] || 0) * per)).join(", ");
+  return '<div class="note bad" style="margin-top:10px">Each file would hold about ' + worst +
+    ' policies. PIAS tends to give up over roughly 150.000 (it says "arithmetic overflow"), so pick ' +
+    (PL.chunk === "year" ? "Quarter or Month" : "Month") + ' for these lines. ' +
+    'If it still fails the tool splits that period into months by itself.</div>';
+}
+function viewPol(){
+  if(!ST) return '<div class="empty">Checking...</div>';
+  const lines = ST.lines || {};
+  if(!PL.y1){ const n = new Date(); PL.y1 = n.getFullYear(); PL.y2 = n.getFullYear(); PL.m1 = 1; PL.m2 = n.getMonth() + 1; }
+  if(!PL.folder) PL.folder = ST.policy_folder || "";
+  const months = polMonths(), picked = polLines().length;
+  const mo = (sel, on) => '<select onchange="' + on + '=+this.value;draw()">' +
+    [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (sel === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>';
+  const yr = (v, on) => '<input class="inp" type="number" min="2015" max="2035" value="' + v + '" onchange="' + on + '=+this.value;draw()" style="width:92px">';
+
+  const left = '<div class="card"><div class="no">From</div><div class="row2">' + mo(PL.m1, "PL.m1") + yr(PL.y1, "PL.y1") + '</div>' +
+    '<div class="no" style="margin-top:12px">To</div><div class="row2">' + mo(PL.m2, "PL.m2") + yr(PL.y2, "PL.y2") + '</div>' +
+    '<div class="no" style="margin-top:12px">One file per</div>' +
+    '<select onchange="PL.chunk=this.value;draw()">' +
+      [["month","Month"],["quarter","Quarter"],["year","Year"]].map(([v,l]) =>
+        '<option value="' + v + '" ' + (PL.chunk === v ? "selected" : "") + '>' + l + '</option>').join("") + '</select>' +
+    '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
+    '<input class="inp keep" id="polfold" value="' + esc(PL.folder) + '" oninput="PL.folder=this.value">' +
+    '<button class="btn sm" onclick="polBrowse()">Browse</button></div>' +
+    '<div class="hint">One file per month and line: &lt;folder&gt;\\&lt;line&gt;\\&lt;year&gt;-&lt;month&gt;.xlsx</div>' +
+    '</div>';
+
+  const mid = '<div class="card"><div class="ttl">Lines</div>' +
+    '<div class="muted">' + months + ' months x ' + picked + ' lines = ' + (months * picked) + ' files' +
+      (polTotal() ? ' · about ' + nice(polTotal()) + ' policies in all' : "") + '</div>' +
+    '<div class="rep" style="max-height:38vh">' +
+    Object.keys(lines).map(k => {
+      const per = (ST.volume || {})[k] || 0;
+      return '<label class="ck"><input type="checkbox" ' + (PL.lines[k] ? "checked" : "") +
+        ' onchange="PL.lines[' + esc(JSON.stringify(k)) + ']=this.checked;draw()"><i>' + esc(k) + '</i>' +
+        '<span class="keep">' + esc(lines[k]) + '</span>' +
+        (per ? '<span class="muted keep" style="margin-left:auto;font-size:11px">~' + nice(per) + '/thg</span>' : "") +
+        '</label>';
+    }).join("") + '</div>' + polWarn() +
+    '<div class="act"><button class="btn pri" onclick="addPolicies()" ' + (picked && months ? "" : "disabled") +
+    '>Add to the queue</button></div>' +
+    '<div class="hint">PIAS is asked for one month at a time, the file lands straight in the folder above.</div></div>';
+
+  const right = '<div class="card"><div class="runhead"><b>Queue</b><span class="muted" id="qsum"></span><div class="sp"></div>' +
+    '<button class="btn pri sm" id="b-start" onclick="startQ()">Start</button>' +
+    '<button class="btn sm" id="b-stop" onclick="stopQ()">Stop after current</button>' +
+    '<button class="btn sm gho" onclick="clearQ()">Clear finished</button></div>' +
+    '<div id="qbar"></div><div id="qtab"></div></div>' +
+    '<div class="card"><div class="no">Log</div><pre id="qlog"></pre></div>';
+
+  return '<div class="cols3"><div class="stack">' + left + '</div><div class="stack">' + mid +
+         '</div><div class="stack">' + right + '</div></div>';
+}
+async function polBrowse(){
+  const r = await api("/api/browse", {start: PL.folder});
+  if(r.error){ toast(r.error); return; }
+  if(r.path){ PL.folder = r.path; draw(); }
+}
+async function addPolicies(){
+  const r = await api("/api/queue/policies", {year_from:PL.y1, month_from:PL.m1, year_to:PL.y2, month_to:PL.m2,
+                                              lines:polLines(), folder:PL.folder, chunk:PL.chunk});
+  if(r.error){ toast(r.error); return; }
+  toast(r.added + " added");
+  await refresh(); draw();
+}
+function drawBar(){
+  const el = $("qbar"); if(!el) return;
+  const it = QV.items, total = it.length;
+  if(!total){ el.innerHTML = ""; return; }
+  const finished = it.filter(i => i.status === "done" || i.status === "error").length;
+  const run = it.find(i => i.status === "running");
+  const part = run && run.progress && run.progress.total ? run.progress.done / run.progress.total : 0;
+  const pct = Math.min(100, Math.round((finished + part) * 1000 / total) / 10);
+  const step = run && run.progress ? (run.progress.label + " (" + run.progress.done + "/" + run.progress.total + ")") : "";
+  el.innerHTML = '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
+    '<div class="sofar"><span>' + finished + '/' + total + ' · ' + pct + '%</span>' +
+    (run ? '<span class="keep">' + esc(run.name) + '</span>' : "") +
+    (step ? '<span class="keep">' + esc(step) + '</span>' : "") + '</div>';
 }
 function drawQueue(){
   const it = QV.items;
   if($("qtab")){
     if(!it.length) $("qtab").innerHTML = '<div class="empty">Nothing in the queue yet.</div>';
     else $("qtab").innerHTML = '<div class="tw" style="margin-top:10px"><table><thead><tr><th>Period</th><th>Report</th><th>Status</th><th>Time</th><th>Revenue (VND)</th><th>File</th><th></th></tr></thead><tbody>' +
-      it.map(i => '<tr><td>T' + i.month + '.' + i.year + '</td><td>' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span></td>' +
+      it.map(i => '<tr><td>T' + i.month + '.' + i.year + '</td><td title="' + esc(i.entry || "") + '">' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span>' +
+        (i.progress ? '<div class="muted keep" style="font-size:11px">' + esc(i.progress.label) + '</div>' : "") + '</td>' +
         '<td class="t">' + esc(secs(i.seconds)) + '</td><td class="n">' + money(i.revenue) + '</td>' +
         (i.status === "error" || i.status === "stopped" ? '<td class="err" title="' + esc(i.error) + '">' + esc(i.error) + '</td><td class="t"><button class="btn sm" onclick="retry(' + i.id + ')">Retry</button></td>'
          : '<td title="' + esc(i.file) + '">' + esc(i.file ? i.file.split("\\").pop() : "") + '</td><td class="t">' +
@@ -372,6 +547,7 @@ function drawQueue(){
   if($("qlog")){ const el = $("qlog"), atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 8; el.textContent = QV.lines.join("\n"); if(atEnd) el.scrollTop = el.scrollHeight; }
   const w = it.filter(i => i.status === "waiting").length, d = it.filter(i => i.status === "done").length, e = it.filter(i => i.status === "error").length;
   if($("qsum")) $("qsum").textContent = it.length ? tr(w + " waiting · " + d + " done · " + e + " error") : "";
+  drawBar();
   if($("b-start")) $("b-start").disabled = QV.running || !w;
   if($("b-stop")) $("b-stop").disabled = !QV.running || QV.stopping;
   head();
@@ -383,12 +559,19 @@ function head(){
   else h = '<span class="dot ok"></span><span>Idle</span>';
   $("hstatus").innerHTML = h;
 }
-async function tick(n, on){
-  const r = await api(on ? "/api/queue/add" : "/api/queue/remove", {year:F.year, month:F.month, nums:[n], revenue_only:F.revenue_only});
+async function tick(n, on, entry){
+  const r = await api(on ? "/api/queue/add" : "/api/queue/remove",
+                      {year:F.year, month:F.month, nums:[n], revenue_only:F.revenue_only, entry});
   if(r.error) toast(r.error); await refresh(); draw();
 }
-async function tickUsual(){ await api("/api/queue/add", {year:F.year, month:F.month, nums:ST.usual, revenue_only:F.revenue_only}); await refresh(); draw(); }
-async function untickAll(){ await api("/api/queue/remove", {year:F.year, month:F.month, nums:Object.keys(ST.reports)}); await refresh(); draw(); }
+async function tickAll(entry){
+  await api("/api/queue/add", {year:F.year, month:F.month, nums:entryReports(entry), revenue_only:F.revenue_only, entry});
+  await refresh(); draw();
+}
+async function untickAll(entry){
+  await api("/api/queue/remove", {year:F.year, month:F.month, nums:entryReports(entry), entry});
+  await refresh(); draw();
+}
 async function startQ(){ await api("/api/queue/start", {}); await refresh(); drawQueue(); drawNav(); }
 async function stopQ(){ await api("/api/queue/stop", {}); await refresh(); drawQueue(); }
 async function clearQ(){ await api("/api/queue/clear", {which:"finished"}); await refresh(); draw(); }

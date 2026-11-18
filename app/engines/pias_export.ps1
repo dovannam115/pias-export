@@ -3,6 +3,7 @@
   [string]$From, [string]$To,   # dd/MM/yyyy
   [switch]$RevenueOnly,         # untick Thực thu and Bồi thường in 'Chọn kiểu in'
   [int]$WaitDialog = 60,
+  [int]$X = 0, [int]$Y = 0,      # where to click the report in the list (real position, from MSAA)
   [string]$Snap = "",
   [switch]$Units                # 'Báo cáo tình hình kinh doanh theo đơn vị': move the unit (PVI Digital) to the chosen side, no 'Chọn kiểu in'            # save a picture of 'Chọn kiểu in' before OK (diagnostics)
 )
@@ -75,12 +76,13 @@ function DismissUpdate([int]$sec = 0) {
   } while (((Get-Date) - $t0).TotalSeconds -lt $sec)
 }
 function Main() { $p = Get-Process Pias2022 -ErrorAction Stop | Select-Object -First 1; $AE::FromHandle($p.MainWindowHandle) }
-function Child([string]$prefix, [int]$timeout) {
+function Child([string]$prefix, [int]$timeout, [switch]$Soft) {
   $t0 = Get-Date
   while (((Get-Date) - $t0).TotalSeconds -lt $timeout) {
     foreach ($w in (Main).FindAll($TS::Children, $ALL)) { if ($w.Current.Name -like "$prefix*") { return $w } }
     Start-Sleep -Milliseconds 500
   }
+  if ($Soft) { return $null }
   throw "window '$prefix' not found"
 }
 function Find($root, [scriptblock]$pred) { @($root.FindAll($TS::Descendants, $ALL) | Where-Object $pred) }
@@ -90,7 +92,8 @@ DismissUpdate
 $open = @((Main).FindAll($TS::Children, $ALL) | Where-Object { $_.Current.Name -like "$Report. *" })
 if (-not $open) {
   $nav = Find (Main) { $_.Current.Name -eq 'NavBarControl1' -and $_.Current.BoundingRectangle.Width -gt 1000 } | Select-Object -First 1
-  Click ([IntPtr]$nav.Current.NativeWindowHandle) 192 (38 + 22 * ($Report - 1))
+  if ($X -gt 0 -or $Y -gt 0) { Click ([IntPtr]$nav.Current.NativeWindowHandle) $X $Y }
+  else { Click ([IntPtr]$nav.Current.NativeWindowHandle) 192 (38 + 22 * ($Report - 1)) }
 }
 $dlg = Child "$Report. " $WaitDialog
 "opened: $($dlg.Current.Name)"
@@ -127,8 +130,9 @@ $ok = Find $dlg { $_.Current.Name -eq 'Chấp nhận' } | Select-Object -First 1
 Click ([IntPtr]$ok.Current.NativeWindowHandle) 49 11
 if ($Units) { "started at $(Get-Date -Format HH:mm:ss)"; exit 0 }
 
-# 3. 'Chọn kiểu in': row 2 = Doanh thu, Thực thu, Bồi thường
-$kind = Child 'Chọn kiểu in' 600
+# 3. 'Chọn kiểu in' (business performance reports only): other reports start right away
+$kind = Child 'Chọn kiểu in' 25 -Soft
+if (-not $kind) { "no print-kind box, the report is running"; "started at $(Get-Date -Format HH:mm:ss)"; exit 0 }
 if ($RevenueOnly) {
   $boxes = Find $kind { $_.Current.Name -eq '' -and $_.Current.ClassName -like '*Window.b.*' } |
            Sort-Object { $_.Current.BoundingRectangle.Y }, { $_.Current.BoundingRectangle.X }

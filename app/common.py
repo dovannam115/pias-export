@@ -8,6 +8,9 @@ DUMP    = os.path.join(APP, "dump")           # token, log, settings, run folder
 OUTPUT  = os.path.join(ROOT, "output")        # default save folder: output\<year>\<MM>\
 RUNS    = os.path.join(DUMP, "runs")          # one folder per export: args.json, result.json
 SETTINGS = os.path.join(DUMP, "settings.json")
+DATA     = os.path.join(APP, "data")
+PIAS_CATALOG = os.path.join(DATA, "pias_catalog.json")   # what PIAS offers, read off the screen
+POLICY_VOLUME = os.path.join(DATA, "policy_volume.json") # policies per month per line, measured
 
 if ENGINES not in sys.path: sys.path.insert(0, ENGINES)
 

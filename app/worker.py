@@ -17,9 +17,14 @@ def main(run_dir):
     res = {"ok": False}
     t0 = time.time()
     try:
-        dst = E.export(int(a["year"]), int(a["month"]), int(a["num"]), a["folder"], bool(a.get("revenue_only")),
-                       log=lambda s: print(s, flush=True),
-                       stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")))
+        if a.get("kind") == "policy":
+            dst = E.export_policies(int(a["year"]), int(a["m1"]), int(a["m2"]), a["line"], a["folder"],
+                                    log=lambda s: print(s, flush=True),
+                                    stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")))
+        else:
+            dst = E.export(int(a["year"]), int(a["month"]), int(a["num"]), a["folder"], bool(a.get("revenue_only")),
+                           log=lambda s: print(s, flush=True),
+                           stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")), entry=a.get("entry"))
         res = {"ok": True, "file": dst}
         try:
             tot = E.revenue_total(dst)

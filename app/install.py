@@ -7,8 +7,8 @@ import os, sys, shutil, socket, subprocess
 
 SRC  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEST = os.path.join(os.environ.get("LOCALAPPDATA") or os.path.expanduser(r"~\AppData\Local"),
-                    "Programs", "PIAS-Export")
-NAME = "PIAS Export"
+                    "Programs", "Pias-Export")
+NAME = "Pias Export - Nam Doo"
 PORT = 8716
 NO_WINDOW = 0x08000000
 

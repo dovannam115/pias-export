@@ -1,3 +1,11 @@
+1.1.0
+- The tool is now called Pias Export - Nam Doo and has its own icon.
+- Every report group the PIAS account may use is listed, not only Bao cao hieu qua kinh doanh:
+  7 groups, 190 reports, taken from the PIAS screen itself.
+- New layout: groups on the left, the reports of the chosen group in the middle with a search box,
+  the queue on the right.
+- The tool no longer closes itself when its window has been hidden or minimised for a couple of minutes. It now stays open for the working day; close it with Quit when done.
+
 1.0.4
 - Vietnamese text in the log shows correctly (no more "B o c o hi?u...").
 

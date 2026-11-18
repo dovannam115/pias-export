@@ -1,0 +1,958 @@
+{
+ "source": "PIAS menu Báo cáo, account NAMDV_DIG, read 17/11/2026",
+ "entries": [
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo kế toán tiền mặt",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo tiền gửi ngân hàng",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo tiền đang chuyển",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Sổ nhật ký theo hình thức NKCT",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo thuế",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo công nợ",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo sổ kế toán",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo quyết toán tài chính",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo thuyết minh tài chính",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo dự phòng nghiệp vụ TT232",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo dự phòng nghiệp vụ",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo kế toán",
+   "entry": "Báo cáo phục vụ IFRS",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo nghiệp vụ bảo hiểm",
+   "entry": "Báo cáo kế toán bảo hiểm gốc",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Báo cáo đơn bảo hiểm phát sinh"
+    },
+    {
+     "num": 2,
+     "name": "Báo cáo doanh thu bảo hiểm gốc"
+    },
+    {
+     "num": 3,
+     "name": "Danh sách các đơn bảo hiểm phải thu chưa bóc tách công nợ"
+    },
+    {
+     "num": 4,
+     "name": "Báo cáo đơn bảo hiểm phát sinh theo sản phẩm"
+    },
+    {
+     "num": 5,
+     "name": "Báo cáo phí bảo hiểm thực thu"
+    },
+    {
+     "num": 6,
+     "name": "Báo cáo phí bảo hiểm thực thu theo cán bộ"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo phí bảo hiểm thực trả"
+    },
+    {
+     "num": 8,
+     "name": "Báo cáo phải thu phí bảo hiểm gốc"
+    },
+    {
+     "num": 9,
+     "name": "Báo cáo nợ phải thu bảo hiểm gốc"
+    },
+    {
+     "num": 10,
+     "name": "Báo cáo nợ phải trả bảo hiểm gốc"
+    },
+    {
+     "num": 11,
+     "name": "Báo cáo bảo hiểm chưa áp thực thu"
+    },
+    {
+     "num": 12,
+     "name": "Báo cáo so sánh chi tiết cập nhật đơn và hoá đơn thu phí"
+    },
+    {
+     "num": 13,
+     "name": "Danh sách các đơn bảo hiểm phải trả chưa bóc tách công nợ"
+    },
+    {
+     "num": 14,
+     "name": "Danh sách các hồ sơ phải trả chưa bóc tách công nợ"
+    },
+    {
+     "num": 15,
+     "name": "Báo cáo tổng quát phí bảo hiểm thực thu"
+    },
+    {
+     "num": 16,
+     "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo sản phẩm"
+    },
+    {
+     "num": 17,
+     "name": "Báo cáo tổng quát phí hóa đơn theo sản phẩm"
+    },
+    {
+     "num": 18,
+     "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo phòng ban"
+    },
+    {
+     "num": 19,
+     "name": "Báo cáo tổng quát phí bảo hiểm thực thu theo cán bộ"
+    },
+    {
+     "num": 20,
+     "name": "Báo cáo doanh thu bảo hiểm gốc theo cán bộ"
+    },
+    {
+     "num": 21,
+     "name": "Liệt kê đơn chưa chuyển qua tài khoản 0051"
+    },
+    {
+     "num": 22,
+     "name": "Liệt kê đơn đã có nhưng chưa có giấy báo nợ"
+    },
+    {
+     "num": 23,
+     "name": "Liệt kê giấy báo nợ chưa viết hóa đơn thu phí"
+    },
+    {
+     "num": 24,
+     "name": "Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(1311)"
+    },
+    {
+     "num": 25,
+     "name": "Báo cáo tình hình thu phí BH theo thời gian phát sinh công nợ(00511)"
+    },
+    {
+     "num": 26,
+     "name": "Báo cáo tổng hợp công nợ theo doanh thu"
+    },
+    {
+     "num": 27,
+     "name": "Báo cáo tổng hợp công nợ chưa PSTN"
+    },
+    {
+     "num": 28,
+     "name": "Báo cáo quản lý đơn vị thành viên"
+    },
+    {
+     "num": 29,
+     "name": "Báo cáo công nợ doanh thu nhận trước bảo hiểm gốc"
+    },
+    {
+     "num": 30,
+     "name": "Báo cáo trả trước bảo hiểm gốc"
+    },
+    {
+     "num": 31,
+     "name": "Báo cáo phải thu nợ khó đòi đã xử lý-phí bảo hiểm gốc"
+    },
+    {
+     "num": 32,
+     "name": "Báo cáo phải thu nợ khó đòi đã xử lý-khác phí bảo hiểm gốc"
+    },
+    {
+     "num": 33,
+     "name": "Báo cáo trích lập dự phòng phải thu khó đòi"
+    },
+    {
+     "num": 34,
+     "name": "Báo cáo phí bảo hiểm thực thu qua kênh VNPost đơn offline"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo nghiệp vụ bảo hiểm",
+   "entry": "Báo cáo kế toán tái bảo hiểm",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo nghiệp vụ bảo hiểm",
+   "entry": "Báo cáo kế toán chi phí",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo nghiệp vụ đầu tư vốn",
+   "entry": "Báo cáo nghiệp vụ đầu tư vốn",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo nghiệp vụ đầu tư vốn",
+   "entry": "Báo cáo nghiệp vụ chứng khoán",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo quản lý đại lý, văn phòng khu vực",
+   "entry": "Báo cáo quản lý đại lý",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo quản lý đại lý, văn phòng khu vực",
+   "entry": "Báo cáo quản lý văn phòng khu vực",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo hóa đơn ấn chỉ bảo hiểm",
+   "entry": "Báo cáo hóa đơn ấn chỉ bảo hiểm",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo TSCĐ, CCLĐ, VPP",
+   "entry": "Báo cáo văn phòng phẩm, giấy tờ có giá",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo TSCĐ, CCLĐ, VPP",
+   "entry": "Báo cáo tài sản cố định, công cụ lao động",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo nghiệp vụ bồi thường",
+   "entry": "Báo cáo nghiệp vụ bồi thường",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ XCG"
+    },
+    {
+     "num": 2,
+     "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ khác XCG"
+    },
+    {
+     "num": 3,
+     "name": "Báo cáo chi tiết bồi thường con người mức TNC theo khách hàng"
+    },
+    {
+     "num": 4,
+     "name": "Báo cáo chi tiết bồi thường hộ"
+    },
+    {
+     "num": 5,
+     "name": "Báo cáo chi tiết nhờ bồi thường hộ"
+    },
+    {
+     "num": 6,
+     "name": "Thống kê tổng hợp bồi thường theo đơn vị"
+    },
+    {
+     "num": 7,
+     "name": "Thống kê tổng hợp bồi thường theo nghiệp vụ"
+    },
+    {
+     "num": 8,
+     "name": "Báo cáo phí giám định xếp hàng"
+    },
+    {
+     "num": 9,
+     "name": "Báo cáo phí giám định (bao gồm các vụ không phát sinh trách nhiệm của bảo hiểm)"
+    },
+    {
+     "num": 10,
+     "name": "Báo cáo số liệu bồi thường có TBH"
+    },
+    {
+     "num": 11,
+     "name": "Bảng báo cáo số liệu thu hồi tài sản thanh lý, thu đòi người thứ 3"
+    },
+    {
+     "num": 12,
+     "name": "Báo cáo tổng hợp các khách hàng có tổn thất lớn nhất"
+    },
+    {
+     "num": 13,
+     "name": "Báo cáo tổng hợp các HSBT có tổn thất lớn nhất"
+    },
+    {
+     "num": 14,
+     "name": "Báo cáo chi tiết tình hình bồi thường bảo lãnh viện phí"
+    },
+    {
+     "num": 15,
+     "name": "Báo cáo tổng hợp tình hình bồi thường bảo lãnh viện phí"
+    },
+    {
+     "num": 16,
+     "name": "Danh sách hồ sơ bảo lãnh viện phí chưa thu phí bảo hiểm"
+    },
+    {
+     "num": 17,
+     "name": "Báo cáo tổng hợp tình hình bồi thường theo đơn vị - TTCSKH CN"
+    },
+    {
+     "num": 18,
+     "name": "Báo cáo tổng hợp hồ sơ ước bồi thường bảo lãnh viện phí - TTCSKH CN"
+    },
+    {
+     "num": 19,
+     "name": "Báo cáo tổng hợp tình hình thu đòi bồi thường theo đơn vị - TTCSKH CN"
+    },
+    {
+     "num": 20,
+     "name": "Báo cáo tình trạng xử lý tài liệu/email hồ sơ bồi thường - TTCSKH CN"
+    },
+    {
+     "num": 21,
+     "name": "Thống kê khai thác bồi thường qua gara-showroom"
+    },
+    {
+     "num": 22,
+     "name": "Thống kê khai thác bồi thường qua gara-showroom theo đơn vị"
+    },
+    {
+     "num": 23,
+     "name": "Thống kê khai thác bồi thường qua gara-showroom theo kênh"
+    },
+    {
+     "num": 24,
+     "name": "Báo cáo doanh thu bồi thường qua kênh"
+    },
+    {
+     "num": 25,
+     "name": "Báo cáo công việc giải quyết khiếu nại"
+    },
+    {
+     "num": 26,
+     "name": "Thống kê hồ sơ bồi thường nghiệp vụ XCG phân bổ các đơn vị"
+    },
+    {
+     "num": 27,
+     "name": "Thống kê hồ sơ bồi thường nghiệp vụ CSSK phân bổ các đơn vị"
+    },
+    {
+     "num": 28,
+     "name": "Thống kê các vụ bồi thường tổn thất lớn"
+    },
+    {
+     "num": 29,
+     "name": "Báo cáo thống kê tổng hợp nghiệp vụ XCG"
+    },
+    {
+     "num": 30,
+     "name": "Thống kê tình hình gửi tin nhắn bồi thường nghiệp vụ CSSK"
+    },
+    {
+     "num": 31,
+     "name": "Báo cáo danh sách số điện thoại chủ xe phục vụ nhắn tin cảnh báo"
+    },
+    {
+     "num": 32,
+     "name": "Bảng báo cáo số liệu bồi thường nghiệp vụ con người"
+    },
+    {
+     "num": 33,
+     "name": "Báo cáo Tổng hợp số liệu theo Văn Phòng CSKH và Ban GQKN"
+    },
+    {
+     "num": 34,
+     "name": "Báo cáo tổng hợp số liệu theo từng cán bộ giải quyết tại VP và Ban GQKN"
+    },
+    {
+     "num": 35,
+     "name": "Báo cáo thống kê bồi thường nghiệp vụ ngoài XCG, CN phân bổ các đơn vị"
+    },
+    {
+     "num": 36,
+     "name": "Báo cáo số liệu thu chiết khấu bệnh viện"
+    },
+    {
+     "num": 37,
+     "name": "Báo cáo phí tự giám định"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo nghiệp vụ tái bảo hiểm",
+   "entry": "Báo cáo nghiệp vụ nhượng tái bảo hiểm",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Bảng kê chứng từ khai thác nhượng TBH"
+    },
+    {
+     "num": 2,
+     "name": "Bảng kê chi tiết bồi thường nghiệp vụ bảo hiểm thân tàu"
+    },
+    {
+     "num": 3,
+     "name": "Bảng kê nghiệp vụ bảo hiểm P&I"
+    },
+    {
+     "num": 4,
+     "name": "Bảng kê nghiệp vụ bảo hiểm trách nhiệm"
+    },
+    {
+     "num": 5,
+     "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XDLD"
+    },
+    {
+     "num": 6,
+     "name": "Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ tài sản"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo công nợ phí, hoa hồng nhượng tái nghiệp vụ XDLD"
+    },
+    {
+     "num": 8,
+     "name": "Bảng kê nghiệp vụ bảo hiểm XDLĐ"
+    },
+    {
+     "num": 9,
+     "name": "Risk profile nghiệp vụ BH hàng hóa"
+    },
+    {
+     "num": 10,
+     "name": "Risk profile nghiệp vụ BH thân tàu"
+    },
+    {
+     "num": 11,
+     "name": "Risk profile"
+    },
+    {
+     "num": 12,
+     "name": "Risk profile new"
+    },
+    {
+     "num": 13,
+     "name": "Bảng kê phương thức tái reporter nghiệp vụ thân tầu"
+    },
+    {
+     "num": 14,
+     "name": "Bảng kê phương thức tái reporter nghiệp vụ hàng hóa"
+    },
+    {
+     "num": 15,
+     "name": "Thống kê tái bảo hiểm"
+    },
+    {
+     "num": 16,
+     "name": "Accumulation figures for PVI retention by zone"
+    },
+    {
+     "num": 17,
+     "name": "Báo cáo tình hình thanh toán tái tạm thời"
+    },
+    {
+     "num": 18,
+     "name": "Bảng kê chi tiết nhượng tái nghiệp vụ XCG"
+    },
+    {
+     "num": 19,
+     "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ XCG"
+    },
+    {
+     "num": 20,
+     "name": "Bảng kê chi tiết nhượng tái nghiệp vụ con người"
+    },
+    {
+     "num": 21,
+     "name": "Bảng kê chi tiết thu đòi bồi thường nhượng tái nghiệp vụ con người"
+    },
+    {
+     "num": 22,
+     "name": "Báo cáo thống kê bồi thường nhượng tái bảo hiểm"
+    },
+    {
+     "num": 23,
+     "name": "Danh sách đơn sửa đổi bổ sung có tái tạm thời"
+    },
+    {
+     "num": 24,
+     "name": "Marine & Energy XOL - Energy Section"
+    },
+    {
+     "num": 25,
+     "name": "Báo cáo chi tiết nhượng tái theo nhà nhận tái"
+    },
+    {
+     "num": 26,
+     "name": "Báo cáo thống kê bồi thường dự phòng Treaty nghiệp vụ phi hàng hải"
+    },
+    {
+     "num": 27,
+     "name": "Báo cáo tình hình thu đòi bồi thường tái bảo hiểm"
+    },
+    {
+     "num": 28,
+     "name": "TripCARE claims payment bordereaux"
+    },
+    {
+     "num": 29,
+     "name": "Báo cáo chi tiết  bồi thường nhượng vật chất xe"
+    },
+    {
+     "num": 30,
+     "name": "Báo cáo chi tiết rủi ro"
+    },
+    {
+     "num": 31,
+     "name": "BÁO CÁO OFFSET TÁI BẢO HIỂM"
+    },
+    {
+     "num": 32,
+     "name": "Báo cáo dữ liệu bồi thường theo sự kiện tổn thất"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo nghiệp vụ tái bảo hiểm",
+   "entry": "Báo cáo nghiệp vụ nhận tái bảo hiểm",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Rish Profile Inward"
+    },
+    {
+     "num": 2,
+     "name": "Báo cáo thống kê dịch vụ phát sinh nhận tái bảo hiểm"
+    },
+    {
+     "num": 3,
+     "name": "Báo cáo dự phòng tổn thất"
+    },
+    {
+     "num": 4,
+     "name": "Báo cáo thống kê bồi thường và dự phòng tổn thất nhận TBH"
+    },
+    {
+     "num": 5,
+     "name": "Báo cáo chứng từ thanh toán nhận nhượng tái bảo hiểm"
+    },
+    {
+     "num": 6,
+     "name": "Báo cáo check phí nhận nhượng"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo dữ liệu bồi thường theo sự kiện tổn thất"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo nghiệp vụ khai thác BH",
+   "entry": "Báo cáo nghiệp vụ khai thác bảo hiểm",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Thống kê chi tiết khai thác bảo hiểm xe máy"
+    },
+    {
+     "num": 2,
+     "name": "Thống kê chi tiết khai thác bảo hiểm ôtô"
+    },
+    {
+     "num": 3,
+     "name": "Báo cáo BH bắt buộc TNDS của chủ xe cơ giới"
+    },
+    {
+     "num": 4,
+     "name": "Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ Con người"
+    },
+    {
+     "num": 5,
+     "name": "Báo cáo đơn bảo hiểm cần tái tục nghiệp vụ BH ô tô"
+    },
+    {
+     "num": 6,
+     "name": "Báo cáo tình hình cấp thẻ BLVP"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo đơn bảo hiểm phát sinh nhà qua ngân hàng"
+    },
+    {
+     "num": 8,
+     "name": "Thống kê tỷ lệ % các dịch vụ bảo hiểm tái tục"
+    },
+    {
+     "num": 9,
+     "name": "Báo cáo thống kê tái tục theo tháng nghiệp vụ ô tô và con người"
+    },
+    {
+     "num": 10,
+     "name": "Báo cáo danh sách khách hàng tham gia dịch vụ SOS"
+    },
+    {
+     "num": 11,
+     "name": "Bảng kê đơn sắp hết thời hạn bảo hiểm (Phi CN&XCG)"
+    },
+    {
+     "num": 12,
+     "name": "Thống kê khai thác-bồi thường cho Talanx"
+    },
+    {
+     "num": 13,
+     "name": "Báo cáo kết quả kinh doanh qua các kênh bán hàng"
+    },
+    {
+     "num": 14,
+     "name": "Báo cáo thống kê khai thác TNDS bắt buộc chi tiết cho HHBH"
+    },
+    {
+     "num": 15,
+     "name": "Báo cáo thống kê bồi thường TNDS bắt buộc chi tiết cho HHBH"
+    },
+    {
+     "num": 16,
+     "name": "Báo cáo tái tục các đơn bảo hiểm VCX đã phát sinh tổn thất"
+    },
+    {
+     "num": 17,
+     "name": "Thống kê chi tiết khai thác bảo hiểm con người hệ thống QLCĐ"
+    },
+    {
+     "num": 18,
+     "name": "Thống kê chi tiết khai thác bảo hiểm xe cơ giới hệ thống QLCĐ"
+    },
+    {
+     "num": 19,
+     "name": "Thống kê chi tiết khai thác bán chéo bảo hiểm xe cơ giới"
+    },
+    {
+     "num": 20,
+     "name": "Thống kê hạn mức ấn chỉ điện tử"
+    },
+    {
+     "num": 21,
+     "name": "Báo cáo chi tiết SĐBS đã lập"
+    },
+    {
+     "num": 22,
+     "name": "Báo cáo Cat 3.3, cat 4 & cat 6"
+    },
+    {
+     "num": 23,
+     "name": "Báo cáo thông kê sản phẩm mobicare"
+    },
+    {
+     "num": 24,
+     "name": "Báo cáo thống kê khai thác B2B2C"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo nghiệp vụ khai thác BH",
+   "entry": "Báo cáo nghiệp vụ BH tàu cá theo NĐ 67",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo hiệu quả kinh doanh",
+   "entry": "Báo cáo tổng hợp tình hình kinh doanh",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Báo cáo thống kê chi tiết tình hình thực hiện kinh doanh"
+    },
+    {
+     "num": 2,
+     "name": "Báo cáo tình hình thực hiện kinh doanh"
+    },
+    {
+     "num": 3,
+     "name": "Tình hình kinh doanh các văn phòng khu vực"
+    },
+    {
+     "num": 4,
+     "name": "Tình hình kinh doanh các phòng ban kinh doanh"
+    },
+    {
+     "num": 5,
+     "name": "Tình hình kinh doanh các đại lý bảo hiểm"
+    },
+    {
+     "num": 6,
+     "name": "Tình hình kinh doanh các kênh bán hàng"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo tình hình kinh doanh theo đơn vị"
+    },
+    {
+     "num": 8,
+     "name": "Báo cáo thống kê tình hình kinh doanh bảo hiểm cháy, nổ bắt buộc"
+    },
+    {
+     "num": 9,
+     "name": "Báo cáo thống kê doanh thu bồi thường theo sản phẩm"
+    },
+    {
+     "num": 10,
+     "name": "Báo cáo thống kê khai thác - bồi thườngtheo phương thức/kênh bán hàng"
+    },
+    {
+     "num": 11,
+     "name": "Tình hình thực hiện kế hoạch doanh thu"
+    },
+    {
+     "num": 12,
+     "name": "Báo cáo định mức chi phí kinh doanh"
+    },
+    {
+     "num": 13,
+     "name": "Báo cáo định mức chi phí tiền lương"
+    },
+    {
+     "num": 14,
+     "name": "Báo cáo tổng hợp doanh thu - bồi thường BH giáo viên học sinh"
+    },
+    {
+     "num": 15,
+     "name": "Báo cáo tổng hợp doanh thu bồi thường BH Vật chất xe ô tô và CSSK"
+    },
+    {
+     "num": 16,
+     "name": "Báo cáo tổng hợp doanh thu bồi thường VCX xe cơ giới qua kênh khai thác"
+    },
+    {
+     "num": 17,
+     "name": "Báo cáo tổng hợp doanh thu bồi thường TNDS xe cơ giới"
+    },
+    {
+     "num": 18,
+     "name": "Báo cáo tổng hợp doanh thu con người xe cơ giới"
+    },
+    {
+     "num": 19,
+     "name": "Báo cáo thống kê nghiệp vụ bán lẻ"
+    },
+    {
+     "num": 20,
+     "name": "Báo cáo doanh thu bồi thường vật chất xe theo mức trách nhiệm"
+    },
+    {
+     "num": 21,
+     "name": "Báo cáo tổng hợp tình hình kinh doanh theo sản phẩm"
+    },
+    {
+     "num": 22,
+     "name": "Báo cáo theo dõi ước thực hiện kế hoạch doanh thu"
+    },
+    {
+     "num": 23,
+     "name": "Báo cáo theo dõi ước thực hiện kế hoạch doanh thu nhận tái bảo hiểm"
+    },
+    {
+     "num": 24,
+     "name": "Báo cáo định mức chi phí kinh doanh các ban KD và PVI South"
+    },
+    {
+     "num": 25,
+     "name": "Thống kê chi tiết sản phẩm bồi thường cho HDI"
+    },
+    {
+     "num": 26,
+     "name": "Báo cáo doanh thu, thực thu, bồi thường VCX theo mức trách nhiệm"
+    },
+    {
+     "num": 27,
+     "name": "Thống kê GBN chưa hạch toán"
+    },
+    {
+     "num": 28,
+     "name": "Báo cáo định mức chi phí kinh doanh nhận tái bảo hiểm"
+    },
+    {
+     "num": 29,
+     "name": "Báo cáo thống kê khai thác - bồi thường theo phương thức/ kênh bán hàng theo đơn vị"
+    },
+    {
+     "num": 30,
+     "name": "Báo cáo định mức chi phí kinh doanh theo doanh thu"
+    },
+    {
+     "num": 31,
+     "name": "Báo cáo định mức chi phí kinh doanh các ban KD, PVI South và PVI Digital theo doanh thu"
+    },
+    {
+     "num": 32,
+     "name": "Báo cáo kế hoạch thực hiện doanh thu NVBH Phi XCG&CN"
+    },
+    {
+     "num": 33,
+     "name": "Báo cáo doanh thu tách theo năm nghiệp vụ"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo hiệu quả kinh doanh",
+   "entry": "Báo cáo hiệu quả kinh doanh",
+   "access": true,
+   "reports": [
+    {
+     "num": 1,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản"
+    },
+    {
+     "num": 2,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm kỹ thuật"
+    },
+    {
+     "num": 3,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ P&I"
+    },
+    {
+     "num": 4,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu viễn dương"
+    },
+    {
+     "num": 5,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thân tàu nội thủy"
+    },
+    {
+     "num": 6,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng hóa"
+    },
+    {
+     "num": 7,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm trách nhiệm"
+    },
+    {
+     "num": 8,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm năng lượng"
+    },
+    {
+     "num": 9,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm hàng không"
+    },
+    {
+     "num": 10,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm con người"
+    },
+    {
+     "num": 11,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm xe cơ giới"
+    },
+    {
+     "num": 12,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm Nông nghiệp"
+    },
+    {
+     "num": 13,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm khác"
+    },
+    {
+     "num": 14,
+     "name": "Báo cáo hiệu quả kinh doanh nhận tái bảo hiểm"
+    },
+    {
+     "num": 15,
+     "name": "Báo cáo kết quả kinh doanh theo khách hàng"
+    },
+    {
+     "num": 16,
+     "name": "Báo cáo chi phí theo đơn vị"
+    },
+    {
+     "num": 17,
+     "name": "Báo cáo chi tiết hiệu quả kinh doanh theo đơn vị"
+    },
+    {
+     "num": 18,
+     "name": "Báo cáo hiệu quả nhận tái bảo hiểm"
+    },
+    {
+     "num": 19,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm cháy - tài sản CAT4, CAT6"
+    },
+    {
+     "num": 20,
+     "name": "Kế hoạch sử dụng nguồn vốn PVI Insurance"
+    },
+    {
+     "num": 21,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ phi hàng hải – theo loại rủi ro"
+    },
+    {
+     "num": 22,
+     "name": "Báo cáo hiệu quả kinh doanh nghiệp vụ bảo hiểm thiệt hại khác"
+    },
+    {
+     "num": 23,
+     "name": "Báo cáo thống kê số lượng đơn BH được cấp"
+    }
+   ]
+  },
+  {
+   "group": "Báo cáo Kiểm Soát Nội bộ",
+   "entry": "Báo cáo Kiểm Soát Nội bộ",
+   "access": false,
+   "reports": []
+  },
+  {
+   "group": "Báo cáo tình hình thu hộ BHXH",
+   "entry": "Báo cáo tình hình thu hộ BHXH",
+   "access": false,
+   "reports": []
+  }
+ ]
+}

@@ -5,9 +5,9 @@
 import os, json, zipfile
 from common import ROOT, APP
 
-TOP   = "PIAS-Export"
-OUT   = os.path.join(ROOT, "dist", "PIAS_Export.zip")
-FILES = ["Install.bat", "PIAS Export.bat", "VERSION", "RELEASE-NOTES.txt"]
+TOP   = "Pias-Export"
+OUT   = os.path.join(ROOT, "dist", "Pias_Export.zip")
+FILES = ["Install.bat", "Pias Export.bat", "VERSION", "RELEASE-NOTES.txt"]
 EMPTY = ["output/", "app/dump/"]
 
 

@@ -8,6 +8,7 @@ copy PIAS opened in Excel. Clicks are posted to window handles: the user's mouse
 """
 import calendar
 import ctypes
+import threading
 import datetime as dt
 import glob
 import os
@@ -32,7 +33,27 @@ REPORTS = {
 }
 DEFAULT = [1, 2, 4, 5, 6, 7, 10, 11, 13, 22]       # the lines PVI Digital sells
 
+HQKD = "Báo cáo hiệu quả kinh doanh"              # the entry REPORTS above belongs to
+CATALOG = os.path.join(os.path.dirname(HERE), "data", "pias_catalog.json")
+
 EXE_CANDIDATES = [r"C:\PVI\Pias2022new\Pias2022.exe", r"C:\PVI\Pias2022\Pias2022.exe"]
+
+
+def catalog():
+    """{entry: [{num, name}]} for the entries this PIAS account may open."""
+    try:
+        import json
+        c = json.load(open(CATALOG, encoding="utf-8"))
+    except Exception:
+        return {}
+    return {e["entry"]: e["reports"] for e in c.get("entries", []) if e.get("access") and e.get("reports")}
+
+
+def report_name(entry, num):
+    if entry == HQKD and num in REPORTS: return REPORTS[num]
+    for r in catalog().get(entry, []):
+        if r["num"] == num: return r["name"]
+    return "Báo cáo %d" % num
 
 
 def pias_exe():
@@ -51,17 +72,41 @@ class UserError(Exception):
 
 
 # ---------------------------------------------------------------- PIAS driving
-def ps(script, *args, timeout=None):
-    r = subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", os.path.join(HERE, script),
-                        *map(str, args)], capture_output=True, timeout=timeout, creationflags=0x08000000)
-    out = (r.stdout + r.stderr).decode("utf-8", "replace") if isinstance(r.stdout, bytes) else r.stdout + r.stderr
-    if "\ufffd" in out:                               # console code page instead of UTF-8
-        out = (r.stdout + r.stderr).decode("mbcs", "replace")
-    out = out.strip()
-    if r.returncode:
-        lines = [x for x in out.splitlines() if x.strip()]
-        msg = next((x for x in lines if not x.startswith(("At ", "+ ", "    +"))), lines[-1] if lines else "")
-        raise UserError("%s: %s" % (script, msg or "failed"))
+def _decode(b):
+    s = b.decode("utf-8", "replace")
+    if "\ufffd" in s: s = b.decode("mbcs", "replace")
+    return s
+
+
+def ps(script, *args, timeout=None, log=None):
+    """Run one of the PowerShell steps. With log=, its lines are passed on as they are printed, so a long
+    search does not look like the tool has stopped. The error comes from stderr, not from the first line."""
+    p = subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+                          os.path.join(HERE, script), *map(str, args)],
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.DEVNULL,
+                         creationflags=0x08000000)
+    lines, err = [], []
+
+    def pump(stream, keep, cb):
+        for raw in iter(stream.readline, b""):
+            s = _decode(raw).rstrip("\r\n")
+            keep.append(s)
+            if cb and s.strip(): cb(s)
+        stream.close()
+
+    t1 = threading.Thread(target=pump, args=(p.stdout, lines, log), daemon=True)
+    t2 = threading.Thread(target=pump, args=(p.stderr, err, None), daemon=True)
+    t1.start(); t2.start()
+    try:
+        p.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        p.kill(); raise UserError("%s: no answer after %s s" % (script, timeout))
+    t1.join(5); t2.join(5)
+    out = "\n".join(x for x in lines if x.strip()).strip()
+    if p.returncode:
+        bad = [x for x in err if x.strip() and not x.startswith(("At ", "+ ", "    +", "ParserError"))]
+        msg = bad[0] if bad else (lines[-1] if lines else "failed")
+        raise UserError("%s: %s" % (script, msg.strip()))
     return out
 
 
@@ -91,47 +136,184 @@ def unminimize():
         time.sleep(1.5)
 
 
-def open_report_list():
-    """Menu Báo cáo > Báo cáo hiệu quả kinh doanh, invoked through MSAA (DevExpress menus ignore posted clicks)."""
+def open_report_list(entry=None):
+    """Menu Báo cáo > <entry>, invoked through MSAA (DevExpress menus ignore posted clicks).
+    The screen remembers the entry it last showed, so it is closed first and opened again on the one we want."""
+    entry = entry or HQKD
+    for _ in range(3):
+        close_report_screen()
+        menu_click(["Báo cáo", entry])
+        for _ in range(25):
+            time.sleep(1)
+            header, rows = list_on_screen()
+            if header == entry and rows:
+                time.sleep(1.5)
+                return
+    raise UserError("Could not open '%s' in PIAS (the account may not have it)." % entry)
+
+
+# ---------------------------------------------------------------- the report screen, read through MSAA
+def _acc(hwnd):
+    import comtypes.client
+    from comtypes import automation  # noqa: F401
+    comtypes.client.GetModule("oleacc.dll")
+    from comtypes.gen.Accessibility import IAccessible
+    p = POINTER(IAccessible)()
+    ctypes.oledll.oleacc.AccessibleObjectFromWindow(hwnd, -4, byref(IAccessible._iid_), byref(p))
+    return p
+
+
+def _kids(a):
     import comtypes.client
     from comtypes import automation
     comtypes.client.GetModule("oleacc.dll")
     from comtypes.gen.Accessibility import IAccessible
+    try: n = a.accChildCount
+    except Exception: return []
+    if not n: return []
+    arr = (automation.VARIANT * max(n, 1))(); got = ctypes.c_long()
+    try: ctypes.oledll.oleacc.AccessibleChildren(a, 0, n, arr, byref(got))
+    except Exception: return []
+    out = []
+    for i in range(got.value):
+        v = arr[i].value
+        if not isinstance(v, int):
+            try: out.append(v.QueryInterface(IAccessible))
+            except Exception: pass
+    return out
 
-    h, title = pias_main()
+
+def _name(a):
+    try: return (a.accName(0) or "").strip()
+    except Exception: return ""
+
+
+def _children_of_main():
+    h, _ = pias_main()
     if not h: raise UserError("PIAS main window not found.")
-    if "[Báo cáo]" in title: return
-    oleacc = ctypes.oledll.oleacc
+    out = []
+    user32.EnumChildWindows(h, EnumProc(lambda c, _: out.append(c) or True), 0)
+    return out
 
-    def acc(hwnd):
-        p = POINTER(IAccessible)()
-        oleacc.AccessibleObjectFromWindow(hwnd, -4, byref(IAccessible._iid_), byref(p))
-        return p
 
-    def kids(a):
-        n = a.accChildCount
-        arr = (automation.VARIANT * max(n, 1))()
-        got = ctypes.c_long()
-        oleacc.AccessibleChildren(a, 0, n, arr, byref(got))
-        return [arr[i].value.QueryInterface(IAccessible) for i in range(got.value) if not isinstance(arr[i].value, int)]
-
-    bars = []
-    user32.EnumChildWindows(h, EnumProc(lambda c, _: bars.append(c) or True), 0)
-    for c in bars:
+def menu_click(path):
+    """Click a menu item by its path, e.g. ['Báo cáo', 'Báo cáo nghiệp vụ bồi thường']."""
+    for c in _children_of_main():
         try:
-            a = acc(c)
-            if a.accName(0) != "MenuBar": continue
+            a = _acc(c)
+            if _name(a) != "MenuBar": continue
         except Exception:
             continue
-        for name in ("Báo cáo", "Báo cáo hiệu quả kinh doanh"):
-            a = next(k for k in kids(a) if k.accName(0) == name)
-        a.accDoDefaultAction(0)
-        for _ in range(30):
-            time.sleep(1)
-            if "[Báo cáo]" in pias_main()[1]:
-                time.sleep(2)
-                return
-    raise UserError("Could not open the report list in PIAS.")
+        node = a
+        for name in path:
+            node = next((k for k in _kids(node) if _name(k) == name), None)
+            if node is None: raise UserError("Menu item '%s' not found in PIAS." % name)
+        node.accDoDefaultAction(0)
+        return
+    raise UserError("PIAS menu bar not found.")
+
+
+def close_report_screen():
+    """Press the screen's own 'Kết thúc' button (buttons do take posted clicks)."""
+    for c in _children_of_main():
+        try:
+            a = _acc(c)
+            if _name(a) != "Kết thúc": continue
+        except Exception:
+            continue
+        if not user32.IsWindowVisible(c): continue
+        lp = (11 << 16) | 30
+        user32.PostMessageW(c, 0x0200, 0, lp)
+        user32.PostMessageW(c, 0x0201, 1, lp)
+        user32.PostMessageW(c, 0x0202, 0, lp)
+        time.sleep(0.8)
+
+
+def _report_navbar():
+    """(hwnd, accessible) of the wide list on the right of the report screen."""
+    for c in _children_of_main():
+        try:
+            a = _acc(c)
+            if "NavBar" not in _name(a): continue
+        except Exception:
+            continue
+        if not user32.IsWindowVisible(c): continue
+        r = wintypes.RECT(); user32.GetWindowRect(c, byref(r))
+        if (r.right - r.left) > 1000: return c, a, r
+    return None, None, None
+
+
+def list_on_screen():
+    """(entry name, [(num, name, x, y)]) of the report list now shown."""
+    c, a, r = _report_navbar()
+    if not a: return "", []
+    for g in _kids(a):
+        rows = []
+        for i in _kids(g):
+            nm = _name(i)
+            m = re.match(r"^\s*(\d+)\.\s*(.*)$", nm)
+            if not m: continue
+            try: l, t, w, h = i.accLocation(0)
+            except Exception: continue
+            rows.append((int(m.group(1)), m.group(2).strip(), int(l) + 80, int(t) + int(h) // 2))
+        if rows: return _name(g), rows
+    return "", []
+
+
+def scroll_report_list(lines):
+    """Wheel the report list up or down (lines > 0 scrolls down)."""
+    c, a, r = _report_navbar()
+    if not c: return
+    x, y = (r.left + r.right) // 2, (r.top + r.bottom) // 2
+    for _ in range(abs(lines)):
+        delta = -120 if lines > 0 else 120
+        user32.PostMessageW(c, 0x020A, (delta << 16) & 0xFFFFFFFF, (y << 16) | (x & 0xFFFF))
+        time.sleep(0.15)
+    time.sleep(0.5)
+
+
+def close_report_dialogs():
+    """A report's settings box (its title starts with the number) stays open when the report has no data
+    or stops with an error, and it blocks every report after it."""
+    import re as _re
+    import pias_policy as P
+    pid = _pias_pid()
+    closed = 0
+    for _ in range(8):
+        left = [h for h in P.windows_of(pid) if _re.match(r"^\d+\.\s", P.text_of(h))]
+        if not left: break
+        h = left[0]
+        btn = next((c for c in P.children(h)
+                    if P.acc_name(c) in ("Hủy bỏ", "Hủy", "Thoát", "Đóng")), 0)
+        if btn: P.click(btn, 30, 10)
+        else: user32.PostMessageW(h, 0x0010, 0, 0)
+        gone = False
+        for _ in range(12):
+            time.sleep(0.4)
+            if h not in P.windows_of(pid): gone = True; break
+        if not gone: break
+        closed += 1
+    return closed
+
+
+def row_position(num):
+    """Where to click for report <num>, in client coordinates of the list window. The list scrolls, so a
+    row further down has no position until it is brought into view."""
+    for attempt in range(8):
+        c, a, r = _report_navbar()
+        _, rows = list_on_screen()
+        here = {n: (x, y) for n, name, x, y in rows}
+        if num in here:
+            x, y = here[num]
+            if r.top + 10 < y < r.bottom - 10:
+                return c, x - r.left, y - r.top
+        seen = sorted(here)
+        if not seen: break
+        if num > seen[-1]: scroll_report_list(3)
+        elif num < seen[0]: scroll_report_list(-3)
+        else: scroll_report_list(2 if num > seen[len(seen) // 2] else -2)
+    c, a, r = _report_navbar()
+    return c, 192, 38 + 22 * (num - 1)          # fall back to the old guess
 
 
 def close_in_excel(path):
@@ -154,31 +336,50 @@ class NoData(Exception):
     """PIAS answered 'Không có dữ liệu để xuất báo cáo!': the month has nothing to export (counts as done)."""
 
 
-def wait_file(since, stop=lambda: False):
+REPORT_STEPS = ["PIAS", "Report list", "Running", "File", "Check", "Saved"]
+
+
+def wait_file(since, stop=lambda: False, log=None, timeout_min=None):
     """New BCHQKD_* file in PIAS's Excel Files folder, written after `since`, size settled."""
-    deadline = time.time() + TIMEOUT_MIN * 60
+    deadline = time.time() + (timeout_min or TIMEOUT_MIN) * 60
     folder = pias_out()
+    said = 0
     while time.time() < deadline:
         if stop(): raise UserError("Stopped.")
-        new = [f for f in glob.glob(os.path.join(folder, "BCHQKD_*.xls*")) if os.path.getmtime(f) >= since]
+        new = [f for f in glob.glob(os.path.join(folder, "*.xls*"))
+               if os.path.getmtime(f) >= since and not os.path.basename(f).startswith("~$")]
         if new:
             f = max(new, key=os.path.getmtime)
             size = -1
             while size != os.path.getsize(f):
                 size = os.path.getsize(f)
+                mb = size / 1048576.0
+                if log and mb >= said + 1:
+                    said = mb
+                    log("[[P]] 4|%d|PIAS is writing: %.1f MB so far" % (len(REPORT_STEPS), mb))
                 time.sleep(2)
             return f
         tick = getattr(wait_file, "tick", 0) + 1
         wait_file.tick = tick
-        if tick % 2 == 0:                       # every ~6 s: PIAS answers 'no data' with a message box instead of a file
-            msg = ps("pias_msg.ps1", timeout=60)
-            if msg.startswith("MSG:"):
-                width = int((msg[4:].split(":", 1)[0] or "0").strip() or 0)
-                if width and width <= 320:          # the short box is 'Không có dữ liệu để xuất báo cáo!'
-                    raise NoData(msg)
-                raise UserError("PIAS server error for this period (picture in app/dump/msgs).")
+        if tick % 2 == 0:              # every ~6 s: PIAS answers 'no data' with a box instead of a file
+            import pias_policy as P
+            pid = _pias_pid()
+            if P.answer_boxes(pid, rounds=1):      # "mẫu mới / mẫu cũ" and the like
+                continue
+            boxes = P.message_boxes(pid)
+            if boxes:
+                h = boxes[0][0]
+                width = P.rect(h)[2]
+                P.dismiss_boxes(pid)
+                if width <= 330:       # the short box is 'Không có dữ liệu để xuất báo cáo!'
+                    raise NoData("PIAS: no data for this period")
+                raise UserError("PIAS answered with an error box for this period (width %d px)." % width)
+            why = P.crash_box(pid)
+            if why:
+                raise UserError("PIAS stopped while making this report: %s. Try a shorter period." % why)
         time.sleep(3)
-    raise UserError("No file from PIAS after %d min." % TIMEOUT_MIN)
+    raise UserError("No file from PIAS after %d min (it may have ignored this report)."
+                    % (timeout_min or TIMEOUT_MIN))
 
 
 # ---------------------------------------------------------------- reading the file back
@@ -261,8 +462,17 @@ def revenue_total(path):
 
 
 # ---------------------------------------------------------------- one export
-def target(folder, year, month, num):
-    base = "T%d.%d - %s" % (month, year, REPORTS[num])
+BAD = '<>:"/\\|?*'
+
+
+def safe_name(s, limit=70):
+    s = "".join(" " if c in BAD else c for c in str(s)).strip()
+    s = " ".join(s.split())
+    return s[:limit].strip(" .")
+
+
+def target(folder, year, month, num, entry=None):
+    base = "T%d.%d - %s" % (month, year, safe_name(report_name(entry or HQKD, num)))
     today = dt.date.today()
     path = os.path.join(folder, base + ".xlsx")
     if os.path.exists(path):
@@ -274,25 +484,48 @@ def target(folder, year, month, num):
     return path
 
 
-def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3):
-    if num not in REPORTS: raise UserError("Unknown report %s." % num)
+def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3, entry=None):
+    """Run report <num> of <entry> for one calendar month and save the file under its standard name."""
+    entry = entry or HQKD
+    if entry == HQKD and num not in REPORTS: raise UserError("Unknown report %s." % num)
+    log("[[P]] 1|%d|Opening PIAS" % len(REPORT_STEPS))
     log("Checking PIAS")
     unminimize()
     log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
     last = calendar.monthrange(year, month)[1]
     want = (dt.date(year, month, 1), dt.date(year, month, last))
-    args = ["-Report", num, "-From", "01/%02d/%d" % (month, year), "-To", "%02d/%02d/%d" % (last, month, year)]
-    if revenue_only: args.append("-RevenueOnly")
+    base_args = ["-Report", num, "-From", "01/%02d/%d" % (month, year), "-To", "%02d/%02d/%d" % (last, month, year)]
+    if revenue_only and entry == HQKD: base_args.append("-RevenueOnly")
+    start = end = None
     for attempt in range(1, tries + 1):
         if stop(): raise UserError("Stopped.")
         unminimize()
-        open_report_list()
+        close_report_dialogs()
+        log("[[P]] 2|%d|Opening the report list" % len(REPORT_STEPS))
+        open_report_list(entry)
+        hwnd, x, y = row_position(num)
+        args = base_args + ["-X", x, "-Y", y]
         since = time.time() - 1
-        log("Running report %d in PIAS" % num + (" (try %d)" % attempt if attempt > 1 else ""))
-        for line in ps("pias_export.ps1", *args, timeout=900).splitlines():
-            log("  " + line)
-        src = wait_file(since, stop)
+        log("Running report %d (%s) in PIAS" % (num, report_name(entry, num))
+            + (" (try %d)" % attempt if attempt > 1 else ""))
+        log("[[P]] 3|%d|PIAS is running the report" % len(REPORT_STEPS))
+        import pias_policy as P
+        import pias_report as R
+        pid = _pias_pid()
+        lp = (int(y) << 16) | (int(x) & 0xFFFF)
+        for m, w in ((0x0200, 0), (0x0201, 1), (0x0202, 0)):
+            user32.PostMessageW(hwnd, m, w, lp)          # open the report from the list
+        try:
+            R.run(pid, num, "01/%02d/%d" % (month, year), "%02d/%02d/%d" % (last, month, year),
+                  revenue_only=bool(revenue_only), log=lambda s: log("  " + str(s)))
+        except P.StepError as ex:
+            raise UserError(str(ex))
+        log("[[P]] 4|%d|Waiting for the file" % len(REPORT_STEPS))
+        src = wait_file(since, stop, log=log)
         log("PIAS wrote " + os.path.basename(src))
+        log("[[P]] 5|%d|Checking the period" % len(REPORT_STEPS))
+        if entry != HQKD:
+            break                      # only the business performance files carry a period line we can check
         start, end = file_period(src)
         if (start, end) == want:
             key = TITLE_KEY.get(num)
@@ -303,11 +536,208 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
                                 "differently in this PIAS year." % title.title())
             break
         close_in_excel(src)
-        log("PIAS ran %s-%s instead of the chosen month, running again" % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
+        log("PIAS ran %s-%s instead of the chosen month, running again"
+            % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
     else:
-        raise UserError("PIAS kept running the wrong period %s-%s, file not saved." % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
+        raise UserError("PIAS kept running the wrong period %s-%s, file not saved."
+                        % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
     os.makedirs(folder, exist_ok=True)
-    dst = target(folder, year, month, num)
+    dst = target(folder, year, month, num, entry)
+    log("[[P]] 6|%d|Saving" % len(REPORT_STEPS))
     shutil.copy2(src, dst)
     close_in_excel(src)
     return dst
+
+
+# ---------------------------------------------------------------- policy lists (Tìm kiếm đơn Bảo hiểm)
+SEARCH_SCREEN = "Tìm kiếm đơn Bảo hiểm"
+LINES = {"01": "Con người", "02": "Tài sản kỹ thuật", "03": "Hàng hải", "05": "Xe cơ giới",
+         "06": "Trách nhiệm", "07": "Hàng hóa", "08": "Thiệt hại khác"}
+
+
+def _pias_pid():
+    h, _ = pias_main()
+    pid = wintypes.DWORD()
+    if h: user32.GetWindowThreadProcessId(h, byref(pid))
+    return pid.value
+
+
+def _rect(h):
+    r = wintypes.RECT(); user32.GetWindowRect(h, byref(r))
+    return r.left, r.top, r.right - r.left, r.bottom - r.top
+
+
+def search_windows():
+    """The policy search screen is a window of its own, not a child of the main window, and at that level
+    its title can be read straight from Windows: no UIA, so a grid with 150k rows cannot stall us."""
+    pid = _pias_pid()
+    out = []
+
+    def cb(h, _):
+        p = wintypes.DWORD(); user32.GetWindowThreadProcessId(h, byref(p))
+        if p.value != pid or not user32.IsWindowVisible(h): return True
+        t2 = ctypes.create_unicode_buffer(200); user32.GetWindowTextW(h, t2, 200)
+        if t2.value.strip() == SEARCH_SCREEN: out.append(h)
+        return True
+    user32.EnumWindows(EnumProc(cb), 0)
+    return out
+
+
+def close_search_screen():
+    """Close it between jobs: a grid holding a big result makes PIAS slow to answer anything."""
+    closed = 0
+    for h in search_windows():
+        user32.PostMessageW(h, 0x0010, 0, 0)          # WM_CLOSE
+        closed += 1
+    for _ in range(20):
+        if not search_windows(): break
+        time.sleep(0.5)
+    return closed
+
+
+def open_search_screen():
+    """Menu Nghiệp vụ bảo hiểm > Tìm kiếm đơn Bảo hiểm, then wait for the window to show up."""
+    if search_windows(): return
+    for _ in range(3):
+        menu_click(["Nghiệp vụ bảo hiểm", SEARCH_SCREEN])
+        for _ in range(25):
+            time.sleep(1)
+            if search_windows():
+                time.sleep(1.5)
+                return
+    raise UserError("Could not open '%s' in PIAS." % SEARCH_SCREEN)
+
+
+def search_screen_open():
+    return bool(search_windows())
+
+
+def message_boxes():
+    """PIAS message boxes ("xuất dữ liệu thành công", "không có dữ liệu"...) as (hwnd, ok button hwnd)."""
+    out = []
+    h, _ = pias_main()
+    pid = wintypes.DWORD()
+    if h: user32.GetWindowThreadProcessId(h, byref(pid))
+
+    def cb(w, _):
+        p2 = wintypes.DWORD(); user32.GetWindowThreadProcessId(w, byref(p2))
+        if p2.value != pid.value or not user32.IsWindowVisible(w): return True
+        t2 = ctypes.create_unicode_buffer(200); user32.GetWindowTextW(w, t2, 200)
+        if t2.value.strip() != "Insurace Solution 2022": return True
+        ok = []
+
+        def cb2(c, _):
+            tx = ctypes.create_unicode_buffer(200); user32.GetWindowTextW(c, tx, 200)
+            if tx.value.replace("&", "").strip() in ("OK", "Ok", "Đồng ý"): ok.append(c)
+            return True
+        user32.EnumChildWindows(w, EnumProc(cb2), 0)
+        out.append((w, ok[0] if ok else 0))
+        return True
+    user32.EnumWindows(EnumProc(cb), 0)
+    return out
+
+
+def dismiss_boxes(rounds=6):
+    """Press OK on every message box PIAS has up; left alone they block the whole window."""
+    pressed = 0
+    for _ in range(rounds):
+        boxes = message_boxes()
+        if not boxes: break
+        for w, ok in boxes:
+            if ok:
+                lp = (11 << 16) | 37
+                user32.PostMessageW(ok, 0x0201, 1, lp)
+                user32.PostMessageW(ok, 0x0202, 0, lp)
+                user32.PostMessageW(ok, 0x00F5, 0, 0)
+            else:
+                user32.PostMessageW(w, 0x0010, 0, 0)
+            pressed += 1
+        time.sleep(1.0)
+    return pressed
+
+
+def policy_file(folder, line, year, m1, m2):
+    """01-01_03-2025.xlsx for a range, 02-2025.xlsx for a whole year, 05-07-2025.xlsx for one month."""
+    os.makedirs(folder, exist_ok=True)
+    if (m1, m2) == (1, 12): base = "%s-%d" % (line, year)
+    elif m1 == m2: base = "%s-%02d-%d" % (line, m1, year)
+    else: base = "%s-%02d_%02d-%d" % (line, m1, m2, year)
+    path = os.path.join(folder, base + ".xlsx")
+    today = dt.date.today()
+    if os.path.exists(path):
+        path = os.path.join(folder, "%s %d-%d.xlsx" % (base, today.day, today.month))
+    i = 2
+    while os.path.exists(path):
+        path = os.path.join(folder, "%s %d-%d (%d).xlsx" % (base, today.day, today.month, i))
+        i += 1
+    return path
+
+
+POLICY_STEPS = ["PIAS", "Screen", "Period", "Search", "Export", "File"]
+
+
+def _step(log, n, what=""):
+    log("[[P]] %d|%d|%s" % (n, len(POLICY_STEPS), what or POLICY_STEPS[n - 1]))
+
+
+def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
+    r"""The policies of one line over a range of months of one year, out of 'Tìm kiếm đơn Bảo hiểm',
+    saved as <folder>\<line>-<months>-<year>.xlsx."""
+    import pias_policy as P
+    line = str(line).strip()
+    _step(log, 1, "Opening PIAS")
+    log("Checking PIAS")
+    unminimize()
+    log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
+    if stop(): raise UserError("Stopped.")
+    unminimize()
+    pid = _pias_pid()
+
+    _step(log, 2, "Opening the search screen")
+    P.dismiss_boxes(pid)
+    P.close_screen(pid)                      # always start from an empty grid
+    open_search_screen()
+
+    last = calendar.monthrange(year, m2)[1]
+    dst = policy_file(folder, line, year, m1, m2)
+    _step(log, 3, "Setting the period")
+    log("Listing %s policies, T%d-T%d.%d" % (LINES.get(line, line), m1, m2, year))
+
+    def say(s):
+        s = str(s)
+        if s.startswith("period"): _step(log, 3, "Period set")
+        elif s.startswith("line"): _step(log, 3, "Line set")
+        elif s.startswith("searching"): _step(log, 4, "PIAS is searching")
+        elif s.startswith("search took"): _step(log, 4, s)
+        elif s.startswith("export clicked"): _step(log, 5, "Exporting")
+        elif s.startswith("saving to"): _step(log, 5, "Writing the file")
+        log("  " + s)
+
+    try:
+        P.run(pid, "01/%02d/%d" % (m1, year), "%02d/%02d/%d" % (last, m2, year), line, dst,
+              log=say, stop=stop)
+    except P.StepError as ex:
+        raise UserError(str(ex))
+
+    _step(log, 6, "Waiting for the file")
+    said = 0
+    for tick in range(900):
+        P.dismiss_boxes(pid, rounds=1)
+        if tick and tick % 15 == 0 and os.path.exists(dst):
+            mb = os.path.getsize(dst) / 1048576.0
+            if mb > said + 0.9:
+                said = mb
+                _step(log, 6, "Writing the file: %.1f MB so far" % mb)
+        if os.path.exists(dst) and os.path.getsize(dst) > 0:
+            size = -1
+            while size != os.path.getsize(dst):
+                size = os.path.getsize(dst)
+                time.sleep(2)
+            time.sleep(1.5)
+            if P.dismiss_boxes(pid): log("pressed OK on the box PIAS shows when it is done")
+            log("Saved %s (%.1f MB)" % (os.path.basename(dst), os.path.getsize(dst) / 1048576.0))
+            P.close_screen(pid)
+            return dst
+        if stop(): raise UserError("Stopped.")
+        time.sleep(2)
+    raise UserError("PIAS did not write %s." % os.path.basename(dst))
