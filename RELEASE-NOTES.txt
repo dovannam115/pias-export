@@ -1,3 +1,6 @@
+1.1.5
+- A banner scrolls across the top when a new version is available; click it to open the Update tab.
+
 1.1.4
 - One page for everything: 'Tìm kiếm đơn bảo hiểm' is now a group in the left column next to the
   report groups, instead of a separate page. Pick it to list policies, pick a report group to export reports.
