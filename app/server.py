@@ -282,20 +282,18 @@ def cleanup():
 
 
 def browse_folder(start):
-    """Windows folder picker in its own STA PowerShell; returns '' when cancelled."""
-    ps = ("Add-Type -AssemblyName System.Windows.Forms;"
-          "$w = New-Object System.Windows.Forms.Form;"
-          "$w.TopMost = $true; $w.ShowInTaskbar = $false; $w.Opacity = 0;"
-          "$w.StartPosition = 'CenterScreen'; $w.Size = New-Object System.Drawing.Size(1,1);"
-          "$w.Show(); $w.Activate(); [System.Windows.Forms.Application]::DoEvents();"
-          "$d = New-Object System.Windows.Forms.FolderBrowserDialog;"
-          "$d.SelectedPath = $env:PE_START; $d.ShowNewFolderButton = $true;"
-          "$res = $d.ShowDialog($w); $w.Close();"
-          "if ($res -eq 'OK') { [Console]::OutputEncoding = [Text.Encoding]::UTF8; $d.SelectedPath }")
-    e = dict(os.environ); e["PE_START"] = start or ""
-    r = subprocess.run(["powershell", "-NoProfile", "-STA", "-Command", ps], capture_output=True, env=e,
-                       creationflags=NO_WINDOW, timeout=600)
-    return r.stdout.decode("utf-8", "replace").strip()
+    """Explorer folder picker (engines/pick_folder.ps1, brought to the front); returns '' when cancelled."""
+    if BROWSE_LOCK.locked(): return ""            # a picker is already open, do not stack a second one
+    with BROWSE_LOCK:
+        script = os.path.join(APP, "engines", "pick_folder.ps1")
+        r = subprocess.run(["powershell", "-NoProfile", "-STA", "-ExecutionPolicy", "Bypass", "-File", script,
+                            "-Start", start or ""], capture_output=True, creationflags=NO_WINDOW, timeout=600)
+        out = r.stdout.decode("utf-8", "replace").strip().lstrip("﻿")
+        if r.returncode and not out:
+            raise RuntimeError(r.stderr.decode("utf-8", "replace").strip()[:300] or "folder picker failed")
+        return out.splitlines()[-1] if out else ""
+
+BROWSE_LOCK = threading.Lock()
 
 
 # ------------------------------------------------------------------ update from GitHub
