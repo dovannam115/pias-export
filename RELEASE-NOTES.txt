@@ -1,24 +1,24 @@
 1.1.14
-- Chữ Nam Doo chỉ còn ở tên app, trong tool bỏ hết (dưới logo và dòng phiên bản).
+- System update.
 
 1.1.13
-- Nút Chọn thư mục lưu mở hộp chọn kiểu File Explorer, luôn bật lên trước cửa sổ app.
+- The Choose button for the save folder opens a File Explorer style picker, always in front of the app window.
 
 1.1.12
-- Bỏ nút Lưu thừa ở thư mục lưu; nút Chọn vừa mở hộp chọn folder vừa lưu, gõ tay cũng tự lưu.
+- The extra Save button next to the save folder is gone: Choose picks and saves the folder, a typed path saves by itself.
 
 1.1.11
-- Mỗi dòng trong hàng chờ có nút × để xoá nếu chọn nhầm (trừ dòng đang chạy).
-- Nút Chọn thư mục lưu giờ bật hộp chọn folder lên trước cửa sổ, không còn ẩn sau lưng.
+- Each queue row has an × button to remove it if picked by mistake (except the one running).
+- The folder picker now opens in front of the app window instead of behind it.
 
 1.1.10
-- Icon bỏ viền trắng quanh ngoài (để trong suốt), nhìn gọn trên taskbar.
+- The icon has no white border any more (transparent edge), so it looks clean on the taskbar.
 
 1.1.9
-- Icon shortcut ngoài Desktop và Start menu tự đổi theo icon app sau khi cập nhật, không cần khởi động lại máy.
+- The Desktop and Start menu shortcuts take the new app icon after an update, no restart of the PC needed.
 
 1.1.8
-- Icon mới: chú mèo vẫy tay.
+- New icon: a waving cat.
 
 1.1.7
 - The update banner scrolls slower and easier to read, and it now shows on its own on open (the app re-checks fresh every time).
