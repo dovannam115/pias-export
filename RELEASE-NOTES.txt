@@ -1,3 +1,7 @@
+1.1.15
+- New Settings button at the bottom of the left bar. It opens a dialog over the page with General (language), Appearance (theme, font, text size), Updates.
+- Update is no longer an item in the tool list; the update banner opens Settings > Updates.
+
 1.1.14
 - System update.
 
