@@ -1,3 +1,6 @@
+1.1.14
+- Chữ Nam Doo chỉ còn ở tên app, trong tool bỏ hết (dưới logo và dòng phiên bản).
+
 1.1.13
 - Nút Chọn thư mục lưu mở hộp chọn kiểu File Explorer, luôn bật lên trước cửa sổ app.
 

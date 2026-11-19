@@ -215,7 +215,7 @@
   td.err{white-space:normal; color:var(--bad); max-width:340px}
 </style>
 <aside>
-  <div class="brand"><img id="logo" alt=""><div><b>Pias Export</b><span>Nam Doo</span></div></div>
+  <div class="brand"><img id="logo" alt=""><div><b>Pias Export</b></div></div>
   <nav id="nav"></nav>
   <div class="side-end">
     <div class="row">
@@ -223,7 +223,7 @@
     </div>
     <div class="seg" id="langSeg"><button data-l="en" onclick="setLang('en')">English</button><button data-l="vi" onclick="setLang('vi')">Tiếng Việt</button></div>
     <button class="btn sm gho" onclick="quit()">Quit</button>
-    <div class="ver keep" id="ver">Nam Doo</div>
+    <div class="ver keep" id="ver"></div>
   </div>
 </aside>
 
@@ -710,7 +710,7 @@ async function init(){
   setLang(LANG);
   ST = await api("/api/state");
   if(ST.error){ ST = null; return; }
-  VER = ST.version; $("ver").textContent = "Nam Doo · v" + VER; UPDINFO = ST.update;
+  VER = ST.version; $("ver").textContent = "v" + VER; UPDINFO = ST.update;
   await refresh();
   go("exp");
   setInterval(async () => { await refresh(); if(CUR === "exp") drawQueue(); }, 1500);
