@@ -1,3 +1,7 @@
+1.1.16
+- Faster "Checking PIAS" when PIAS has to start: no fixed 15 s wait after login, and a login press PIAS ignores is retried after 10 s instead of 60 s.
+- The log now shows how long PIAS took to start and log in.
+
 1.1.15
 - New Settings button at the bottom of the left bar. It opens a dialog over the page with General (language), Appearance (theme, font, text size), Updates.
 - Update is no longer an item in the tool list; the update banner opens Settings > Updates.

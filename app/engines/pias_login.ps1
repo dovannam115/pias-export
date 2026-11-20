@@ -52,7 +52,7 @@ function DismissUpdate([int]$sec = 0) {
 }
 function WaitFor([scriptblock]$cond, [int]$sec) {
   $t0 = Get-Date
-  while (((Get-Date) - $t0).TotalSeconds -lt $sec) { if (& $cond) { return $true }; Start-Sleep -Milliseconds 1000 }
+  while (((Get-Date) - $t0).TotalSeconds -lt $sec) { if (& $cond) { return $true }; Start-Sleep -Milliseconds 400 }
   return $false
 }
 # the year this tool logged PIAS in with (the toolbar year box is painted, so it cannot be read back)
@@ -68,7 +68,10 @@ if ((Title) -like 'Insurances Solution*') {
   Stop-Process -Name Pias2022 -Force
   Start-Sleep -Seconds 4
 }
+$T0 = Get-Date
+function Took { "{0:0} s" -f ((Get-Date) - $T0).TotalSeconds }
 if (-not (Get-Process Pias2022 -ErrorAction SilentlyContinue)) {
+  "starting PIAS"
   Start-Process $EXE -WorkingDirectory (Split-Path $EXE)
 }
 # the "a new version is on the server" box (its title is the install folder) can come up first and block
@@ -82,6 +85,7 @@ while (((Get-Date) - $t0).TotalSeconds -lt $Wait -and -not $ready) {
   Start-Sleep -Milliseconds 800
 }
 if (-not $ready) { throw "PIAS login window did not appear (it shows: " + (Title) + ")" }
+"login window up after $(Took)"
 if ((Title) -like 'Insurances Solution*') { "PIAS ready"; exit 0 }
 $p = Get-Process Pias2022 | Select-Object -First 1
 $win = $AE::FromHandle($p.MainWindowHandle)
@@ -108,12 +112,18 @@ $ok = $els | Where-Object { $_.Current.Name -eq 'Chấp nhận' } | Select-Objec
 $lp = [IntPtr]((12 -shl 16) -bor 43)
 Start-Sleep -Milliseconds 800
 $in = $false
-for ($try = 1; $try -le 3 -and -not $in; $try++) {     # the first press after typing the year is sometimes ignored
+# the first press after typing the year is sometimes ignored. A taken press closes the login window within a few
+# seconds; only then wait the long time for the main window (waiting a third of $Wait per press cost a minute).
+for ($try = 1; $try -le 3 -and -not $in; $try++) {
   foreach ($m in 0x0200, 0x0201, 0x0202) { [UL]::PostMessage([IntPtr]$ok.Current.NativeWindowHandle, $m, [IntPtr][int]($m -eq 0x0201), $lp) | Out-Null }
-  $in = WaitFor { (Title) -like 'Insurances Solution*' } ([int]($Wait / 3))
+  $taken = WaitFor { (Title) -ne 'Đăng nhập' } 10
+  if (-not $taken) { "login press $try not taken, pressing again"; continue }
+  $in = WaitFor { DismissUpdateTop | Out-Null; (Title) -like 'Insurances Solution*' } $Wait
 }
 if (-not $in) { throw "PIAS did not log in" }
-DismissUpdate 15
+"logged in after $(Took)"
+# a late 'new version' box is also answered by the app before its next step (answer_boxes)
+DismissUpdate 4
 if ($Year) {
   try {
     New-Item -ItemType Directory -Force (Split-Path $YearFile) | Out-Null

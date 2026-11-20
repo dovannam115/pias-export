@@ -144,7 +144,9 @@ def login(year, log=print):
     if logged_in(year):
         log("PIAS already on %s" % year)
         return
-    log(ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300).splitlines()[-1])
+    t0 = time.time()
+    ps("pias_login.ps1", "-Exe", pias_exe(), "-Year", year, timeout=300, log=lambda x: log("  " + x))
+    log("PIAS ready in %d s" % (time.time() - t0))
 
 
 def unminimize():
@@ -529,6 +531,8 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
     for attempt in range(1, tries + 1):
         if stop(): raise UserError("Stopped.")
         unminimize()
+        import pias_policy as P
+        P.answer_boxes(_pias_pid(), rounds=2)   # the late "new version" box after a fresh login
         close_report_dialogs()
         log("[[P]] 2|%d|Opening the report list" % len(REPORT_STEPS))
         if not report_list_open(entry):          # reopening the screen costs ten seconds a report
@@ -724,6 +728,7 @@ def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
     pid = _pias_pid()
 
     _step(log, 2, "Opening the search screen")
+    P.answer_boxes(pid)                      # also the late "new version" box after a fresh login
     P.dismiss_boxes(pid)
     P.close_screen(pid)                      # always start from an empty grid
     open_search_screen()
