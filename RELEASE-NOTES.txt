@@ -1,3 +1,6 @@
+1.1.21
+- After Download and install, the tool restarts by itself (unless a report is running), so the page and the server are always the same version.
+
 1.1.20
 - Report list redesigned: each report is a card you click to add to or take out of the queue (no tick boxes), in a grid. The words most names share are shown once above the list, so each card shows what differs (Cháy - tài sản, Kỹ thuật ...). The full name is on hover.
 - Rounded search box; Select all / Clear selection. With a search typed, Select all takes only the reports shown.

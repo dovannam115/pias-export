@@ -1008,7 +1008,9 @@ function viewUpd(){
 async function checkUpd(force){ if(force){ UPDINFO = null; if(CUR === "upd") draw(); rerenderSettings(); } UPDINFO = await api("/api/update/check"); drawNav(); if(CUR === "upd") draw(); rerenderSettings(); }
 async function runUpd(b){
   const r = await api("/api/update", b); if(r.error){ toast(r.error); return; }
-  const t = setInterval(async () => { const j = (await api("/api/update/job")).job; UJ = j; if(CUR === "upd") draw(); rerenderSettings(); if(!j || j.state !== "running") clearInterval(t); }, 800);
+  const t = setInterval(async () => { const j = (await api("/api/update/job")).job; UJ = j; if(CUR === "upd") draw(); rerenderSettings(); if(!j || j.state !== "running") clearInterval(t);
+    // the page is already the new one, the server is not until it restarts: restart at once unless a report is running
+    if(j && j.state === "done" && !QV.running) setTimeout(restart, 1200); }, 800);
 }
 SETPANES.updates = () => {
   const done = UJ && UJ.state === "done", busy = UJ && UJ.state === "running";
