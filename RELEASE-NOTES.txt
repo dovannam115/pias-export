@@ -1,3 +1,10 @@
+1.1.18
+- All report groups now take From and To dates (dd/mm/yyyy) instead of a month, inside one year. A file that is not a whole month is named <dd.mm>-<dd.mm>.<year> - <report>.xlsx.
+- The To date cannot be before the From date: the app says so under the dates and does not queue anything.
+- New calendar next to each date: the chosen range is shaded, today is ringed, with Last month / This month / Today shortcuts.
+- When the queue finishes, the app closes PIAS if it was the one that opened it. A PIAS you opened yourself is left open.
+- The queue shows the dates of each job.
+
 1.1.17
 - Policy lists: From and To are now dates typed as dd/mm/yyyy (or picked from the calendar), so part of a month can be exported, e.g. 01/11/2026 to 15/11/2026.
 - A file that does not cover whole months is named <line>-<dd.mm>_<dd.mm>-<year>.xlsx, e.g. 01-01.11_15.11-2026.xlsx.

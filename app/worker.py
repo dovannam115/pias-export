@@ -25,7 +25,8 @@ def main(run_dir):
         else:
             dst = E.export(int(a["year"]), int(a["month"]), int(a["num"]), a["folder"], bool(a.get("revenue_only")),
                            log=lambda s: print(s, flush=True),
-                           stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")), entry=a.get("entry"))
+                           stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")), entry=a.get("entry"),
+                           d_from=a.get("d_from"), d_to=a.get("d_to"))
         res = {"ok": True, "file": dst}
         try:
             tot = E.revenue_total(dst)

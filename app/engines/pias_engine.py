@@ -502,9 +502,15 @@ def safe_name(s, limit=70):
     return s[:limit].strip(" .")
 
 
-def target(folder, year, month, num, entry=None):
+def target(folder, year, month, num, entry=None, want=None):
+    """T11.2026 - <report>.xlsx for a whole month, 01.11-15.11.2026 - <report>.xlsx for other dates."""
     folder = os.path.normpath(folder)    # the Save As box rejects '/'; a normalised path is all backslashes
-    base = "T%d.%d - %s" % (month, year, safe_name(report_name(entry or HQKD, num)))
+    a, b = want or (dt.date(year, month, 1), dt.date(year, month, calendar.monthrange(year, month)[1]))
+    if a.day == 1 and b.day == calendar.monthrange(b.year, b.month)[1]:
+        span = "T%d.%d" % (a.month, a.year) if a.month == b.month else "T%d-T%d.%d" % (a.month, b.month, a.year)
+    else:
+        span = "%02d.%02d-%02d.%02d.%d" % (a.day, a.month, b.day, b.month, b.year)
+    base = "%s - %s" % (span, safe_name(report_name(entry or HQKD, num)))
     today = dt.date.today()
     path = os.path.join(folder, base + ".xlsx")
     if os.path.exists(path):
@@ -516,8 +522,10 @@ def target(folder, year, month, num, entry=None):
     return path
 
 
-def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3, entry=None):
-    """Run report <num> of <entry> for one calendar month and save the file under its standard name."""
+def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3, entry=None,
+           d_from=None, d_to=None):
+    """Run report <num> of <entry> over d_from..d_to (ISO dates; a whole calendar month when not given)
+    and save the file under its standard name."""
     entry = entry or HQKD
     if entry == HQKD and num not in REPORTS: raise UserError("Unknown report %s." % num)
     log("[[P]] 1|%d|Opening PIAS" % len(REPORT_STEPS))
@@ -525,7 +533,10 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
     login(year, log=log)
     last = calendar.monthrange(year, month)[1]
     want = (dt.date(year, month, 1), dt.date(year, month, last))
-    base_args = ["-Report", num, "-From", "01/%02d/%d" % (month, year), "-To", "%02d/%02d/%d" % (last, month, year)]
+    if d_from and d_to:
+        want = (dt.date.fromisoformat(str(d_from)[:10]), dt.date.fromisoformat(str(d_to)[:10]))
+    sf, st = want[0].strftime("%d/%m/%Y"), want[1].strftime("%d/%m/%Y")
+    base_args = ["-Report", num, "-From", sf, "-To", st]
     if revenue_only and entry == HQKD: base_args.append("-RevenueOnly")
     start = end = None
     for attempt in range(1, tries + 1):
@@ -550,7 +561,7 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
         for m, w in ((0x0200, 0), (0x0201, 1), (0x0202, 0)):
             user32.PostMessageW(hwnd, m, w, lp)          # open the report from the list
         try:
-            R.run(pid, num, "01/%02d/%d" % (month, year), "%02d/%02d/%d" % (last, month, year),
+            R.run(pid, num, sf, st,
                   revenue_only=bool(revenue_only), log=lambda s: log("  " + str(s)))
         except P.StepError as ex:
             raise UserError(str(ex))
@@ -570,13 +581,13 @@ def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda:
                                 "differently in this PIAS year." % title.title())
             break
         close_in_excel(src)
-        log("PIAS ran %s-%s instead of the chosen month, running again"
+        log("PIAS ran %s-%s instead of the chosen dates, running again"
             % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
     else:
         raise UserError("PIAS kept running the wrong period %s-%s, file not saved."
                         % (start.strftime("%d/%m/%Y"), end.strftime("%d/%m/%Y")))
     os.makedirs(folder, exist_ok=True)
-    dst = target(folder, year, month, num, entry)
+    dst = target(folder, year, month, num, entry, want)
     log("[[P]] 6|%d|Saving" % len(REPORT_STEPS))
     shutil.copy2(src, dst)
     close_in_excel(src)

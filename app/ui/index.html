@@ -237,6 +237,32 @@
   .updbar span{display:inline-block; padding:8px 0 8px 100%; font-weight:650; font-size:13px; letter-spacing:.2px; animation:marq 30s linear infinite}
   .updbar:hover span{animation-play-state:paused}
   @keyframes marq{from{transform:translateX(0)} to{transform:translateX(-100%)}}
+
+  .rerr{margin-top:8px; font-size:12px; color:var(--bad, #e5534b)}
+  .calbtn{padding:0 9px; display:inline-flex; align-items:center}
+  #calpop{position:fixed; z-index:60; width:276px; padding:12px 12px 10px; border-radius:18px; background:var(--card);
+          border:1px solid var(--line); box-shadow:0 18px 40px rgba(0,0,0,.28); animation:calin .14s ease-out}
+  @keyframes calin{from{opacity:0; transform:translateY(-4px) scale(.98)} to{opacity:1; transform:none}}
+  #calpop .chd{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+  #calpop .chd b{font-size:14px; font-weight:650}
+  #calpop .cnav{width:30px; height:30px; border-radius:50%; border:0; background:var(--hover); color:var(--fg);
+                font-size:18px; line-height:1; cursor:pointer}
+  #calpop .cnav:hover{background:var(--ember); color:#fff}
+  #calpop .cgrid{display:grid; grid-template-columns:repeat(7, 1fr); gap:2px 0}
+  #calpop .cw{font-size:10.5px; color:var(--dim); text-align:center; padding:2px 0 6px; font-weight:600}
+  #calpop .cw.we{color:var(--ember-lit)}
+  #calpop .cd{height:34px; border:0; background:none; color:var(--fg); font:inherit; font-size:13px; cursor:pointer;
+              border-radius:50%; position:relative; font-variant-numeric:tabular-nums}
+  #calpop .cd.we{color:var(--ember-lit)}
+  #calpop .cd:hover{background:var(--hover)}
+  #calpop .cd.in{background:color-mix(in srgb, var(--ember) 16%, transparent); border-radius:0}
+  #calpop .cd.in.a{border-radius:17px 0 0 17px} #calpop .cd.in.b{border-radius:0 17px 17px 0} #calpop .cd.in.a.b{border-radius:50%}
+  #calpop .cd.now{box-shadow:inset 0 0 0 1.5px var(--ember)}
+  #calpop .cd.on{background:var(--ember); color:#fff; border-radius:50%; font-weight:650}
+  #calpop .cft{display:flex; gap:6px; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
+  #calpop .cft button{flex:1; border:0; border-radius:999px; padding:6px 0; background:var(--hover); color:var(--fg);
+                      font:inherit; font-size:11.5px; cursor:pointer}
+  #calpop .cft button:hover{background:var(--ember); color:#fff}
 </style>
 </head>
 <body>
@@ -281,7 +307,7 @@ const TITLES = {exp:"Export reports", pol:"Policy lists", upd:"Update"};
 let CUR = "", VER = "", UPDINFO = null, ST = null, QV = {items:[], lines:[], total:0, running:false};
 let dead = 0;
 const now = new Date(), prevM = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-const F = {year: prevM.getFullYear(), month: prevM.getMonth() + 1, revenue_only: true};
+const F = {year: prevM.getFullYear(), month: prevM.getMonth() + 1, revenue_only: true, d1:"", d2:""};
 
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function toast(msg){ const d = document.createElement("div"); d.className = "toast"; d.textContent = tr(msg);
@@ -312,7 +338,9 @@ const VI = {
   "{year} and {MM} in the path are replaced by the year and month of each report.": "{year} và {MM} trong đường dẫn được thay bằng năm và tháng của từng báo cáo.",
   "Revenue only": "Chỉ Doanh thu",
   "Reports": "Báo cáo", "Report groups": "Nhóm báo cáo", "Search a report": "Tìm báo cáo",
-  "Policy lists": "Danh sách đơn", "Lines": "Nghiệp vụ", "From": "Từ ngày", "To": "Đến ngày", "Calendar": "Lịch",
+  "Policy lists": "Danh sách đơn", "Lines": "Nghiệp vụ", "From": "Từ ngày", "To": "Đến ngày", "Calendar": "Lịch", "Last month": "Tháng trước", "This month": "Tháng này", "Today": "Hôm nay",
+  "Type both dates.": "Nhập đủ hai ngày.", "The To date must not be before the From date.": "Đến ngày không được trước Từ ngày.",
+  "From and To must be in the same year.": "Từ ngày và Đến ngày phải cùng một năm.",
   "One file per": "Mỗi file một", "Month": "Tháng", "Quarter": "Quý", "Year": "Năm",
   "Add to the queue": "Thêm vào hàng chờ",
   "PIAS is asked for one month at a time, the file lands straight in the folder above.":
@@ -518,8 +546,8 @@ function folderNow(){
   const tpl = (ST && ST.settings.folder) || "";
   return tpl.replaceAll("{year}", F.year).replaceAll("{MM}", String(F.month).padStart(2, "0")).replaceAll("{M}", F.month);
 }
-function inQueue(n, entry){ return QV.items.some(i => i.status === "waiting" && i.year === F.year &&
-  i.month === F.month && i.num === n && (!entry || i.entry === entry)); }
+function inQueue(n, entry){ return QV.items.some(i => i.status === "waiting" && i.d_from === F.d1 &&
+  i.d_to === F.d2 && i.num === n && (!entry || i.entry === entry)); }
 const P = {entry: "", q: ""};
 function catEntries(){ return ((ST && ST.catalog && ST.catalog.entries) || []).filter(e => e.access && e.reports.length); }
 function entryReports(entry){
@@ -586,7 +614,7 @@ function viewExp(){
     const yr = (v, on) => '<input class="inp" type="number" min="2015" max="2035" value="' + v + '" onchange="' + on + '=+this.value;draw()" style="width:92px">';
     const left = groups +
       '<div class="card"><div class="no">From</div>' + dayIn(PL.d1, "PL.d1") +
-      '<div class="no" style="margin-top:12px">To</div>' + dayIn(PL.d2, "PL.d2") +
+      '<div class="no" style="margin-top:12px">To</div>' + dayIn(PL.d2, "PL.d2") + rangeNote("PL") +
       '<div class="no" style="margin-top:12px">One file per</div>' +
       '<select onchange="PL.chunk=this.value;draw()">' +
         [["month","Month"],["quarter","Quarter"],["year","Year"]].map(([v,l]) =>
@@ -616,10 +644,8 @@ function viewExp(){
   const shown = shownReports(cur);
   const isHQKD = cur.entry === ST.ready_entry;
   const left = groups +
-    '<div class="card"><div class="no">Period</div><div class="row2">' +
-    '<select onchange="F.month=+this.value;draw()">' +
-      [...Array(12).keys()].map(i => '<option value="' + (i + 1) + '" ' + (F.month === i + 1 ? "selected" : "") + '>T' + (i + 1) + '</option>').join("") + '</select>' +
-    '<input class="inp" type="number" min="2020" max="2035" value="' + F.year + '" onchange="F.year=+this.value;draw()" style="width:92px"></div>' +
+    '<div class="card"><div class="no">From</div>' + dayIn(F.d1, "F.d1") +
+    '<div class="no" style="margin-top:12px">To</div>' + dayIn(F.d2, "F.d2") + rangeNote("F") +
     '<div class="no" style="margin-top:12px">Save folder</div><div class="row2">' +
     '<input class="inp keep" id="fold" value="' + esc(ST.settings.folder) + '" onchange="saveFolder()">' +
     '<button class="btn sm" onclick="browse()">Chọn</button></div>' +
@@ -639,22 +665,86 @@ function viewExp(){
 
 const PL = {d1:"", d2:"", lines:{}, folder:"", chunk:"quarter"};
 function isoDay(d){ return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
-const CAL = '<svg viewBox="0 0 16 16" width="15" height="15"><rect x="2" y="3" width="12" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.4"/></svg>';
+const CAL = '<svg viewBox="0 0 16 16" width="15" height="15"><rect x="2" y="3" width="12" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+const DAYOBJ = () => ({F, PL});
+if(!F.d1){ F.d1 = isoDay(prevM); F.d2 = isoDay(new Date(prevM.getFullYear(), prevM.getMonth() + 1, 0)); }
 function vnDay(v){ const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(v || ""); return m ? m[3] + "/" + m[2] + "/" + m[1] : ""; }
-function dayIn(v, on){   // typed as dd/mm/yyyy whatever the Windows locale; the button opens the calendar
-  const k = on.split(".")[1];
-  return '<div class="row2" style="position:relative"><input class="inp keep" placeholder="dd/mm/yyyy" value="' + vnDay(v) +
-    '" onchange="setDay(\'' + k + '\',this)" onkeydown="if(event.key===\'Enter\')this.blur()">' +
-    '<input type="date" tabindex="-1" value="' + esc(v) + '" onchange="PL.' + k + '=this.value;draw()" ' +
-    'style="position:absolute;right:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none">' +
-    '<button class="btn sm" title="Calendar" onclick="try{this.previousElementSibling.showPicker()}catch(e){}">' + CAL + '</button></div>';
+function dayIn(v, on){   // typed as dd/mm/yyyy whatever the Windows locale; the button opens our calendar
+  const [o, k] = on.split(".");
+  return '<div class="row2"><input class="inp keep" placeholder="dd/mm/yyyy" value="' + vnDay(v) +
+    '" onchange="setDay(\'' + o + '\',\'' + k + '\',this)" onkeydown="if(event.key===\'Enter\')this.blur()">' +
+    '<button class="btn sm calbtn" title="Calendar" onclick="calOpen(event,\'' + o + '\',\'' + k + '\')">' + CAL + '</button></div>';
 }
-function setDay(k, el){
+function setDay(o, k, el){
   const m = /^\s*(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})\s*$/.exec(el.value);
   const d = m && new Date(+m[3], +m[2] - 1, +m[1]);
   if(!m || d.getMonth() !== +m[2] - 1 || d.getDate() !== +m[1]){ toast("Type the date as dd/mm/yyyy, e.g. 15/11/2026."); el.focus(); return; }
-  PL[k] = isoDay(d); draw();
+  putDay(o, k, isoDay(d));
 }
+function putDay(o, k, v){
+  const t = DAYOBJ()[o]; t[k] = v;
+  if(o === "F" && k === "d1"){ const p = v.split("-").map(Number); t.year = p[0]; t.month = p[1]; }
+  draw();
+}
+function rangeErr(o){
+  const t = DAYOBJ()[o], ok = v => /^\d{4}-\d\d-\d\d$/.test(v || "");
+  if(!ok(t.d1) || !ok(t.d2)) return "Type both dates.";
+  if(t.d2 < t.d1) return "The To date must not be before the From date.";
+  if(o === "F" && t.d1.slice(0, 4) !== t.d2.slice(0, 4)) return "From and To must be in the same year.";
+  return "";
+}
+function rangeNote(o){ const e = rangeErr(o); return e ? '<div class="rerr">' + esc(e) + '</div>' : ""; }
+
+// our calendar: Monday first, the chosen range shaded, today ringed
+let CALS = null;   // {o, k, y, m}
+const MON_VI = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"];
+const MON_EN = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+function calOpen(ev, o, k){
+  ev.stopPropagation();
+  if(CALS && CALS.o === o && CALS.k === k){ calClose(); return; }
+  const v = DAYOBJ()[o][k] || isoDay(new Date()), p = v.split("-").map(Number);
+  CALS = {o, k, y:p[0], m:p[1] - 1};
+  let box = $("calpop");
+  if(!box){ box = document.createElement("div"); box.id = "calpop"; box.onclick = e => e.stopPropagation(); document.body.appendChild(box); }
+  const r = ev.currentTarget.closest(".row2").getBoundingClientRect();
+  box.style.left = Math.max(8, Math.min(r.left, innerWidth - 300)) + "px";
+  box.style.top = (r.bottom + 360 > innerHeight ? Math.max(8, r.top - 352) : r.bottom + 6) + "px";
+  calDraw();
+}
+function calClose(){ CALS = null; const b = $("calpop"); if(b) b.remove(); }
+function calMove(d){ CALS.m += d; if(CALS.m < 0){ CALS.m = 11; CALS.y--; } if(CALS.m > 11){ CALS.m = 0; CALS.y++; } calDraw(); }
+function calPick(v){ const c = CALS; calClose(); putDay(c.o, c.k, v); }
+function calQuick(which){
+  const c = CALS, t = DAYOBJ()[c.o], n = new Date();
+  const a = which === "this" ? new Date(n.getFullYear(), n.getMonth(), 1) : new Date(n.getFullYear(), n.getMonth() - 1, 1);
+  const b = which === "this" ? n : new Date(n.getFullYear(), n.getMonth(), 0);
+  calClose(); t.d2 = isoDay(b); putDay(c.o, "d1", isoDay(a));
+}
+function calDraw(){
+  const box = $("calpop"); if(!box || !CALS) return;
+  const t = DAYOBJ()[CALS.o], sel = t[CALS.k], today = isoDay(new Date());
+  const first = new Date(CALS.y, CALS.m, 1), lead = (first.getDay() + 6) % 7, days = new Date(CALS.y, CALS.m + 1, 0).getDate();
+  const vi = LANG === "vi", wd = vi ? ["T2","T3","T4","T5","T6","T7","CN"] : ["Mo","Tu","We","Th","Fr","Sa","Su"];
+  let g = wd.map((w, i) => '<span class="cw' + (i > 4 ? " we" : "") + '">' + w + '</span>').join("");
+  for(let i = 0; i < lead; i++) g += '<span></span>';
+  for(let d = 1; d <= days; d++){
+    const v = isoDay(new Date(CALS.y, CALS.m, d)), dow = (lead + d - 1) % 7;
+    let c = "cd";
+    if(t.d1 && t.d2 && t.d1 <= t.d2 && v >= t.d1 && v <= t.d2) c += " in";
+    if(v === t.d1) c += " a"; if(v === t.d2) c += " b";
+    if(v === sel) c += " on";
+    if(v === today) c += " now";
+    if(dow > 4) c += " we";
+    g += '<button class="' + c + '" onclick="calPick(\'' + v + '\')">' + d + '</button>';
+  }
+  box.innerHTML = '<div class="chd"><button class="cnav" onclick="calMove(-1)">&#8249;</button><b class="keep">' +
+    (vi ? MON_VI : MON_EN)[CALS.m] + ' ' + CALS.y + '</b><button class="cnav" onclick="calMove(1)">&#8250;</button></div>' +
+    '<div class="cgrid keep">' + g + '</div>' +
+    '<div class="cft"><button onclick="calQuick(\'last\')">Last month</button><button onclick="calQuick(\'this\')">This month</button>' +
+    '<button onclick="calPick(\'' + today + '\')">Today</button></div>';
+}
+document.addEventListener("click", () => { if(CALS) calClose(); });
+document.addEventListener("keydown", e => { if(e.key === "Escape" && CALS) calClose(); });
 function polRange(){
   const ok = v => /^\d{4}-\d\d-\d\d$/.test(v || "");
   if(!ok(PL.d1) || !ok(PL.d2) || PL.d2 < PL.d1) return null;
@@ -680,7 +770,7 @@ function polTotal(){
   return polLines().reduce((s, k) => s + (vol[k] || 0) * r.days / 30.44, 0);
 }
 function polWarn(){
-  const vol = (ST && ST.volume) || {}, per = chunkMonths();
+  const r = polRange(), vol = (ST && ST.volume) || {}, per = Math.min(chunkMonths(), r ? r.days / 30.44 : 99);
   const heavy = polLines().filter(k => (vol[k] || 0) * per > 150000);
   if(!heavy.length) return "";
   const worst = heavy.map(k => esc(k) + " ~" + nice((vol[k] || 0) * per)).join(", ");
@@ -700,7 +790,7 @@ function viewPol(){
   const yr = (v, on) => '<input class="inp" type="number" min="2015" max="2035" value="' + v + '" onchange="' + on + '=+this.value;draw()" style="width:92px">';
 
   const left = '<div class="card"><div class="no">From</div>' + dayIn(PL.d1, "PL.d1") +
-    '<div class="no" style="margin-top:12px">To</div>' + dayIn(PL.d2, "PL.d2") +
+    '<div class="no" style="margin-top:12px">To</div>' + dayIn(PL.d2, "PL.d2") + rangeNote("PL") +
     '<div class="no" style="margin-top:12px">One file per</div>' +
     '<select onchange="PL.chunk=this.value;draw()">' +
       [["month","Month"],["quarter","Quarter"],["year","Year"]].map(([v,l]) =>
@@ -769,7 +859,7 @@ function drawQueue(){
   if($("qtab")){
     if(!it.length) $("qtab").innerHTML = '<div class="empty">Nothing in the queue yet.</div>';
     else $("qtab").innerHTML = '<div class="tw" style="margin-top:10px"><table><thead><tr><th>Period</th><th>Report</th><th>Status</th><th>Time</th><th>Revenue (VND)</th><th>File</th><th></th></tr></thead><tbody>' +
-      it.map(i => '<tr><td>T' + i.month + '.' + i.year + '</td><td title="' + esc(i.entry || "") + '">' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span>' +
+      it.map(i => '<tr><td>' + esc(i.period || ("T" + i.month + "." + i.year)) + '</td><td title="' + esc(i.entry || "") + '">' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span>' +
         (i.progress ? '<div class="muted keep" style="font-size:11px">' + esc(i.progress.label) + '</div>' : "") + '</td>' +
         '<td class="t">' + esc(secs(i.seconds)) + '</td><td class="n">' + money(i.revenue) + '</td>' +
         (i.status === "error" || i.status === "stopped" ? '<td class="err" title="' + esc(i.error) + '">' + esc(i.error) + '</td><td class="t"><button class="btn sm" onclick="retry(' + i.id + ')">Retry</button>' + rmBtn(i) + '</td>'
@@ -793,16 +883,18 @@ function head(){
   $("hstatus").innerHTML = h;
 }
 async function tick(n, on, entry){
+  if(on && rangeErr("F")){ toast(rangeErr("F")); draw(); return; }
   const r = await api(on ? "/api/queue/add" : "/api/queue/remove",
-                      {year:F.year, month:F.month, nums:[n], revenue_only:F.revenue_only, entry});
+                      {date_from:F.d1, date_to:F.d2, nums:[n], revenue_only:F.revenue_only, entry});
   if(r.error) toast(r.error); await refresh(); draw();
 }
 async function tickAll(entry){
-  await api("/api/queue/add", {year:F.year, month:F.month, nums:entryReports(entry), revenue_only:F.revenue_only, entry});
-  await refresh(); draw();
+  if(rangeErr("F")){ toast(rangeErr("F")); return; }
+  const r = await api("/api/queue/add", {date_from:F.d1, date_to:F.d2, nums:entryReports(entry), revenue_only:F.revenue_only, entry});
+  if(r.error) toast(r.error); await refresh(); draw();
 }
 async function untickAll(entry){
-  await api("/api/queue/remove", {year:F.year, month:F.month, nums:entryReports(entry), entry});
+  await api("/api/queue/remove", {date_from:F.d1, date_to:F.d2, nums:entryReports(entry), entry});
   await refresh(); draw();
 }
 async function startQ(){ await api("/api/queue/start", {}); await refresh(); drawQueue(); drawNav(); }

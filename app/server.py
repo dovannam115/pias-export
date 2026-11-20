@@ -102,6 +102,45 @@ def chunk_dates(d1, d2, how="quarter"):
     return out
 
 
+def period_text(y, m1, m2, d1, d2):
+    """T11.2026 for one whole month, T1-T3.2026 for whole months, 01/11-15/11/2026 otherwise."""
+    if d1 == 1 and d2 == calendar.monthrange(y, m2)[1]:
+        return "T%d.%d" % (m1, y) if m1 == m2 else "T%d-T%d.%d" % (m1, m2, y)
+    return "%02d/%02d-%02d/%02d/%d" % (d1, m1, d2, m2, y)
+
+
+def report_dates(d):
+    """From/To of a report request: typed dates, or the old year + month (a whole month).
+    One report runs over one range inside one PIAS year."""
+    if d.get("date_from"):
+        d1 = datetime.date.fromisoformat(str(d["date_from"])[:10])
+        d2 = datetime.date.fromisoformat(str(d["date_to"])[:10])
+    else:
+        y, m = int(d["year"]), int(d["month"])
+        d1, d2 = datetime.date(y, m, 1), datetime.date(y, m, calendar.monthrange(y, m)[1])
+    if d2 < d1: raise ValueError("The To date is before the From date.")
+    if d1.year != d2.year: raise ValueError("From and To must be in the same year (PIAS logs in one year at a time).")
+    return d1, d2
+
+
+def close_pias(say=lambda s: None):
+    """Close the PIAS the queue opened: ask its window to close, then end it if it is still there
+    (a 'do you want to exit' box would otherwise keep it up). PIAS only reads here, nothing to save."""
+    try:
+        h, _ = E.pias_main()
+        pid = E._pias_pid()
+        if not pid: return
+        if h: E.user32.PostMessageW(h, 0x0010, 0, 0)          # WM_CLOSE
+        for _ in range(16):
+            time.sleep(0.5)
+            if not E._pias_pid(): break
+        # a closed window can leave the process behind; ending it by id is harmless once it is gone
+        subprocess.run(["taskkill", "/PID", str(pid), "/F"], capture_output=True, creationflags=0x08000000)
+        say("PIAS closed")
+    except Exception as ex:
+        say("Could not close PIAS: %s" % ex)
+
+
 def session_year():
     """The year PIAS is logged in with, as the login script last wrote it."""
     try:
@@ -124,19 +163,23 @@ class Queue:
             self.lines.append(time.strftime("%H:%M:%S  ") + text)
             del self.lines[:-500]
 
-    def add(self, year, month, nums, folder_tpl, revenue_only, entry=None):
+    def add(self, d1, d2, nums, folder_tpl, revenue_only, entry=None):
         entry = entry or E.HQKD
+        year, month = d1.year, d1.month
+        f, t = d1.isoformat(), d2.isoformat()
         allowed = {r["num"] for r in E.catalog().get(entry, [])} or set(E.REPORTS)
         added = 0
         with self.lock:
             for n in nums:
                 n = int(n)
                 if n not in allowed: continue
-                if any(i["status"] == "waiting" and (i["entry"], i["year"], i["month"], i["num"])
-                       == (entry, year, month, n) for i in self.items):
+                if any(i["status"] == "waiting" and (i["entry"], i.get("d_from"), i.get("d_to"), i["num"])
+                       == (entry, f, t, n) for i in self.items):
                     continue
                 self.seq += 1
                 self.items.append({"id": self.seq, "entry": entry, "year": year, "month": month, "num": n,
+                                   "d_from": f, "d_to": t,
+                                   "period": period_text(year, d1.month, d2.month, d1.day, d2.day),
                                    "name": E.report_name(entry, n),
                                    "folder": C.folder_for(folder_tpl, year, month), "revenue_only": bool(revenue_only),
                                    "status": "waiting", "seconds": None, "file": "", "error": "", "revenue": None, "progress": None})
@@ -160,6 +203,7 @@ class Queue:
                     if not full: span = "%02d/%02d-%02d/%02d" % (d1, m1, d2, m2)
                     else: span = "T%d" % m1 if m1 == m2 else ("cả năm" if (m1, m2) == (1, 12) else "T%d-T%d" % (m1, m2))
                     self.items.append({"id": self.seq, "kind": "policy", "entry": "Tìm kiếm đơn Bảo hiểm",
+                                       "period": period_text(y, m1, m2, d1, d2),
                                        "year": y, "month": m1, "m1": m1, "m2": m2, "d1": d1, "d2": d2, "num": 0, "line": ln,
                                        "name": "%s %s - %s" % (ln, span, E.LINES[ln]), "folder": folder,
                                        "revenue_only": False, "status": "waiting", "seconds": None,
@@ -167,11 +211,12 @@ class Queue:
                     added += 1
         return added
 
-    def remove(self, year, month, nums, entry=None):
+    def remove(self, d1, d2, nums, entry=None):
         nums = {int(n) for n in nums}
+        f, t = d1.isoformat(), d2.isoformat()
         with self.lock:
             self.items = [i for i in self.items
-                          if not (i["status"] == "waiting" and (i["year"], i["month"]) == (year, month)
+                          if not (i["status"] == "waiting" and (i.get("d_from"), i.get("d_to")) == (f, t)
                                   and i["num"] in nums and (entry is None or i.get("entry") == entry))]
 
     def clear(self, which):
@@ -209,6 +254,8 @@ class Queue:
 
     def loop(self):
         self.say("Queue started")
+        try: was_open = bool(E._pias_pid())   # PIAS the user opened is left open at the end
+        except Exception: was_open = True
         year = session_year()                 # PIAS has to be restarted to change the year, so group by it
         while not self.stop_after:
             with self.lock:
@@ -221,16 +268,21 @@ class Queue:
             self.run_one(it)
         with self.lock:
             done = sum(i["status"] == "done" for i in self.items)
-            bad = ["T%d.%d %s" % (i["month"], i["year"], i["name"]) for i in self.items if i["status"] == "error"]
+            bad = ["%s %s" % (i.get("period") or "T%d.%d" % (i["month"], i["year"]), i["name"])
+                   for i in self.items if i["status"] == "error"]
         self.say("Queue finished: %d done" % done + (", to re-run: " + "; ".join(bad) if bad else ""))
         self.cur = None
+        if not self.stop_after and not was_open:
+            close_pias(self.say)
+
+
 
     def run_one(self, it):
-        label = "T%d.%d %s" % (it["month"], it["year"], it["name"])
+        label = "%s %s" % (it.get("period") or "T%d.%d" % (it["month"], it["year"]), it["name"])
         d = os.path.join(RUNS, time.strftime("%Y%m%d_%H%M%S") + "_%d" % it["id"])
         os.makedirs(d, exist_ok=True)
         json.dump({k: it.get(k) for k in ("year", "month", "num", "folder", "revenue_only", "entry",
-                                          "kind", "line", "m1", "m2", "d1", "d2")},
+                                          "kind", "line", "m1", "m2", "d1", "d2", "d_from", "d_to")},
                   open(os.path.join(d, "args.json"), "w", encoding="utf-8"), ensure_ascii=False)
         self.cur = d
         self.say(label + ": start")
@@ -518,8 +570,9 @@ class Handler(BaseHTTPRequestHandler):
             LAST_PING[0] = time.time(); return self.json({"ok": True})
         if p == "/api/queue/add":
             s = C.load_settings()
-            try: n = Q.add(int(d["year"]), int(d["month"]), d.get("nums") or [], s["folder"],
-                           d.get("revenue_only"), d.get("entry"))
+            try:
+                d1, d2 = report_dates(d)
+                n = Q.add(d1, d2, d.get("nums") or [], s["folder"], d.get("revenue_only"), d.get("entry"))
             except Exception as ex: return self.json({"error": str(ex)}, 400)
             return self.json({"ok": True, "added": n})
         if p == "/api/queue/policies":
@@ -542,7 +595,9 @@ class Handler(BaseHTTPRequestHandler):
             n = Q.add_policies(chunks, d.get("lines") or [], folder)
             return self.json({"ok": True, "added": n})
         if p == "/api/queue/remove":
-            Q.remove(int(d["year"]), int(d["month"]), d.get("nums") or [], d.get("entry"))
+            try: d1, d2 = report_dates(d)
+            except Exception as ex: return self.json({"error": str(ex)}, 400)
+            Q.remove(d1, d2, d.get("nums") or [], d.get("entry"))
             return self.json({"ok": True})
         if p == "/api/queue/clear":
             Q.clear(d.get("which") or "finished"); return self.json({"ok": True})
