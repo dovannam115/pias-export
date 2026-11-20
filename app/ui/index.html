@@ -355,6 +355,8 @@ function money(v){ return v === null || v === undefined ? "" : Math.round(v).toL
 // ------------------------------------------------------------ language (Tiếng Việt by default)
 let LANG = "vi"; try { LANG = localStorage.getItem("pe_lang") === "en" ? "en" : "vi"; } catch(e){}
 const VI = {
+  "Open PIAS when the tool starts": "Mở PIAS khi mở tool", "Logs in PIAS in the background, so the first report does not wait for it": "Đăng nhập PIAS ngầm, báo cáo đầu tiên khỏi phải chờ",
+  "On": "Bật", "Off": "Tắt", "Opening PIAS in the background": "Đang mở PIAS ngầm", "PIAS ready": "PIAS sẵn sàng",
   "Settings": "Cài đặt", "Close": "Đóng", "Done": "Xong", "Theme": "Nền", "General": "Chung", "Appearance": "Giao diện",
   "Account": "Tài khoản", "Data": "Dữ liệu", "Updates": "Cập nhật", "Language": "Ngôn ngữ", "Font": "Font chữ", "Text size": "Cỡ chữ",
   "Small": "Nhỏ", "Normal": "Vừa", "Large": "Lớn", "Extra large": "Rất lớn", "Fabric account": "Tài khoản Fabric",
@@ -485,7 +487,9 @@ function updRows(done, busy, install, zipName, zipRun){
 }
 function notesHtml(){ return UPDINFO && UPDINFO.notes ? '<h3>What is new</h3><div class="notes" style="margin-top:10px">' + esc(UPDINFO.notes) + '</div>' : ""; }
 const SETPANES = {
-  general: () => srow("Language", "", sseg([["English", "en"], ["Tiếng Việt", "vi"]], LANG, "setLangS")),
+  general: () => srow("Language", "", sseg([["English", "en"], ["Tiếng Việt", "vi"]], LANG, "setLangS")) +
+    srow("Open PIAS when the tool starts", "Logs in PIAS in the background, so the first report does not wait for it",
+         sseg([["On", "on"], ["Off", "off"]], ST && ST.settings && ST.settings.warm_pias === false ? "off" : "on", "setWarm")),
   appearance: () => {
     const f = pref("ct_font") || "Segoe UI", z = +(pref("ct_zoom") || 1), th = document.documentElement.dataset.theme;
     return '<div class="sblock"><b>Theme</b><div class="tcards">' + [["light", "Light mode"], ["dark", "Dark mode"]].map(([k, lb]) =>
@@ -919,7 +923,7 @@ function drawBar(){
     (step ? '<span class="keep">' + esc(step) + '</span>' : "") + '</div>';
 }
 function rmBtn(i){ return i.status === "running" ? "" : '<button class="btn sm gho" title="Remove from the queue" onclick="removeOne(' + i.id + ')">×</button>'; }
-async function removeOne(id){ await api("/api/queue/remove_one", {id}); await refresh(); drawQueue(); }
+async function removeOne(id){ await api("/api/queue/remove_one", {id}); await refresh(); draw(); }
 let QSCROLL = [0, 0];   // where the queue table was scrolled to, kept across redraws
 function drawQueue(){
   const it = QV.items;
@@ -956,6 +960,8 @@ function head(){
   let h;
   if(ST && !ST.pias_found) h = '<span class="dot bad"></span><span>PIAS not found on this PC</span>';
   else if(QV.running) h = '<span class="spin"></span><span>' + (QV.stopping ? "Stopping after the current report" : "Queue running") + '</span>';
+  else if(QV.pias === "opening") h = '<span class="spin"></span><span>Opening PIAS in the background</span>';
+  else if(QV.pias === "ready") h = '<span class="dot ok"></span><span>PIAS ready</span>';
   else h = '<span class="dot ok"></span><span>Idle</span>';
   $("hstatus").innerHTML = h;
 }
@@ -979,7 +985,8 @@ async function untickAll(entry){
 async function startQ(){ await api("/api/queue/start", {}); await refresh(); drawQueue(); drawNav(); }
 async function stopQ(){ await api("/api/queue/stop", {}); await refresh(); drawQueue(); }
 async function clearQ(){ await api("/api/queue/clear", {which:"finished"}); await refresh(); draw(); }
-async function retry(id){ await api("/api/queue/retry", {id}); await refresh(); drawQueue(); }
+async function retry(id){ await api("/api/queue/retry", {id}); await refresh(); draw(); }
+async function setWarm(v){ ST.settings = await api("/api/settings", {warm_pias: v === "on"}); rerenderSettings(); }
 async function saveFolder(){ const v = $("fold").value.trim(); if(!v) return; ST.settings = await api("/api/settings", {folder:v}); }
 async function browse(){
   const r = await api("/api/browse", {start: folderNow()});
@@ -1042,7 +1049,11 @@ async function init(){
   VER = ST.version; $("ver").textContent = "v" + VER; UPDINFO = ST.update;
   await refresh();
   go("exp");
-  setInterval(async () => { await refresh(); if(CUR === "exp") drawQueue(); }, 1500);
+  // a job that ends or leaves the queue changes the counts and the picked cards too: redraw the page then
+  let qsig = "";
+  setInterval(async () => { await refresh(); if(CUR !== "exp") return;
+    const sig = QV.items.filter(i => i.status === "waiting").map(i => i.id).join(",");
+    if(sig !== qsig){ qsig = sig; draw(); } else drawQueue(); }, 1500);
   setInterval(() => api("/api/ping", {}), 30000); api("/api/ping", {});
   setTimeout(() => checkUpd(false), 2500);   // always a fresh check on open, so the banner shows on its own
   setInterval(() => checkUpd(false), 15 * 60 * 1000);   // notice a new release while the app stays open

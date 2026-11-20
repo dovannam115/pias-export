@@ -1,3 +1,8 @@
+1.2
+- The tool opens and logs in PIAS in the background when it starts (Settings > General, On by default), then minimises it, so the first report does not wait for PIAS. The header shows "Opening PIAS in the background" and then "PIAS ready". Starting the queue meanwhile waits for that login to finish.
+- A PIAS the tool opened is closed when the queue finishes or the tool is closed.
+- The group counts and the picked cards update when a job is removed from the queue or ends.
+
 1.1.22
 - Picking a report or a line no longer jumps the list back to the top: the page and the list keep their scroll. Another group still starts at the top.
 

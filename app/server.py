@@ -123,6 +123,33 @@ def report_dates(d):
     return d1, d2
 
 
+WARM = {"lock": threading.Lock(), "ours": False, "state": ""}   # state: "", "opening", "ready", "error"
+
+
+def warm_pias():
+    """Open and log in PIAS in the background when the tool starts, so the first report does not wait two
+    minutes for it. Left alone when PIAS is already open, the queue is running or the setting is off."""
+    if C.load_settings().get("warm_pias") is False or Q.running(): return
+    if not os.path.exists(E.pias_exe()): return
+    if not WARM["lock"].acquire(blocking=False): return
+    try:
+        if E._pias_pid():
+            WARM["state"] = "ready"; return
+        WARM["state"] = "opening"
+        Q.say("Opening PIAS in the background")
+        E.login(datetime.date.today().year, log=lambda s: Q.say("  " + str(s).strip()))
+        WARM["ours"] = True
+        h, _ = E.pias_main()
+        if h: E.user32.ShowWindow(h, 7)          # SW_SHOWMINNOACTIVE: out of the way, keyboard left alone
+        WARM["state"] = "ready"
+        Q.say("PIAS is ready")
+    except Exception as ex:
+        WARM["state"] = "error"
+        Q.say("Could not open PIAS: %s" % ex)
+    finally:
+        WARM["lock"].release()
+
+
 def close_pias(say=lambda s: None):
     """Close the PIAS the queue opened: ask its window to close, then end it if it is still there
     (a 'do you want to exit' box would otherwise keep it up). PIAS only reads here, nothing to save."""
@@ -254,7 +281,9 @@ class Queue:
 
     def loop(self):
         self.say("Queue started")
-        try: was_open = bool(E._pias_pid())   # PIAS the user opened is left open at the end
+        if WARM["lock"].locked(): self.say("Waiting for PIAS to finish opening")
+        with WARM["lock"]: pass               # the background login is not interrupted
+        try: was_open = bool(E._pias_pid()) and not WARM["ours"]   # PIAS the user opened is left open at the end
         except Exception: was_open = True
         year = session_year()                 # PIAS has to be restarted to change the year, so group by it
         while not self.stop_after:
@@ -274,6 +303,7 @@ class Queue:
         self.cur = None
         if not self.stop_after and not was_open:
             close_pias(self.say)
+            WARM["ours"], WARM["state"] = False, ""
 
 
 
@@ -340,7 +370,8 @@ class Queue:
     def view(self, since):
         with self.lock:
             return {"items": [dict(i) for i in self.items], "running": self.running(), "stopping": self.stop_after and self.running(),
-                    "lines": self.lines[since:] if since <= len(self.lines) else self.lines[:], "total": len(self.lines)}
+                    "lines": self.lines[since:] if since <= len(self.lines) else self.lines[:], "total": len(self.lines),
+                    "pias": WARM["state"]}
 
 
 Q = Queue()
@@ -613,6 +644,9 @@ class Handler(BaseHTTPRequestHandler):
             s = C.load_settings()
             f = (d.get("folder") or "").strip().strip('"')
             if f: s["folder"] = f
+            if "warm_pias" in d:
+                s["warm_pias"] = bool(d["warm_pias"])
+                if s["warm_pias"]: threading.Thread(target=lambda: (time.sleep(0.5), warm_pias()), daemon=True).start()
             C.save_settings(s); return self.json(s)
         if p == "/api/browse":
             try: picked = browse_folder(d.get("start") or "")
@@ -638,6 +672,7 @@ class Handler(BaseHTTPRequestHandler):
         if p == "/api/restart":
             restart(); return self.json({"ok": True})
         if p == "/api/quit":
+            if WARM["ours"] and not Q.running(): threading.Thread(target=close_pias, daemon=True).start()
             Q.stop_now()
             if Q.proc:
                 try: subprocess.call(["taskkill", "/F", "/T", "/PID", str(Q.proc.pid)], creationflags=NO_WINDOW,
@@ -758,7 +793,9 @@ def watchdog():
         if Q.running() or (UPD["job"] and UPD["job"].state == "running"):
             LAST_PING[0] = time.time(); continue
         if time.time() - LAST_PING[0] > IDLE_CLOSE:
-            log("no page for %d hours, closing" % (IDLE_CLOSE // 3600)); SHUTDOWN and SHUTDOWN[0](); return
+            log("no page for %d hours, closing" % (IDLE_CLOSE // 3600))
+            if WARM["ours"]: close_pias(log)
+            SHUTDOWN and SHUTDOWN[0](); return
 
 
 def main():
@@ -783,6 +820,7 @@ def main():
     threading.Thread(target=cleanup, daemon=True).start()
     threading.Thread(target=lambda: (time.sleep(1.5), update_check()), daemon=True).start()
     threading.Thread(target=shortcuts, daemon=True).start()
+    threading.Thread(target=lambda: (time.sleep(3), warm_pias()), daemon=True).start()
     open_ui()
     try: srv.serve_forever()
     except KeyboardInterrupt: pass
