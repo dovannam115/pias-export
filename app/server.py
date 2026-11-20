@@ -150,6 +150,27 @@ def warm_pias():
         WARM["lock"].release()
 
 
+def pias_state():
+    """For the header: 'opening' while the background login runs, else whether PIAS is up right now."""
+    if WARM["lock"].locked() and WARM["state"] == "opening": return "opening"
+    try: return "ready" if E._pias_pid() else ""
+    except Exception: return ""
+
+
+BYE = [0.0]
+
+
+def window_closed():
+    """The page said goodbye. A reload pings again within seconds; if none comes the window was closed:
+    close PIAS and the tool, unless a report is running (the queue goes on, the window can be opened again)."""
+    time.sleep(6)
+    if LAST_PING[0] > BYE[0] or Q.running(): return
+    log("window closed, closing PIAS and the tool")
+    with WARM["lock"]: close_pias(log)    # a background login in progress finishes first
+    WARM["ours"], WARM["state"] = False, ""
+    SHUTDOWN and SHUTDOWN[0]()
+
+
 def close_pias(say=lambda s: None):
     """Close the PIAS the queue opened: ask its window to close, then end it if it is still there
     (a 'do you want to exit' box would otherwise keep it up). PIAS only reads here, nothing to save."""
@@ -371,7 +392,7 @@ class Queue:
         with self.lock:
             return {"items": [dict(i) for i in self.items], "running": self.running(), "stopping": self.stop_after and self.running(),
                     "lines": self.lines[since:] if since <= len(self.lines) else self.lines[:], "total": len(self.lines),
-                    "pias": WARM["state"]}
+                    "pias": pias_state()}
 
 
 Q = Queue()
@@ -582,6 +603,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, open(f, "rb").read(), "text/html; charset=utf-8")
         if not self.ok_token(q): return self.json({"error": "token"}, 403)
         if p == "/api/state":
+            threading.Thread(target=warm_pias, daemon=True).start()
             return self.json({"version": version(), "update": UPD.get("cache"), "reports": E.REPORTS, "usual": E.DEFAULT,
                               "settings": C.load_settings(), "pias": E.pias_exe(), "pias_found": os.path.exists(E.pias_exe()),
                               "catalog": pias_catalog(), "ready_entry": E.HQKD, "lines": E.LINES,
@@ -599,6 +621,10 @@ class Handler(BaseHTTPRequestHandler):
         d = self.body()
         if p == "/api/ping":
             LAST_PING[0] = time.time(); return self.json({"ok": True})
+        if p == "/api/bye":
+            BYE[0] = time.time() + 0.01
+            threading.Thread(target=window_closed, daemon=True).start()
+            return self.json({"ok": True})
         if p == "/api/queue/add":
             s = C.load_settings()
             try:
@@ -672,7 +698,7 @@ class Handler(BaseHTTPRequestHandler):
         if p == "/api/restart":
             restart(); return self.json({"ok": True})
         if p == "/api/quit":
-            if WARM["ours"] and not Q.running(): threading.Thread(target=close_pias, daemon=True).start()
+            if not Q.running(): threading.Thread(target=close_pias, daemon=True).start()
             Q.stop_now()
             if Q.proc:
                 try: subprocess.call(["taskkill", "/F", "/T", "/PID", str(Q.proc.pid)], creationflags=NO_WINDOW,
@@ -794,7 +820,7 @@ def watchdog():
             LAST_PING[0] = time.time(); continue
         if time.time() - LAST_PING[0] > IDLE_CLOSE:
             log("no page for %d hours, closing" % (IDLE_CLOSE // 3600))
-            if WARM["ours"]: close_pias(log)
+            close_pias(log)
             SHUTDOWN and SHUTDOWN[0](); return
 
 
@@ -820,7 +846,6 @@ def main():
     threading.Thread(target=cleanup, daemon=True).start()
     threading.Thread(target=lambda: (time.sleep(1.5), update_check()), daemon=True).start()
     threading.Thread(target=shortcuts, daemon=True).start()
-    threading.Thread(target=lambda: (time.sleep(3), warm_pias()), daemon=True).start()
     open_ui()
     try: srv.serve_forever()
     except KeyboardInterrupt: pass

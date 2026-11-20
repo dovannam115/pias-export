@@ -1,3 +1,9 @@
+1.3
+- Closing the tool window now closes PIAS and the tool (a reload does not). While a report is running the queue goes on and PIAS stays open.
+- Quit also closes PIAS.
+- Opening the tool again logs PIAS in again in the background if it is not open.
+- "PIAS ready" in the header now follows PIAS itself: it goes away when PIAS is closed.
+
 1.2
 - The tool opens and logs in PIAS in the background when it starts (Settings > General, On by default), then minimises it, so the first report does not wait for PIAS. The header shows "Opening PIAS in the background" and then "PIAS ready". Starting the queue meanwhile waits for that login to finish.
 - A PIAS the tool opened is closed when the queue finishes or the tool is closed.

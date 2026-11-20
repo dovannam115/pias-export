@@ -1055,6 +1055,8 @@ async function init(){
     const sig = QV.items.filter(i => i.status === "waiting").map(i => i.id).join(",");
     if(sig !== qsig){ qsig = sig; draw(); } else drawQueue(); }, 1500);
   setInterval(() => api("/api/ping", {}), 30000); api("/api/ping", {});
+  // closing the window closes PIAS and the tool (the server waits a few seconds in case this was a reload)
+  addEventListener("pagehide", () => { try { navigator.sendBeacon("/api/bye?t=" + T, "{}"); } catch(e){} });
   setTimeout(() => checkUpd(false), 2500);   // always a fresh check on open, so the banner shows on its own
   setInterval(() => checkUpd(false), 15 * 60 * 1000);   // notice a new release while the app stays open
 }
