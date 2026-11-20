@@ -502,6 +502,29 @@ def safe_name(s, limit=70):
     return s[:limit].strip(" .")
 
 
+def free_path(folder, base, aside=False):
+    """<base>.xlsx, overwriting a file of that name. With aside the old file is only moved to <name>.old, for
+    PIAS to write in its place; keep_old/drop_old settle it afterwards. A file Excel holds open cannot be
+    moved: the new one then gets the date, '<base> 20-11.xlsx', '<base> 20-11 (2).xlsx', the old one stays."""
+    path = os.path.join(folder, base + ".xlsx")
+    try:
+        if os.path.exists(path):
+            if aside: os.replace(path, path + ".old")
+            else: os.remove(path)
+        return path
+    except OSError:
+        pass
+    today = dt.date.today()
+    path = os.path.join(folder, "%s %d-%d.xlsx" % (base, today.day, today.month))
+    i = 2
+    while os.path.exists(path):
+        try: os.remove(path); return path
+        except OSError: pass
+        path = os.path.join(folder, "%s %d-%d (%d).xlsx" % (base, today.day, today.month, i))
+        i += 1
+    return path
+
+
 def target(folder, year, month, num, entry=None, want=None):
     """T11.2026 - <report>.xlsx for a whole month, 01.11-15.11.2026 - <report>.xlsx for other dates."""
     folder = os.path.normpath(folder)    # the Save As box rejects '/'; a normalised path is all backslashes
@@ -511,15 +534,7 @@ def target(folder, year, month, num, entry=None, want=None):
     else:
         span = "%02d.%02d-%02d.%02d.%d" % (a.day, a.month, b.day, b.month, b.year)
     base = "%s - %s" % (span, safe_name(report_name(entry or HQKD, num)))
-    today = dt.date.today()
-    path = os.path.join(folder, base + ".xlsx")
-    if os.path.exists(path):
-        path = os.path.join(folder, "%s %d-%d.xlsx" % (base, today.day, today.month))
-    i = 2
-    while os.path.exists(path):
-        path = os.path.join(folder, "%s %d-%d (%d).xlsx" % (base, today.day, today.month, i))
-        i += 1
-    return path
+    return free_path(folder, base)
 
 
 def export(year, month, num, folder, revenue_only=False, log=print, stop=lambda: False, tries=3, entry=None,
@@ -711,15 +726,19 @@ def policy_file(folder, line, year, m1, m2, d1=1, d2=None):
     elif (m1, m2) == (1, 12): base = "%s-%d" % (line, year)
     elif m1 == m2: base = "%s-%02d-%d" % (line, m1, year)
     else: base = "%s-%02d_%02d-%d" % (line, m1, m2, year)
-    path = os.path.join(folder, base + ".xlsx")
-    today = dt.date.today()
-    if os.path.exists(path):
-        path = os.path.join(folder, "%s %d-%d.xlsx" % (base, today.day, today.month))
-    i = 2
-    while os.path.exists(path):
-        path = os.path.join(folder, "%s %d-%d (%d).xlsx" % (base, today.day, today.month, i))
-        i += 1
-    return path
+    return free_path(folder, base, aside=True)
+
+
+def drop_old(dst):
+    try: os.remove(dst + ".old")
+    except OSError: pass
+
+
+def keep_old(dst):
+    """The export failed: put the old file back where the new one was meant to go."""
+    if os.path.exists(dst + ".old") and not (os.path.exists(dst) and os.path.getsize(dst) > 0):
+        try: os.replace(dst + ".old", dst)
+        except OSError: pass
 
 
 POLICY_STEPS = ["PIAS", "Screen", "Period", "Search", "Export", "File"]
@@ -750,6 +769,15 @@ def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False, d
     last = calendar.monthrange(year, m2)[1]
     d2 = min(int(d2 or last), last); d1 = max(1, int(d1 or 1))
     dst = policy_file(folder, line, year, m1, m2, d1, d2)
+    try:
+        dst = _policies(pid, dst, line, year, m1, m2, d1, d2, log, stop)
+    except BaseException:
+        keep_old(dst); raise
+    drop_old(dst)
+    return dst
+
+
+def _policies(pid, dst, line, year, m1, m2, d1, d2, log, stop):
     _step(log, 3, "Setting the period")
     log("Listing %s policies, %02d/%02d - %02d/%02d/%d" % (LINES.get(line, line), d1, m1, d2, m2, year))
 
