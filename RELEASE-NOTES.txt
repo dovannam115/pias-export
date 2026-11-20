@@ -1,3 +1,6 @@
+1.1.19
+- The queue table and the log keep their scroll position (both ways) while the queue updates.
+
 1.1.18
 - All report groups now take From and To dates (dd/mm/yyyy) instead of a month, inside one year. A file that is not a whole month is named <dd.mm>-<dd.mm>.<year> - <report>.xlsx.
 - The To date cannot be before the From date: the app says so under the dates and does not queue anything.

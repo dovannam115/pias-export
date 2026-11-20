@@ -854,11 +854,13 @@ function drawBar(){
 }
 function rmBtn(i){ return i.status === "running" ? "" : '<button class="btn sm gho" title="Remove from the queue" onclick="removeOne(' + i.id + ')">×</button>'; }
 async function removeOne(id){ await api("/api/queue/remove_one", {id}); await refresh(); drawQueue(); }
+let QSCROLL = [0, 0];   // where the queue table was scrolled to, kept across redraws
 function drawQueue(){
   const it = QV.items;
   if($("qtab")){
-    if(!it.length) $("qtab").innerHTML = '<div class="empty">Nothing in the queue yet.</div>';
-    else $("qtab").innerHTML = '<div class="tw" style="margin-top:10px"><table><thead><tr><th>Period</th><th>Report</th><th>Status</th><th>Time</th><th>Revenue (VND)</th><th>File</th><th></th></tr></thead><tbody>' +
+    let h;
+    if(!it.length) h = '<div class="empty">Nothing in the queue yet.</div>';
+    else h = '<div class="tw" style="margin-top:10px" onscroll="QSCROLL=[this.scrollLeft,this.scrollTop]"><table><thead><tr><th>Period</th><th>Report</th><th>Status</th><th>Time</th><th>Revenue (VND)</th><th>File</th><th></th></tr></thead><tbody>' +
       it.map(i => '<tr><td>' + esc(i.period || ("T" + i.month + "." + i.year)) + '</td><td title="' + esc(i.entry || "") + '">' + i.num + '. ' + esc(i.name) + '</td><td class="t"><span class="pill ' + i.status + '">' + i.status + '</span>' +
         (i.progress ? '<div class="muted keep" style="font-size:11px">' + esc(i.progress.label) + '</div>' : "") + '</td>' +
         '<td class="t">' + esc(secs(i.seconds)) + '</td><td class="n">' + money(i.revenue) + '</td>' +
@@ -866,8 +868,17 @@ function drawQueue(){
          : '<td title="' + esc(i.file) + '">' + esc(i.file ? i.file.split("\\").pop() : "") + '</td><td class="t">' +
            (i.file ? '<button class="btn sm" onclick="openPath(' + esc(JSON.stringify(i.file)) + ')">Open</button> <button class="btn sm gho" onclick="openPath(' + esc(JSON.stringify(i.file)) + ',1)">Folder</button> ' : "") + rmBtn(i) + '</td>') +
         '</tr>').join("") + '</tbody></table></div>';
+    // the queue is polled every second or so: rebuild only when something changed, and keep the scroll
+    const box = $("qtab");
+    if(box.dataset.h !== h){
+      box.innerHTML = h; box.dataset.h = h;
+    }
+    const tw = box.querySelector(".tw");
+    if(tw && (tw.scrollLeft !== QSCROLL[0] || tw.scrollTop !== QSCROLL[1])){ tw.scrollLeft = QSCROLL[0]; tw.scrollTop = QSCROLL[1]; }
   }
-  if($("qlog")){ const el = $("qlog"), atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 8; el.textContent = QV.lines.join("\n"); if(atEnd) el.scrollTop = el.scrollHeight; }
+  if($("qlog")){ const el = $("qlog"), txt = QV.lines.join("\n");
+    if(el.textContent !== txt){ const atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 8, top = el.scrollTop;
+      el.textContent = txt; el.scrollTop = atEnd ? el.scrollHeight : top; } }
   const w = it.filter(i => i.status === "waiting").length, d = it.filter(i => i.status === "done").length, e = it.filter(i => i.status === "error").length;
   if($("qsum")) $("qsum").textContent = it.length ? tr(w + " waiting · " + d + " done · " + e + " error") : "";
   drawBar();
