@@ -263,6 +263,33 @@
   #calpop .cft button{flex:1; border:0; border-radius:999px; padding:6px 0; background:var(--hover); color:var(--fg);
                       font:inherit; font-size:11.5px; cursor:pointer}
   #calpop .cft button:hover{background:var(--ember); color:#fff}
+
+  .rhead{display:flex; align-items:flex-start; gap:12px; justify-content:space-between}
+  .rtools{display:flex; gap:6px; flex:0 0 auto}
+  .pillb{border:1px solid var(--line); background:var(--elev); color:var(--fg); border-radius:999px; padding:5px 12px;
+         font:inherit; font-size:12px; cursor:pointer}
+  .pillb:hover:not(:disabled){border-color:var(--ember); color:var(--ember-lit)}
+  .pillb:disabled{opacity:.4; cursor:default}
+  .rsearch{display:flex; align-items:center; gap:8px; margin:12px 0 4px; padding:0 12px; height:36px; border-radius:999px;
+           background:var(--elev); border:1px solid var(--line); color:var(--dim)}
+  .rsearch:focus-within{border-color:var(--ember)}
+  .rsearch input{flex:1; border:0; outline:0; background:none; color:var(--fg); font:inherit; font-size:13px}
+  .rpre{font-size:11px; color:var(--dim); margin:8px 2px 0}
+  .rgrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:6px; max-height:62vh; overflow:auto;
+         margin-top:8px; padding:2px 2px 4px; align-content:start}
+  .rr{display:flex; align-items:center; gap:10px; text-align:left; min-width:0; padding:8px 10px; min-height:44px; border-radius:12px;
+      border:1px solid var(--line); background:var(--elev); color:var(--fg); font:inherit; font-size:13px; cursor:pointer;
+      transition:background .12s, border-color .12s}
+  .rr b{flex:0 0 26px; height:26px; border-radius:50%; background:var(--hover); color:var(--muted); font-size:11px;
+        font-weight:600; display:grid; place-items:center; font-variant-numeric:tabular-nums}
+  .rr span{flex:1; min-width:0; line-height:1.3; white-space:normal; overflow-wrap:anywhere}
+  .rr small{color:var(--dim); font-size:11px; white-space:nowrap}
+  .rr em{flex:0 0 20px; height:20px; border-radius:50%; border:1.5px solid var(--line2); display:grid; place-items:center;
+         color:transparent; font-style:normal}
+  .rr:hover{border-color:var(--ember-lit)}
+  .rr.on{background:color-mix(in srgb, var(--ember) 14%, var(--elev)); border-color:var(--ember)}
+  .rr.on b{background:var(--ember); color:#fff}
+  .rr.on em{background:var(--ember); border-color:var(--ember); color:#fff}
 </style>
 </head>
 <body>
@@ -345,7 +372,7 @@ const VI = {
   "Add to the queue": "Thêm vào hàng chờ",
   "PIAS is asked for one month at a time, the file lands straight in the folder above.":
     "Tool hỏi PIAS từng tháng một, file rơi thẳng vào thư mục ở trên.",
-  "Tick all": "Tick hết", "Untick": "Bỏ tick", "No report matches.": "Không có báo cáo nào khớp.",
+  "Tick all": "Tick hết", "Untick": "Bỏ tick", "Select all": "Chọn hết", "Clear selection": "Bỏ chọn", "No report matches.": "Không có báo cáo nào khớp.",
   "Tick usual": "Tick các báo cáo thường xuất", "Untick all": "Bỏ tick hết",
   "Queue": "Hàng chờ", "Start": "Bắt đầu", "Stop after current": "Dừng sau báo cáo đang chạy", "Clear finished": "Xóa các dòng đã xong",
   "Report": "Báo cáo", "Status": "Trạng thái", "Time": "Thời gian", "File": "File", "Revenue (VND)": "Doanh thu (VNĐ)",
@@ -368,6 +395,9 @@ const VI = {
   "Wait for the export queue to finish.": "Chờ hàng chờ xuất xong đã.", "An update is already running.": "Đang cập nhật rồi."
 };
 const VI_RE = [
+  [/^(\d+) in the queue · (\d+) of (\d+) reports$/, "$1 trong hàng chờ · $2 / $3 báo cáo"],
+  [/^(\d+) in the queue · (\d+) reports$/, "$1 trong hàng chờ · $2 báo cáo"],
+  [/^(\d+) of (\d+) reports$/, "$1 / $2 báo cáo"], [/^(\d+) reports$/, "$1 báo cáo"],
   [/^(\d+) files: (\d+) periods? x (\d+) lines · about ([\d.,]+) policies in all$/, "$1 file: $2 kỳ x $3 nghiệp vụ · khoảng $4 đơn"],
   [/^(\d+) files: (\d+) periods? x (\d+) lines$/, "$1 file: $2 kỳ x $3 nghiệp vụ"],
   [/^Type the date as dd\/mm\/yyyy, e\.g\. 15\/11\/2026\.$/, "Gõ ngày theo dạng dd/mm/yyyy, ví dụ 15/11/2026."],
@@ -554,23 +584,49 @@ function entryReports(entry){
   const e = catEntries().find(x => x.entry === entry);
   return e ? e.reports.map(r => r.num) : [];
 }
-function repRow(n, name, entry){
-  return '<label class="ck"><input type="checkbox" ' + (inQueue(+n, entry) ? "checked" : "") +
-    ' onchange="tick(' + n + ',this.checked,' + esc(JSON.stringify(entry)) + ')"><i>' + n + '.</i>' +
-    '<span class="keep">' + esc(name) + '</span></label>';
+const TICK = '<svg viewBox="0 0 12 12" width="11" height="11"><path d="M2.5 6.3 5 8.6 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function namePrefix(entry){   // the words most names of a group start with, shown once above the list
+  const cur = catEntries().find(e => e.entry === entry); if(!cur) return "";
+  const names = cur.reports.map(r => r.name.trim().split(/\s+/));
+  let pre = [];
+  for(let i = 0; i < 12; i++){
+    const match = names.filter(w => w.length > i + 1 && pre.every((x, j) => w[j].toLowerCase() === x.toLowerCase()));
+    const cnt = {}; match.forEach(w => { const k = w[i].toLowerCase(); cnt[k] = (cnt[k] || 0) + 1; });
+    const best = Object.entries(cnt).sort((a, b) => b[1] - a[1])[0];
+    if(!best || best[1] < Math.max(3, names.length * 0.5)) break;
+    pre.push(match.find(w => w[i].toLowerCase() === best[0])[i]);
+  }
+  return pre.length >= 3 ? pre.join(" ") : "";
+}
+function shortName(name, pre){
+  if(!pre || !name.toLowerCase().startsWith(pre.toLowerCase() + " ")) return name;
+  const rest = name.slice(pre.length).trim().replace(/^[-–:]\s*/, "");
+  return rest.charAt(0).toUpperCase() + rest.slice(1);
+}
+function repRow(n, name, entry, pre){
+  const on = inQueue(+n, entry);
+  return '<button class="rr' + (on ? " on" : "") + '" title="' + esc(name) + '" onclick="tick(' + n + ',' + !on + ',' +
+    esc(JSON.stringify(entry)) + ')"><b>' + n + '</b><span class="keep">' + esc(shortName(name, pre)) + '</span><em>' + TICK + '</em></button>';
 }
 function repRows(list, entry){
   if(!list.length) return '<div class="empty">No report matches.</div>';
-  return list.map(r => repRow(r.num, r.name, entry)).join("");
+  const pre = namePrefix(entry);
+  return list.map(r => repRow(r.num, r.name, entry, pre)).join("");
 }
 function shownReports(cur){
   const q = (P.q || "").trim().toLowerCase();
   return q ? cur.reports.filter(r => (r.num + ". " + r.name).toLowerCase().includes(q)) : cur.reports;
 }
+const LENS = '<svg viewBox="0 0 16 16" width="14" height="14"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+function repCount(cur, nq){
+  const q = (P.q || "").trim(), n = shownReports(cur).length;
+  return (nq ? nq + " in the queue · " : "") + (q ? n + " of " + cur.reports.length + " reports" : cur.reports.length + " reports");
+}
 function drawMid(){
   const cur = catEntries().find(e => e.entry === P.entry);
   if(!cur || !$("replist")) return;
   $("replist").innerHTML = repRows(shownReports(cur), cur.entry);
+  if($("repcount")) $("repcount").textContent = repCount(cur, cur.reports.filter(r => inQueue(+r.num, cur.entry)).length);
   if(LANG === "vi") localize($("replist"));
 }
 function pickEntry(e){ P.entry = e; P.q = ""; draw(); }
@@ -625,14 +681,10 @@ function viewExp(){
     const mid = '<div class="card"><div class="ttl keep">Tìm kiếm đơn bảo hiểm</div>' +
       '<div class="muted">' + (months * picked) + ' files: ' + months + ' period' + (months === 1 ? "" : "s") + ' x ' + picked + ' lines' +
         (polTotal() ? ' · about ' + nice(polTotal()) + ' policies in all' : "") + '</div>' +
-      '<div class="rep">' +
+      '<div class="rgrid">' +
       Object.keys(lines).map(k => {
         const per = (ST.volume || {})[k] || 0;
-        return '<label class="ck"><input type="checkbox" ' + (PL.lines[k] ? "checked" : "") +
-          ' onchange="PL.lines[' + esc(JSON.stringify(k)) + ']=this.checked;draw()"><i>' + esc(k) + '</i>' +
-          '<span class="keep">' + esc(lines[k]) + '</span>' +
-          (per ? '<span class="muted keep" style="margin-left:auto;font-size:11px">~' + nice(per) + '/thg</span>' : "") +
-          '</label>';
+        return lineCard(k, lines[k], per);
       }).join("") + '</div>' + polWarn() +
       '<div class="act"><button class="btn pri" onclick="addPolicies()" ' + (picked && months ? "" : "disabled") +
       '>Add to the queue</button></div></div>';
@@ -652,12 +704,15 @@ function viewExp(){
     (isHQKD ? '<label class="ck" style="margin-top:12px"><input type="checkbox" ' + (F.revenue_only ? "checked" : "") +
       ' onchange="F.revenue_only=this.checked">Revenue only</label>' : "") + '</div>';
 
-  const mid = '<div class="card"><div class="ttl keep">' + esc(cur.entry) + '</div>' +
-    '<div class="muted">' + shown.length + ' of ' + cur.reports.length + ' reports</div>' +
-    '<div class="srch"><input class="inp keep" placeholder="Search a report" value="' + esc(P.q || "") +
-      '" oninput="P.q=this.value;drawMid()"><button class="btn sm" onclick="tickAll(' + esc(JSON.stringify(cur.entry)) + ')">Tick all</button>' +
-      '<button class="btn sm gho" onclick="untickAll(' + esc(JSON.stringify(cur.entry)) + ')">Untick</button></div>' +
-    '<div class="rep" id="replist">' + repRows(shown, cur.entry) + '</div></div>';
+  const pre = namePrefix(cur.entry), nq = cur.reports.filter(r => inQueue(+r.num, cur.entry)).length;
+  const mid = '<div class="card"><div class="rhead"><div><div class="ttl keep">' + esc(cur.entry) + '</div>' +
+    '<div class="muted" id="repcount">' + repCount(cur, nq) + '</div></div>' +
+    '<div class="rtools"><button class="pillb" onclick="tickAll(' + esc(JSON.stringify(cur.entry)) + ')">Select all</button>' +
+      '<button class="pillb" onclick="untickAll(' + esc(JSON.stringify(cur.entry)) + ')"' + (nq ? "" : " disabled") + '>Clear selection</button></div></div>' +
+    '<div class="rsearch">' + LENS + '<input placeholder="Search a report" value="' + esc(P.q || "") +
+      '" oninput="P.q=this.value;drawMid()"></div>' +
+    (pre ? '<div class="rpre">' + esc(pre) + ' …</div>' : "") +
+    '<div class="rgrid" id="replist">' + repRows(shown, cur.entry) + '</div></div>';
 
   return '<div class="cols3"><div class="stack">' + left + '</div><div class="stack">' + mid +
          '</div><div class="stack">' + reportRight() + '</div></div>';
@@ -761,6 +816,11 @@ function polMonths(){   // the pieces PIAS is asked for, the same cut as chunk_d
   }
   return n;
 }
+function lineCard(k, name, per){
+  return '<button class="rr' + (PL.lines[k] ? " on" : "") + '" onclick="PL.lines[' + esc(JSON.stringify(k)) + ']=!PL.lines[' +
+    esc(JSON.stringify(k)) + '];draw()"><b>' + esc(k) + '</b><span class="keep">' + esc(name) + '</span>' +
+    (per ? '<small class="keep">~' + nice(per) + '/thg</small>' : "") + '<em>' + TICK + '</em></button>';
+}
 function polLines(){ return Object.keys(PL.lines).filter(k => PL.lines[k]); }
 function nice(n){ return Math.round(n).toLocaleString("vi-VN"); }
 function chunkMonths(){ return PL.chunk === "month" ? 1 : (PL.chunk === "year" ? 12 : 3); }
@@ -803,14 +863,10 @@ function viewPol(){
   const mid = '<div class="card"><div class="ttl">Lines</div>' +
     '<div class="muted">' + (months * picked) + ' files: ' + months + ' period' + (months === 1 ? "" : "s") + ' x ' + picked + ' lines' +
       (polTotal() ? ' · about ' + nice(polTotal()) + ' policies in all' : "") + '</div>' +
-    '<div class="rep" style="max-height:38vh">' +
+    '<div class="rgrid" style="max-height:38vh">' +
     Object.keys(lines).map(k => {
       const per = (ST.volume || {})[k] || 0;
-      return '<label class="ck"><input type="checkbox" ' + (PL.lines[k] ? "checked" : "") +
-        ' onchange="PL.lines[' + esc(JSON.stringify(k)) + ']=this.checked;draw()"><i>' + esc(k) + '</i>' +
-        '<span class="keep">' + esc(lines[k]) + '</span>' +
-        (per ? '<span class="muted keep" style="margin-left:auto;font-size:11px">~' + nice(per) + '/thg</span>' : "") +
-        '</label>';
+      return lineCard(k, lines[k], per);
     }).join("") + '</div>' + polWarn() +
     '<div class="act"><button class="btn pri" onclick="addPolicies()" ' + (picked && months ? "" : "disabled") +
     '>Add to the queue</button></div>' +
@@ -901,7 +957,9 @@ async function tick(n, on, entry){
 }
 async function tickAll(entry){
   if(rangeErr("F")){ toast(rangeErr("F")); return; }
-  const r = await api("/api/queue/add", {date_from:F.d1, date_to:F.d2, nums:entryReports(entry), revenue_only:F.revenue_only, entry});
+  const cur = catEntries().find(e => e.entry === entry);
+  const nums = cur && (P.q || "").trim() ? shownReports(cur).map(r => r.num) : entryReports(entry);
+  const r = await api("/api/queue/add", {date_from:F.d1, date_to:F.d2, nums, revenue_only:F.revenue_only, entry});
   if(r.error) toast(r.error); await refresh(); draw();
 }
 async function untickAll(entry){

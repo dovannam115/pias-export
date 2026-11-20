@@ -1,3 +1,8 @@
+1.1.20
+- Report list redesigned: each report is a card you click to add to or take out of the queue (no tick boxes), in a grid. The words most names share are shown once above the list, so each card shows what differs (Cháy - tài sản, Kỹ thuật ...). The full name is on hover.
+- Rounded search box; Select all / Clear selection. With a search typed, Select all takes only the reports shown.
+- The policy lines use the same cards, with the monthly volume on each.
+
 1.1.19
 - The queue table and the log keep their scroll position (both ways) while the queue updates.
 
