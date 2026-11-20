@@ -566,10 +566,20 @@ function setTheme(t){ document.documentElement.dataset.theme = t; if($("themeBtn
 function toggleTheme(){ setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"); }
 try { setTheme(localStorage.getItem("pe_theme") || "dark"); } catch(e){ setTheme("dark"); }
 function go(k){ CUR = k; $("title").textContent = TITLES[k] || ""; drawNav(); draw(); if(k === "upd" && !UPDINFO) checkUpd(false); }
+const SCROLLERS = ".rgrid,.rep";
+let DRAWN = "";
 function draw(){
-  $("view").innerHTML = CUR === "upd" ? viewUpd() : (CUR === "pol" ? viewPol() : viewExp());
+  // a click (pick a report, a line, a date) redraws the page: keep the page and the lists where they were scrolled
+  const v = $("view"), was = CUR, pos = [v.scrollTop, [...v.querySelectorAll(SCROLLERS)].map(el => [el.scrollTop, el.scrollLeft])];
+  v.innerHTML = CUR === "upd" ? viewUpd() : (CUR === "pol" ? viewPol() : viewExp());
   if(CUR === "exp" || CUR === "pol") drawQueue();
+  if(was === CUR && DRAWN === drawKey()){
+    v.scrollTop = pos[0];
+    v.querySelectorAll(SCROLLERS).forEach((el, i) => { if(pos[1][i]){ el.scrollTop = pos[1][i][0]; el.scrollLeft = pos[1][i][1]; } });
+  }
+  DRAWN = drawKey();
 }
+function drawKey(){ return CUR + "|" + P.entry; }   // another view or group starts at the top
 
 // ------------------------------------------------------------ export view
 function folderNow(){

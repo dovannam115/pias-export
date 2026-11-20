@@ -1,3 +1,6 @@
+1.1.22
+- Picking a report or a line no longer jumps the list back to the top: the page and the list keep their scroll. Another group still starts at the top.
+
 1.1.21
 - After Download and install, the tool restarts by itself (unless a report is running), so the page and the server are always the same version.
 
