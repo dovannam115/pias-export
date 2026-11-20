@@ -2,7 +2,7 @@
 # one report at a time, each as a child process (worker.py) so a run can be stopped and a crash never
 # takes the window down. Started by "PIAS Export.bat" with pyembed\pythonw.exe (no console window).
 #   python.exe app\server.py --diag   -> same server with the log in a console (for troubleshooting)
-import os, re, sys, json, time, glob, codecs, shutil, socket, zipfile, ctypes, tempfile, threading, subprocess, webbrowser
+import os, re, sys, json, time, calendar, datetime, glob, codecs, shutil, socket, zipfile, ctypes, tempfile, threading, subprocess, webbrowser
 import urllib.request, urllib.error
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
@@ -84,6 +84,24 @@ def chunk_months(y1, m1, y2, m2, how="quarter"):
     return out
 
 
+def chunk_dates(d1, d2, how="quarter"):
+    """Cut a date range into the pieces PIAS is asked for (calendar month, quarter or year), the first and
+    last piece clipped to the dates typed: [(year, m1, m2, day1, day2)]."""
+    out, y, m = [], d1.year, d1.month
+    while (y, m) <= (d2.year, d2.month) and len(out) < 120:
+        if how == "month": end = m
+        elif how == "year": end = 12
+        else: end = ((m - 1) // 3 + 1) * 3
+        if y == d2.year: end = min(end, d2.month)
+        day1 = d1.day if (y, m) == (d1.year, d1.month) else 1
+        last = calendar.monthrange(y, end)[1]
+        day2 = d2.day if (y, end) == (d2.year, d2.month) else last
+        out.append((y, m, end, day1, day2))
+        m = end + 1
+        if m > 12: y, m = y + 1, 1
+    return out
+
+
 def session_year():
     """The year PIAS is logged in with, as the login script last wrote it."""
     try:
@@ -129,18 +147,20 @@ class Queue:
         """chunks: [(year, m1, m2)], lines: ['01', '05', ...]; one job per chunk and line."""
         added = 0
         with self.lock:
-            for (y, m1, m2) in chunks:
+            for (y, m1, m2, d1, d2) in chunks:
+                full = d1 == 1 and d2 == calendar.monthrange(y, m2)[1]
                 for ln in lines:
                     ln = str(ln).strip()
                     if ln not in E.LINES: continue
                     if any(i["status"] == "waiting" and i.get("kind") == "policy" and
-                           (i["year"], i.get("m1"), i.get("m2"), i.get("line")) == (y, m1, m2, ln)
-                           for i in self.items):
+                           (i["year"], i.get("m1"), i.get("m2"), i.get("d1", 1), i.get("d2"), i.get("line")) ==
+                           (y, m1, m2, d1, d2, ln) for i in self.items):
                         continue
                     self.seq += 1
-                    span = "T%d" % m1 if m1 == m2 else ("cả năm" if (m1, m2) == (1, 12) else "T%d-T%d" % (m1, m2))
+                    if not full: span = "%02d/%02d-%02d/%02d" % (d1, m1, d2, m2)
+                    else: span = "T%d" % m1 if m1 == m2 else ("cả năm" if (m1, m2) == (1, 12) else "T%d-T%d" % (m1, m2))
                     self.items.append({"id": self.seq, "kind": "policy", "entry": "Tìm kiếm đơn Bảo hiểm",
-                                       "year": y, "month": m1, "m1": m1, "m2": m2, "num": 0, "line": ln,
+                                       "year": y, "month": m1, "m1": m1, "m2": m2, "d1": d1, "d2": d2, "num": 0, "line": ln,
                                        "name": "%s %s - %s" % (ln, span, E.LINES[ln]), "folder": folder,
                                        "revenue_only": False, "status": "waiting", "seconds": None,
                                        "file": "", "error": "", "revenue": None, "progress": None})
@@ -210,7 +230,7 @@ class Queue:
         d = os.path.join(RUNS, time.strftime("%Y%m%d_%H%M%S") + "_%d" % it["id"])
         os.makedirs(d, exist_ok=True)
         json.dump({k: it.get(k) for k in ("year", "month", "num", "folder", "revenue_only", "entry",
-                                          "kind", "line", "m1", "m2")},
+                                          "kind", "line", "m1", "m2", "d1", "d2")},
                   open(os.path.join(d, "args.json"), "w", encoding="utf-8"), ensure_ascii=False)
         self.cur = d
         self.say(label + ": start")
@@ -255,8 +275,10 @@ class Queue:
         if it["status"] == "error" and it.get("kind") == "policy" and "fewer months" in (it.get("error") or ""):
             m1, m2 = int(it.get("m1") or it["month"]), int(it.get("m2") or it["month"])
             if m2 > m1:
-                added = self.add_policies([(it["year"], m, m) for m in range(m1, m2 + 1)],
-                                          [it["line"]], it["folder"])
+                y = it["year"]
+                d1, d2 = int(it.get("d1") or 1), int(it.get("d2") or calendar.monthrange(y, m2)[1])
+                added = self.add_policies([(y, m, m, d1 if m == m1 else 1, d2 if m == m2 else calendar.monthrange(y, m)[1])
+                                           for m in range(m1, m2 + 1)], [it["line"]], it["folder"])
                 it["error"] += " -> split into %d months" % added
                 self.say("%s: too big for PIAS, split into %d monthly jobs" % (label, added))
         if it["status"] == "done" and not it["file"]:
@@ -506,11 +528,18 @@ class Handler(BaseHTTPRequestHandler):
             if not folder: return self.json({"error": "Choose the folder to save the lists in."}, 400)
             s["policy_folder"] = folder; C.save_settings(s)
             try:
-                y1, m1, y2, m2 = int(d["year_from"]), int(d["month_from"]), int(d["year_to"]), int(d["month_to"])
+                if d.get("date_from"):
+                    d1 = datetime.date.fromisoformat(str(d["date_from"])[:10])
+                    d2 = datetime.date.fromisoformat(str(d["date_to"])[:10])
+                    if d2 < d1: return self.json({"error": "The To date is before the From date."}, 400)
+                    chunks = chunk_dates(d1, d2, d.get("chunk") or "quarter")
+                else:
+                    y1, m1, y2, m2 = int(d["year_from"]), int(d["month_from"]), int(d["year_to"]), int(d["month_to"])
+                    chunks = [(y, a, b, 1, calendar.monthrange(y, b)[1])
+                              for y, a, b in chunk_months(y1, m1, y2, m2, d.get("chunk") or "quarter")]
             except Exception:
-                return self.json({"error": "bad period"}, 400)
-            n = Q.add_policies(chunk_months(y1, m1, y2, m2, d.get("chunk") or "quarter"),
-                               d.get("lines") or [], folder)
+                return self.json({"error": "Type the From and To dates."}, 400)
+            n = Q.add_policies(chunks, d.get("lines") or [], folder)
             return self.json({"ok": True, "added": n})
         if p == "/api/queue/remove":
             Q.remove(int(d["year"]), int(d["month"]), d.get("nums") or [], d.get("entry"))

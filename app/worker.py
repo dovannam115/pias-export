@@ -19,6 +19,7 @@ def main(run_dir):
     try:
         if a.get("kind") == "policy":
             dst = E.export_policies(int(a["year"]), int(a["m1"]), int(a["m2"]), a["line"], a["folder"],
+                                    d1=int(a.get("d1") or 1), d2=int(a["d2"]) if a.get("d2") else None,
                                     log=lambda s: print(s, flush=True),
                                     stop=lambda: os.path.exists(os.path.join(run_dir, "STOP")))
         else:

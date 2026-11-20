@@ -690,11 +690,14 @@ def dismiss_boxes(rounds=6):
     return pressed
 
 
-def policy_file(folder, line, year, m1, m2):
-    """01-01_03-2025.xlsx for a range, 02-2025.xlsx for a whole year, 05-07-2025.xlsx for one month."""
+def policy_file(folder, line, year, m1, m2, d1=1, d2=None):
+    """01-01_03-2025.xlsx for a range, 02-2025.xlsx for a whole year, 05-07-2025.xlsx for one month,
+    01-01.11_15.11-2026.xlsx for dates that do not cover whole months."""
     folder = os.path.normpath(folder)    # the Save As box rejects '/'; a normalised path is all backslashes
     os.makedirs(folder, exist_ok=True)
-    if (m1, m2) == (1, 12): base = "%s-%d" % (line, year)
+    last = calendar.monthrange(year, m2)[1]
+    if d1 != 1 or (d2 or last) != last: base = "%s-%02d.%02d_%02d.%02d-%d" % (line, d1, m1, d2, m2, year)
+    elif (m1, m2) == (1, 12): base = "%s-%d" % (line, year)
     elif m1 == m2: base = "%s-%02d-%d" % (line, m1, year)
     else: base = "%s-%02d_%02d-%d" % (line, m1, m2, year)
     path = os.path.join(folder, base + ".xlsx")
@@ -715,7 +718,7 @@ def _step(log, n, what=""):
     log("[[P]] %d|%d|%s" % (n, len(POLICY_STEPS), what or POLICY_STEPS[n - 1]))
 
 
-def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
+def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False, d1=1, d2=None):
     r"""The policies of one line over a range of months of one year, out of 'Tìm kiếm đơn Bảo hiểm',
     saved as <folder>\<line>-<months>-<year>.xlsx."""
     import pias_policy as P
@@ -734,9 +737,10 @@ def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
     open_search_screen()
 
     last = calendar.monthrange(year, m2)[1]
-    dst = policy_file(folder, line, year, m1, m2)
+    d2 = min(int(d2 or last), last); d1 = max(1, int(d1 or 1))
+    dst = policy_file(folder, line, year, m1, m2, d1, d2)
     _step(log, 3, "Setting the period")
-    log("Listing %s policies, T%d-T%d.%d" % (LINES.get(line, line), m1, m2, year))
+    log("Listing %s policies, %02d/%02d - %02d/%02d/%d" % (LINES.get(line, line), d1, m1, d2, m2, year))
 
     def say(s):
         s = str(s)
@@ -749,7 +753,7 @@ def export_policies(year, m1, m2, line, folder, log=print, stop=lambda: False):
         log("  " + s)
 
     try:
-        P.run(pid, "01/%02d/%d" % (m1, year), "%02d/%02d/%d" % (last, m2, year), line, dst,
+        P.run(pid, "%02d/%02d/%d" % (d1, m1, year), "%02d/%02d/%d" % (d2, m2, year), line, dst,
               log=say, stop=stop)
     except P.StepError as ex:
         raise UserError(str(ex))

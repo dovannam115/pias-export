@@ -1,3 +1,7 @@
+1.1.17
+- Policy lists: From and To are now dates typed as dd/mm/yyyy (or picked from the calendar), so part of a month can be exported, e.g. 01/11/2026 to 15/11/2026.
+- A file that does not cover whole months is named <line>-<dd.mm>_<dd.mm>-<year>.xlsx, e.g. 01-01.11_15.11-2026.xlsx.
+
 1.1.16
 - Faster "Checking PIAS" when PIAS has to start: no fixed 15 s wait after login, and a login press PIAS ignores is retried after 10 s instead of 60 s.
 - The log now shows how long PIAS took to start and log in.
